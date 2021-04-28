@@ -3,5 +3,22 @@
 # Created by: Tim Schneegans (tim.schneegans@simplyrational.de)
 # Created on: 28.04.2021
 
-print('Hello')
+source('get_packages.R')
+source('server.R')
+source('user_interface.R')
 
+get_packages(c('tidyverse',
+               'dplyr',
+               'rsconnect',
+               'ggplot2',
+               'shiny',
+               'shinythemes'))
+
+# rsconnect::setAccountInfo(name='simplyrational',
+#                           token='D34C5E5E357A63B92E43FD11304A633C',
+#                           secret='TbB7n3cq9yme9uiPERqXqWR0++iTcinYuk8/qBTj')
+
+
+shinyApp(ui=user_interface, server=server)
+
+# runApp()

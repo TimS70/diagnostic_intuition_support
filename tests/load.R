@@ -60,7 +60,8 @@ clean_test_data <- function(data) {
     data$hersteller <- data$hersteller_name %>%
         word(end=1) %>%
         str_replace(pattern = ",", replacement = "") %>%
-        tolower()
+        tolower() %>%
+        str_to_title()
 
     return(data)
 }

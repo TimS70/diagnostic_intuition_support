@@ -7,7 +7,7 @@ source(file=file.path('tests', 'main.R'))
 source(file=file.path('about.R'))
 
 server <- function(input, output, session) {
-
+    introjs(session)
     data <- load_test_data(file=file.path('tests', 'antigentests.csv'))
 
     # Take the first test from the list, when Hersteller changes
@@ -79,7 +79,7 @@ server <- function(input, output, session) {
 
             print(p)
 
-        }, height=700)
+        }, height=400)
 
         prevalence_data_manual <- reactive({get_prevalence_data(
             sensitivity = input$sensitivity,
@@ -109,7 +109,7 @@ server <- function(input, output, session) {
 
             print(p)
 
-        }, height=700)
+        }, height=400)
 
          output$about_us <- renderUI({HTML(about_us)})
          output$about_the_test <- renderUI({HTML(about_the_tool)})

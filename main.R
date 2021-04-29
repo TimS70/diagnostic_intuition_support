@@ -11,6 +11,7 @@ get_packages(c('tidyverse',
                'dplyr',
                'rsconnect',
                'ggplot2',
+               'rintrojs',
                'shiny',
                'shinythemes',
                'sjmisc'))

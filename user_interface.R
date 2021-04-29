@@ -26,7 +26,7 @@ user_interface <- fluidPage(theme = shinytheme('cerulean'),
                              value = 0.8), # will be sent to the server
             ), # sidebarPanel
             mainPanel(
-                h1('PPV / NPV Curves'),
+                h1('Positive and Negative Predictive Value vs. Prevalence'),
                 verbatimTextOutput(outputId = 'txt_output'),
                 plotOutput(outputId = 'plot')
             ), # mainPanel

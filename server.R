@@ -11,8 +11,6 @@ server <- function(input, output, session) {
 
     # Take the first test from the list, when Hersteller changes
     observeEvent(input$hersteller, {
-        print('Hersteller event')
-
         hersteller_tests <- reactive({
             data %>% filter(hersteller == input$hersteller)})
 
@@ -56,19 +54,20 @@ server <- function(input, output, session) {
 
         output$plot <- renderPlot({
             p <- ggplot(data=prevalence_data(), aes(x=prevalence)) +
-                geom_line(aes(y=ppv, color = "darkred")) +
-                geom_ribbon(data=prevalence_data(),
+                geom_line(aes(y=ppv, color = '#D72F20'), size=1) +
+                geom_ribbon(data=prevalence_data(), fill='#EF6547',
                                 aes(ymin=ppv_ll,ymax=ppv_ul), alpha=0.3) +
-                geom_line(aes(y=npv, color = "steelblue")) +
-                geom_ribbon(data=prevalence_data(),
+                geom_line(aes(y=npv, color = "#0C70B0"), size=1) +
+                geom_ribbon(data=prevalence_data(), fill='#73A9CF',
                             aes(ymin=npv_ll,ymax=npv_ul), alpha=0.3) +
                 theme_bw() +
                 ylab(label = 'PPV / NPV') +
                 xlab(label = 'Prevalence') +
-                theme(legend.position="bottom") +
+                theme(legend.position="bottom",
+                      text = element_text(size=20, face='bold')) +
                 labs(color='Legend: ') +
-                scale_color_manual(labels = c("ppv", "npv"),
-                                   values = c("blue", "red"))
+                scale_color_manual(labels = c("PPV", "NPV"),
+                                   values = c("#0C70B0", '#D72F20'))
 
             print(p)
 

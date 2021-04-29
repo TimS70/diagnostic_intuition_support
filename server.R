@@ -28,7 +28,8 @@ server <- function(input, output, session) {
 
     observe({
         updateTextInput(session, inputId="test",
-                        label = paste0('All tests available by ', input$hersteller),
+                        label = paste0('All tests available by ',
+                                       input$hersteller),
                         value = paste("New text"))
 
         hersteller_tests <- reactive({

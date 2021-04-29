@@ -63,6 +63,10 @@ clean_test_data <- function(data) {
         tolower() %>%
         str_to_title()
 
+    # Remove duplicate tests (remove the one with the lower ID)
+    data  <- data %>%
+        filter(!id %in% c('AT342/21'))
+
     return(data)
 }
 

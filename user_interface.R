@@ -12,6 +12,9 @@ user_interface <- fluidPage(theme = shinytheme('cerulean'),
             title = 'Input',
             sidebarPanel(
                 h3('Test Library'),
+                numericInput(inputId = "prevalence",
+                             label = "Prevalence in %",
+                             value = 0.1), # will be sent to the server
                 selectInput(inputId = "hersteller",
                             label = "Choose a producer:",
                             choices = as.list(unique(data$hersteller))),

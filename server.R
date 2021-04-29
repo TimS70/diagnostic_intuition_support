@@ -25,6 +25,7 @@ server <- function(input, output, session) {
         })
 
     observe({
+        prevalence <- reactive({input$prevalence})
         updateTextInput(session, inputId="test",
                         label = paste0('All tests available by ',
                                        input$hersteller),
@@ -60,6 +61,10 @@ server <- function(input, output, session) {
                 geom_line(aes(y=npv, color = "#0C70B0"), size=1) +
                 geom_ribbon(data=prevalence_data(), fill='#73A9CF',
                             aes(ymin=npv_ll,ymax=npv_ul), alpha=0.3) +
+                geom_vline(xintercept = prevalence(), linetype="dotted",
+                           color = "black", size=1.5) +
+                geom_text(x=prevalence() + 0.01, y=0.3, size=7, hjust = 0,
+                          label=paste("Exemplary \nPrevalence =", prevalence())) +
                 theme_bw() +
                 ylab(label = 'PPV / NPV') +
                 xlab(label = 'Prevalence') +

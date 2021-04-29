@@ -101,6 +101,36 @@ server <- function(input, output, session) {
 
         }, height=700)
 
+        prevalence_data_manual <- reactive({get_prevalence_data(
+            sensitivity = input$sensitivity,
+            specifity = input$specifity)})
+
+        output$plot_2 <- renderPlot({
+            p <- ggplot(data=prevalence_data_manual(), aes(x=prevalence)) +
+                geom_line(aes(y=ppv, color = '#D72F20'), size=1) +
+                geom_line(aes(y=npv, color = "#0C70B0"), size=1) +
+                geom_vline(xintercept = prevalence(), linetype="dotted",
+                           color = "black", size=1.5) +
+                geom_text(x=prevalence() + 0.01,
+                          y=0.3,
+                          size=7,
+                          hjust = 0,
+                          label=paste("Exemplary \nPrevalence =", prevalence())) +
+                scale_x_continuous(name="Prevalence",
+                                   breaks=c(1:10)*0.1) +
+                theme_bw() +
+                ylab(label = 'PPV / NPV') +
+                xlab(label = 'Prevalence') +
+                theme(legend.position="bottom",
+                      text = element_text(size=20, face='bold')) +
+                labs(color='Legend: ') +
+                scale_color_manual(labels = c("PPV", "NPV"),
+                                   values = c("#0C70B0", '#D72F20'))
+
+            print(p)
+
+        }, height=700)
+
     })
 
 

@@ -26,20 +26,23 @@ user_interface <- fluidPage(theme = shinytheme('cerulean'),
                                  value = 0.1), # will be sent to the server
 
                 ), # sidebarPanel
-                        mainPanel(
-                                        h1('Positive and Negative Predictive Value vs. Prevalence'),
-                    verbatimTextOutput(outputId = 'txt_output'),
+                mainPanel(
+                    h1('Positive and Negative Predictive Value vs. Prevalence'),
                     plotOutput(outputId = 'plot')
                 ), # mainPanel
             ), # Input, tabPanel
             tabPanel(
                 title='Manual settings',
-                numericInput(inputId = "sensitivity",
-                                         label = "Sensitivity",
-                                         value = 0.8), # will be sent to the server
-                numericInput(inputId = "specifity",
-                                         label = "Specifity",
-                                         value = 0.8), # will be sent to the server
+                sidebarPanel(
+                    sliderInput(inputId="sensitivity", label='Sensitivity',
+                                min = 0, max = 100, value = 80),
+                    sliderInput(inputId="specifity", label='Specifity',
+                                min = 0, max = 100, value = 80),
+                ),
+                mainPanel(
+                    h1('Positive and Negative Predictive Value vs. Prevalence'),
+                    plotOutput(outputId = 'plot_2')
+                ), # mainPanel
             ) # tabPanel
         ), # tabsetPanel
         tabPanel(title = 'About', about_txt),

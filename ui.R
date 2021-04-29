@@ -54,7 +54,7 @@ user_interface <- fluidPage(theme = shinytheme('cerulean'),
             uiOutput("about_us"),
             uiOutput("about_the_test"),
             img(src='https://simplyrational.de/assets/img/banner/main_kontakt.jpg',
-                height=200, width=500),
+                height=250, width=500),
             htmlOutput(outputId="contact_us"))),
         tabPanel(title = 'More Products', 'So much more you can get from us')
     ) # navbarPage

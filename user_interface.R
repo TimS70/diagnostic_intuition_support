@@ -2,6 +2,8 @@ library(shiny)
 library(ggplot2)
 library(shinythemes)
 
+source(file = 'about.R')
+
 dataset <- diamonds
 
 user_interface = fluidPage(theme = shinytheme('cerulean'),
@@ -17,16 +19,8 @@ user_interface = fluidPage(theme = shinytheme('cerulean'),
                              h3("Population"),
                              value = 10000), # will be sent to the server
                 selectInput(inputId = "test",
-                            h3("Choose a test:"),
-                            list(`Test Category 1` = list("Test 1",
-                                                          "Test 2",
-                                                          "Test 3"),
-                                 `Test Category 2` = list("Test 4",
-                                                          "Test 5",
-                                                          "Test 6"),
-                                 `Test Category 3` = list("Test 7",
-                                                          "Test 8",
-                                                          "Test 9"))),
+                            label = h3("Choose a test:"),
+                            choices = all_tests ,
                 numericInput(inputId = "sensitivity",
                              label = "Sensitivity",
                              value = 0.8), # will be sent to the server
@@ -47,7 +41,7 @@ user_interface = fluidPage(theme = shinytheme('cerulean'),
                 plotOutput(outputId = 'plot')
             ), # mainPanel
         ), # Input, tabPanel
-        tabPanel(title = 'About', 'We are Simply Rational'),
+        tabPanel(title = 'About', about_txt),
         tabPanel(title = 'More Products', 'So much more you can get from us')
     ) # navbarPage
 ) # fluidPage

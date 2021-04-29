@@ -12,7 +12,8 @@ get_packages(c('tidyverse',
                'rsconnect',
                'ggplot2',
                'shiny',
-               'shinythemes'))
+               'shinythemes',
+               'sjmisc'))
 
 # rsconnect::setAccountInfo(name='simplyrational',
 #                           token='D34C5E5E357A63B92E43FD11304A633C',

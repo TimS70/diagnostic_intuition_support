@@ -20,13 +20,15 @@ clean_test_data <- function(data) {
 
     data <- data %>%
         mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
-                   str_replace(pattern = "[~;–]", replacement = "-") %>%
-                   str_replace(pattern = "--", replacement = '-') %>%
-                   str_replace(pattern = ", ", replacement = '-'),
+                    str_replace(pattern = "[~;– ]", replacement = "-") %>%
+                    str_replace(pattern = "--", replacement = '-') %>%
+                    str_replace(pattern = ", ", replacement = '-') %>%
+                    str_replace(pattern = ",-", replacement = '-'),
                specifity_ci_95 = specifity_ci_95 %>%
-                   str_replace(pattern = "[~;–]", replacement = "-") %>%
-                   str_replace(pattern = "--", replacement = '-') %>%
-                   str_replace(pattern = ", ", replacement = '-')) %>%
+                    str_replace(pattern = "[~;– ]", replacement = "-") %>%
+                    str_replace(pattern = "--", replacement = '-') %>%
+                    str_replace(pattern = ", ", replacement = '-') %>%
+                    str_replace(pattern = ",-", replacement = '-')) %>%
         separate(col=sensitivity_ci_95,
                  into=c('sensitivity_ci_95_ll', 'sensitivity_ci_95_ul'),
                  sep='-',
@@ -43,6 +45,8 @@ clean_test_data <- function(data) {
         data[, col] <- data[, col] %>%
             str_replace(pattern = ",", replacement = ".") %>%
             str_replace(pattern = " ", replacement = "") %>%
+            str_replace(pattern = "-", replacement = "") %>%
+            str_replace(pattern = "–", replacement = "") %>%
             str_replace(pattern = "%", replacement = "") %>%
             str_replace(pattern = "\\(", replacement = "") %>%
             str_replace(pattern = "\\)", replacement = "") %>%
@@ -53,6 +57,11 @@ clean_test_data <- function(data) {
         data[, col] <- as.numeric(data[, col])
     }
 
+    data$hersteller <- data$hersteller_name %>%
+        word(end=1) %>%
+        str_replace(pattern = ",", replacement = "") %>%
+        tolower()
+
     return(data)
 }
 
@@ -62,4 +71,8 @@ load_test_data <- function(file) {
     return(data)
 }
 
-data <- load_test_data(file='antigentests.csv')
+data <- load_test_data(file= file.path('tests', 'antigentests.csv'))
+data %>% dplyr::select(handelsname, hersteller_name, sensitivity, specifity) %>%
+    head()
+
+# 1

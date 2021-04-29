@@ -2,8 +2,9 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 
-source(file= 'plot_data.R')
+source(file='plot_data.R')
 source(file=file.path('tests', 'main.R'))
+source(file=file.path('about.R'))
 
 server <- function(input, output, session) {
 
@@ -37,31 +38,10 @@ server <- function(input, output, session) {
                 paste0(''),
                 sep="<br/>"))
             })
-
-        # updateNumericInput(session, inputId="sensitivity",
-        #       label = paste0('Sensitivity'),
-        #       value = paste(selected_test()$sensitivity))
-        #
-        # updateNumericInput(session, inputId="specifity",
-        #       label = paste0('Specifity'),
-        #       value = paste(selected_test()$specifity))
         })
 
     observe({
         prevalence <- reactive({input$prevalence})
-
-        # updateSelectInput(session, inputId="test",
-        #           choices = as.list(hersteller_tests()$handelsname),
-        #           selected = input$test)
-
-
-        # updateNumericInput(session, inputId="sensitivity",
-        #       label = paste0('Sensitivity'),
-        #       value = paste(input$sensitivity))
-        #
-        # updateNumericInput(session, inputId="specifity",
-        #       label = paste0('Specifity'),
-        #       value = paste(input$specifity))
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &
@@ -131,6 +111,9 @@ server <- function(input, output, session) {
 
         }, height=700)
 
+         output$about_us <- renderUI({HTML(about_us)})
+         output$about_the_test <- renderUI({HTML(about_the_tool)})
+         output$contact_us <- renderUI({HTML(contact_us)})
     })
 
 

@@ -12,24 +12,26 @@ user_interface <- fluidPage(theme = shinytheme('cerulean'),
             title = 'Input',
             sidebarPanel(
                 h3('Test Library'),
-                numericInput(inputId = "prevalence",
-                             label = "Prevalence in %",
-                             value = 0.1), # will be sent to the server
                 selectInput(inputId = "hersteller",
                             label = "Choose a producer:",
                             choices = as.list(unique(data$hersteller))),
                 selectInput(inputId = "test",
-                            label = "Test",
-                            choices = as.list(data$handelsname)),
+                                        label = "Test",
+                                        choices = as.list(data$handelsname)),
                 numericInput(inputId = "sensitivity",
-                             label = "Sensitivity",
-                             value = 0.8), # will be sent to the server
+                                         label = "Sensitivity",
+                                         value = 0.8), # will be sent to the server
                 numericInput(inputId = "specifity",
-                             label = "Specifity",
-                             value = 0.8), # will be sent to the server
+                                         label = "Specifity",
+                                         value = 0.8), # will be sent to the server
+                hr(),
+                numericInput(inputId = "prevalence",
+                             label = h3("Prevalence"),
+                             value = 0.1), # will be sent to the server
+
             ), # sidebarPanel
-            mainPanel(
-                h1('Positive and Negative Predictive Value vs. Prevalence'),
+                    mainPanel(
+                                    h1('Positive and Negative Predictive Value vs. Prevalence'),
                 verbatimTextOutput(outputId = 'txt_output'),
                 plotOutput(outputId = 'plot')
             ), # mainPanel

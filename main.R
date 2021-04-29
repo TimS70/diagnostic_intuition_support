@@ -5,7 +5,7 @@
 
 source('get_packages.R')
 source('server.R')
-source('user_interface.R')
+source('ui.R')
 
 get_packages(c('tidyverse',
                'dplyr',

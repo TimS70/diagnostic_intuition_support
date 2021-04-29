@@ -20,34 +20,52 @@ server <- function(input, output, session) {
             dplyr::pull(handelsname)})
 
             updateSelectInput(session, inputId="test",
+                  label = paste0('All tests available by ', input$hersteller),
                   choices = as.list(hersteller_tests()$handelsname),
                   selected = proposed_test())
         })
 
-    observe({
-        prevalence <- reactive({input$prevalence})
-        updateTextInput(session, inputId="test",
-                        label = paste0('All tests available by ',
-                                       input$hersteller),
-                        value = paste("New text"))
-
-        hersteller_tests <- reactive({
-            data %>% filter(hersteller == input$hersteller)})
-
-        updateSelectInput(session, inputId="test",
-                          choices = as.list(hersteller_tests()$handelsname),
-                          selected = input$test)
+    observeEvent(input$test, {
 
         selected_test <- reactive({
             data %>% filter(handelsname == input$test)})
 
-        updateNumericInput(session, inputId="sensitivity",
-              label = paste0('Sensitivity'),
-              value = paste(selected_test()$sensitivity))
+        output$test_out <- renderUI({
+            HTML(paste(
+                paste0('Sensitivity = ', selected_test()$sensitivity, '%'),
+                paste0('Specifity = ', selected_test()$specifity, '%'),
+                paste0(''),
+                sep="<br/>"))
+            })
 
-        updateNumericInput(session, inputId="specifity",
-              label = paste0('Specifity'),
-              value = paste(selected_test()$specifity))
+        # updateNumericInput(session, inputId="sensitivity",
+        #       label = paste0('Sensitivity'),
+        #       value = paste(selected_test()$sensitivity))
+        #
+        # updateNumericInput(session, inputId="specifity",
+        #       label = paste0('Specifity'),
+        #       value = paste(selected_test()$specifity))
+        })
+
+    observe({
+        prevalence <- reactive({input$prevalence})
+
+        # updateSelectInput(session, inputId="test",
+        #           choices = as.list(hersteller_tests()$handelsname),
+        #           selected = input$test)
+
+
+        # updateNumericInput(session, inputId="sensitivity",
+        #       label = paste0('Sensitivity'),
+        #       value = paste(input$sensitivity))
+        #
+        # updateNumericInput(session, inputId="specifity",
+        #       label = paste0('Specifity'),
+        #       value = paste(input$specifity))
+
+        selected_test <- reactive({
+            data %>% filter(hersteller == input$hersteller &
+                            handelsname == input$test)})
 
         # Plot
         prevalence_data <- reactive({

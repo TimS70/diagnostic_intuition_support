@@ -15,11 +15,7 @@ get_packages(c('tidyverse',
                'shinythemes',
                'sjmisc'))
 
-# rsconnect::setAccountInfo(name='simplyrational',
-#                           token='D34C5E5E357A63B92E43FD11304A633C',
-#                           secret='TbB7n3cq9yme9uiPERqXqWR0++iTcinYuk8/qBTj')
-
-
 shinyApp(ui=user_interface, server=server)
 
+# rsconnect::deployApp('path/to/your/app')
 # runApp()

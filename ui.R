@@ -33,7 +33,10 @@ user_interface <- fluidPage(
                                                     choices = as.list(data$handelsname)),
                             htmlOutput(outputId='test_out'),
                             data.step = 2,
-                            data.intro = "First, choose the test manufacturer, then the specific test. All tests"),
+                            data.intro = "First, choose the test manufacturer, then the specific test. All tests have
+                                specific sensitivity and specifity properties based on scores provided by the manufacturer.
+                                The sensitivity is the probability that an individual who has COVID-19 has a positive test.
+                                The specifity is the probability that a healthy individual has a negative test."),
                         introBox(
                             hr(),
                             sliderInput(inputId="prevalence", label='Prevalence in %',
@@ -58,8 +61,9 @@ user_interface <- fluidPage(
                                     the light red and light blue areas cover the possible PPV and NPV values
                                     for specifity and sensitivity scores within a 95% Confidence Interval
                                     (based on manufacturer information).
-                                    For 95 of 100 random samples, we would expect the ppv and npv values
-                                    to be within the range of these intervals"),
+                                    This means that for 95 out of 100 random samples,
+                                    we would expect the ppv and npv values
+                                    to be within the range of these intervals."),
                             data.step = 3,
                             data.intro = "This plot shows the Positive Predictive Value (PPV) and the
                                 Negative Predictive Value (NPV) of a test based on a range of possible prevalence scores.
@@ -110,7 +114,7 @@ user_interface <- fluidPage(
         tabPanel(title = introBox('About',
                                   data.step=9,
                                   data.intro='Thank you very much for your interest in our work.
-                                    Here, you can read more about our work. Do not hesitate to contact us
+                                    Here, you can read more about us. Do not hesitate to contact us
                                     for any questions. Have fun with the tool and stay healthy!'),
             mainPanel(
                 uiOutput("simply_homepage"),

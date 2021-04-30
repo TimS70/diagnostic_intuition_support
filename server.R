@@ -37,12 +37,12 @@ server <- function(input, output, session) {
             HTML(paste(
                 paste0('Sensitivity = ',
                        selected_test()$sensitivity, '%',
-                       '95% CI: [', selected_test()$sensitivity_ci_95_ll, ' - ',
+                       ' [95% CI = ', selected_test()$sensitivity_ci_95_ll, ' - ',
                        selected_test()$sensitivity_ci_95_ul, ']'
                 ),
                 paste0('Specifity = ',
                        selected_test()$specifity, '%',
-                       '95% CI: [', selected_test()$specifity_ci_95_ll, ' - ',
+                       ' [95% CI = ', selected_test()$specifity_ci_95_ll, ' - ',
                        selected_test()$specifity_ci_95_ul, ']'
                 ),
                 paste0(''),

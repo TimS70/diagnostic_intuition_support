@@ -9,7 +9,7 @@ explain_ppv_npv <-
     <ul>
         <li>Prevalence: The probability of having the disease in a given population</li>
         <li>Sensitivity: The probability that an individual who has COVID also has a positive test</li>
-        <li>Specifity: The probability That a healthy individual has a negative test</li>
+        <li>Specifity: The probability that a healthy individual has a negative test</li>
         <li>Positive Predictive Value (PPV): The probability that an individual with a positive test result has COVID</li>
         <li>Negative Predictive Value (NPV): The probability that an individual with a negative test result has COVID</li>
     </ul>

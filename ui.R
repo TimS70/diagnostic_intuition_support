@@ -3,7 +3,8 @@ library(ggplot2)
 library(shinythemes)
 library(rintrojs)
 
-source(file='about.R')
+
+source(file= 'txt_content/about.R')
 source(file=file.path('tests', 'main.R'))
 
 user_interface <- fluidPage(
@@ -80,21 +81,28 @@ user_interface <- fluidPage(
         ), # Input, tabPanel
          # introBox(
         tabPanel(
-            title='PPV & NPV',
-            mainPanel()
-        ),
-            #     data.step = 7,
-            #     data.intro = 'Here, you find a visual explanation about what a PPV and NPV is
-            #         and why you should care'
-            # ), # introBox
+            title= introBox('PPV & NPV',
+                            data.step = 7,
+                            data.intro = 'Here, you find a visual explanation about what a PPV and NPV is
+                                                and why you should care'),
+            mainPanel(
+                uiOutput("explain_ppv_npv"),
+                uiOutput(outputId='ppv_formula'),
+                uiOutput(outputId='npv_formula'),
+                plotOutput(outputId='tree')
+            )
+        ), # tabPanel
         tabPanel(title = 'About',
             mainPanel(
-            uiOutput("simply_homepage"),
-            uiOutput("about_us"),
-            uiOutput("about_the_test"),
-            img(src='https://simplyrational.de/assets/img/banner/main_kontakt.jpg',
-                height=250, width=500),
-            htmlOutput(outputId="contact_us"))),
+                uiOutput("simply_homepage"),
+                uiOutput("about_us"),
+                uiOutput("about_the_test"),
+                img(src='https://simplyrational.de/assets/img/banner/main_kontakt.jpg',
+                    width=480, height=200),
+
+                htmlOutput(outputId="contact_us")
+            )
+        ),
         tabPanel(title = 'More Products',
                  'Contact us for more products: kontakt@simplyrational.de')
     ) # navbarPage

@@ -1,10 +1,12 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(riskyr)
 
 source(file='plot_data.R')
 source(file=file.path('tests', 'main.R'))
-source(file=file.path('about.R'))
+source(file=file.path('txt_content/about.R'))
+source(file=file.path('txt_content/ppv_npv.R'))
 
 server <- function(input, output, session) {
     introjs(session)
@@ -111,10 +113,25 @@ server <- function(input, output, session) {
 
         }, height=400)
 
-         output$about_us <- renderUI({HTML(about_us)})
-         output$about_the_test <- renderUI({HTML(about_the_tool)})
-         output$contact_us <- renderUI({HTML(contact_us)})
+        # About
+        output$about_us <- renderUI({HTML(about_us)})
+        output$about_the_test <- renderUI({HTML(about_the_tool)})
+        output$contact_us <- renderUI({HTML(contact_us)})
+
+        # PPV & NPV
+        output$explain_ppv_npv <- renderUI({HTML(explain_ppv_npv)})
+        output$ppv_formula <- renderUI({ppv_formula})
+        output$npv_formula <- renderUI({npv_formula})
+        output$tree <- renderPlot({
+            covid_tree <- riskyr(scen_lbl = "Example",
+                  cond_lbl = "COVID",
+                  dec_lbl = "Antigen-Test",
+                  popu_lbl = "Example Population",
+                  N = 1000,  # population size
+                  prev = .1, sens = .90, spec = 0.97)
+
+             p <- plot(covid_tree, by = 'cd')
+             print(p)
+         }, height=300)
     })
-
-
 }

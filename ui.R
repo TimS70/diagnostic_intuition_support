@@ -11,9 +11,9 @@ user_interface <- fluidPage(
     introjsUI(),
     navbarPage(
         title = "Simply Diagnostic Intuition Support",
-        tabPanel(title='Input',
-            tabsetPanel(
-                id = "inTabset",
+        tabPanel(
+            title='Input',
+            tabsetPanel(id = "inTabset",
                 tabPanel(
                     title = 'Test Library',
                     sidebarPanel(
@@ -48,42 +48,45 @@ user_interface <- fluidPage(
                                         the light red and light blue areas cover the range
                                         of the PPV and NPV curves within a 95% Confidence Interval.
                                         For 95 of 100 random samples, we would expect the ppv and npv values
-                                        to be within the range of these intervals"
-                                ),
+                                        to be within the range of these intervals"),
                                 data.step = 4,
                                 data.intro = "The Negative Predictive Value (NPV)
                                     is the probability that the patient does not have the disease when the
-                                    tests shows a negative result"
-                            ),
+                                    tests shows a negative result"),
                             data.step = 3,
                             data.intro = "What do we see here? The Positive Predictive Value (PPV)
                                 is the probability that the patient actually has a disease when the
-                                tests shows a positive result"
-                        ),
+                                tests shows a positive result"),
                     ), # mainPanel
                 ), # Test Library, tabPanel
-                introBox(
-                    tabPanel(
-                        title='Manual settings',
-                        sidebarPanel(
-                            sliderInput(inputId="sensitivity", label='Sensitivity',
-                                        min = 0, max = 100, value = 80),
-                            sliderInput(inputId="specifity", label='Specifity',
-                                        min = 0, max = 100, value = 80),
-                        ),
-                        mainPanel(
-                             h1('Positive and Negative Predictive Value vs. Prevalence'),
-                            plotOutput(outputId = 'plot_2'),
-                        ), # mainPanel
-                    ), # Input, tabPanel
-                    data.step = 6,
-                    data.intro = 'Define different Sensitivity and Specifity values by
-                        yourself to get a feeling the interdependencies between diagnostic
-                        validity and prevalence'
-                ) # introBox
-            ) # tabPanel
-        ), # tabsetPanel
-        tabPanel(title='PPV & NPV')
+                tabPanel(
+                    title=introBox('Manual settings',
+                                   data.step = 6,
+                                   data.intro = 'Define different Sensitivity and Specifity values by
+                                        yourself to get a feeling the interdependencies between diagnostic
+                                        validity and prevalence'), # introBox
+                    sidebarPanel(
+                       sliderInput(inputId="sensitivity", label='Sensitivity',
+                                   min = 0, max = 100, value = 80),
+                       sliderInput(inputId="specifity", label='Specifity',
+                                   min = 0, max = 100, value = 80),
+                       ),
+                    mainPanel(
+                        h1('Positive and Negative Predictive Value vs. Prevalence'),
+                        plotOutput(outputId = 'plot_2'),
+                    ) # mainPanel
+                ) # Manual Settings, tabPanel
+            ) # tabset Panel
+        ), # Input, tabPanel
+         # introBox(
+        tabPanel(
+            title='PPV & NPV',
+            mainPanel()
+        ),
+            #     data.step = 7,
+            #     data.intro = 'Here, you find a visual explanation about what a PPV and NPV is
+            #         and why you should care'
+            # ), # introBox
         tabPanel(title = 'About',
             mainPanel(
             uiOutput("simply_homepage"),

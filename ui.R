@@ -32,11 +32,11 @@ user_interface <- fluidPage(
                                 First, choose the manufacturer, then the test. "),
                         introBox(
                             hr(),
-                            numericInput(inputId = "prevalence",
-                                         label = h3("Prevalence"),
-                                         value = 0.1), # will be sent to the server
+                            sliderInput(inputId="prevalence", label='Prevalence in %',
+                                        min = 0, max = 100, value = 10),
                             data.step = 2,
-                            data.intro = "The prevalence only serves as an orientation")
+                            data.intro = "Select a prevalence to show specific PPV and NPV values for
+                                a given prevalence")
                     ), # sidebarPanel
                     mainPanel(
                         introBox(
@@ -67,11 +67,15 @@ user_interface <- fluidPage(
                                         yourself to get a feeling the interdependencies between diagnostic
                                         validity and prevalence'), # introBox
                     sidebarPanel(
-                       sliderInput(inputId="sensitivity", label='Sensitivity',
+                        h3('Manually define the test properties'),
+                        sliderInput(inputId="sensitivity", label='Sensitivity',
+                                    min = 0, max = 100, value = 80),
+                        sliderInput(inputId="specifity", label='Specifity',
                                    min = 0, max = 100, value = 80),
-                       sliderInput(inputId="specifity", label='Specifity',
-                                   min = 0, max = 100, value = 80),
-                       ),
+                        hr(),
+                        sliderInput(inputId="prevalence_2", label='Prevalence in %',
+                                    min = 0, max = 100, value = 10),
+                        ),
                     mainPanel(
                         h1('Positive and Negative Predictive Value vs. Prevalence'),
                         plotOutput(outputId = 'plot_2'),
@@ -89,7 +93,8 @@ user_interface <- fluidPage(
                 uiOutput("explain_ppv_npv"),
                 uiOutput(outputId='ppv_formula'),
                 uiOutput(outputId='npv_formula'),
-                plotOutput(outputId='tree')
+                uiOutput(outputId='plot_legend'),
+                plotOutput(outputId='tree'),
             )
         ), # tabPanel
         tabPanel(title = 'About',
@@ -99,7 +104,6 @@ user_interface <- fluidPage(
                 uiOutput("about_the_test"),
                 img(src='https://simplyrational.de/assets/img/banner/main_kontakt.jpg',
                     width=480, height=200),
-
                 htmlOutput(outputId="contact_us")
             )
         ),

@@ -21,3 +21,13 @@ explain_ppv_npv <-
 #   https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/15077#15077
 ppv_formula <- withMathJax("$$PPV = \\frac{True Positives}{True Positives + False Positives}$$")
 npv_formula <- withMathJax("$$NPV = \\frac{True Negatives}{True Negatives + False Negatives}$$")
+
+plot_legend <- '
+    <p>
+    <h3>Exemplary frequency tree:</h3>
+    True Pos. = True Positives <br>
+    False Pos. = False Positives <br>
+    True Neg. = True Negatives <br>
+    False Neg. = False Negatives
+    </p>
+'

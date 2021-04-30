@@ -53,6 +53,18 @@ server <- function(input, output, session) {
         prevalence_data <- reactive({
             get_prevalence_data(test_data=selected_test())})
 
+        ppv_intersect <- reactive({
+            out <- 100 * calculate_ppv(prevalence() / 100 ,
+                                 selected_test()$sensitivity / 100,
+                                 selected_test()$specifity / 100)
+            out <- round(out, 2)})
+
+        npv_intersect <- reactive({
+            out <- 100 * calculate_npv(prevalence() / 100 ,
+                                 selected_test()$sensitivity / 100,
+                                 selected_test()$specifity / 100)
+            out <- round(out, 2)})
+
         output$plot <- renderPlot({
             p <- ggplot(data=prevalence_data(), aes(x=prevalence)) +
                 geom_line(aes(y=ppv, color = '#D72F20'), size=1) +
@@ -63,16 +75,25 @@ server <- function(input, output, session) {
                             aes(ymin=npv_ll,ymax=npv_ul), alpha=0.3) +
                 geom_vline(xintercept = prevalence(), linetype="dotted",
                            color = "black", size=1.5) +
-                geom_text(x=prevalence() + 0.01,
-                          y=0.3,
-                          size=7,
+                geom_text(x = prevalence() + 2,
+                          y = ppv_intersect() - 2,
+                          size=5,
                           hjust = 0,
-                          label=paste("Exemplary \nPrevalence =", prevalence())) +
-                scale_x_continuous(name="Prevalence",
-                                   breaks=c(1:10)*0.1) +
+                          label=paste0("PPV: ", ppv_intersect(), '%')) +
+                annotate("point", x = prevalence(), y = ppv_intersect(),
+                             colour = "red", size=5) +
+                geom_text(x = prevalence() + 2,
+                          y = npv_intersect() - 2,
+                          size=5,
+                          hjust = 0,
+                          label=paste0("NPV: ", npv_intersect(), '%')) +
+                annotate("point", x = prevalence(), y = npv_intersect(),
+                             colour = "blue", size=5) +
+                scale_x_continuous(name="Prevalence [%]",
+                                   breaks= 1:10 *10) +
                 theme_bw() +
-                ylab(label = 'PPV / NPV') +
-                xlab(label = 'Prevalence') +
+                ylab(label = 'PPV / NPV [%]') +
+                xlab(label = 'Prevalence [%]') +
                 theme(legend.position="bottom",
                       text = element_text(size=20, face='bold')) +
                 labs(color='Legend: ') +
@@ -87,22 +108,47 @@ server <- function(input, output, session) {
             sensitivity = input$sensitivity,
             specifity = input$specifity)})
 
+        print(head(prevalence_data_manual()))
+
+        prevalence_2 <- reactive({input$prevalence_2})
+
+        ppv_intersect_2 <- reactive({
+            out <- 100 * calculate_ppv(prevalence_2() / 100 ,
+                                 input$sensitivity / 100,
+                                 input$specifity / 100)
+            out <- round(out, 2)})
+
+        npv_intersect_2 <- reactive({
+            out <- 100 * calculate_npv(prevalence_2() / 100 ,
+                                 input$sensitivity / 100,
+                                 input$specifity / 100)
+            out <- round(out, 2)})
+
         output$plot_2 <- renderPlot({
             p <- ggplot(data=prevalence_data_manual(), aes(x=prevalence)) +
                 geom_line(aes(y=ppv, color = '#D72F20'), size=1) +
                 geom_line(aes(y=npv, color = "#0C70B0"), size=1) +
-                geom_vline(xintercept = prevalence(), linetype="dotted",
+                geom_vline(xintercept = prevalence_2(), linetype="dotted",
                            color = "black", size=1.5) +
-                geom_text(x=prevalence() + 0.01,
-                          y=0.3,
-                          size=7,
+                geom_text(x = prevalence_2() + 2,
+                          y = ppv_intersect_2() - 2,
+                          size=5,
                           hjust = 0,
-                          label=paste("Exemplary \nPrevalence =", prevalence())) +
-                scale_x_continuous(name="Prevalence",
-                                   breaks=c(1:10)*0.1) +
+                          label=paste0("PPV: ", ppv_intersect_2(), '%')) +
+                annotate("point", x = prevalence_2(), y = ppv_intersect_2(),
+                             colour = "red", size=5) +
+                geom_text(x = prevalence_2() + 2,
+                          y = npv_intersect_2() - 2,
+                          size=5,
+                          hjust = 0,
+                          label=paste0("NPV: ", npv_intersect_2(), '%')) +
+                annotate("point", x = prevalence_2(), y = npv_intersect_2(),
+                             colour = "blue", size=5) +
+                scale_x_continuous(name="Prevalence [%]",
+                                   breaks= 1:10 * 10) +
                 theme_bw() +
-                ylab(label = 'PPV / NPV') +
-                xlab(label = 'Prevalence') +
+                ylab(label = 'PPV / NPV [%]') +
+                xlab(label = 'Prevalence [%]') +
                 theme(legend.position="bottom",
                       text = element_text(size=20, face='bold')) +
                 labs(color='Legend: ') +
@@ -122,15 +168,27 @@ server <- function(input, output, session) {
         output$explain_ppv_npv <- renderUI({HTML(explain_ppv_npv)})
         output$ppv_formula <- renderUI({ppv_formula})
         output$npv_formula <- renderUI({npv_formula})
+        output$plot_legend <- renderUI({HTML(plot_legend)})
         output$tree <- renderPlot({
-            covid_tree <- riskyr(scen_lbl = "Example",
-                  cond_lbl = "COVID",
-                  dec_lbl = "Antigen-Test",
-                  popu_lbl = "Example Population",
-                  N = 1000,  # population size
-                  prev = .1, sens = .90, spec = 0.97)
 
-             p <- plot(covid_tree, by = 'cd')
+            my_txt <- init_txt(
+                cond_lbl = "True COVID Infection",
+                cond_true_lbl = "True", cond_false_lbl = "False",
+                hi_lbl = "True Pos.", mi_lbl = "False Neg.",
+                fa_lbl = "False Pos.", cr_lbl = "True Neg.")
+
+            p <- plot_prism(
+                 N = 1000, prev = .1, sens = .950, spec = .97,
+                 by='cd',
+                 area = "no",
+                 f_lbl = "namnum", # namnum
+                 p_lbl = "mix",
+                 f_lwd = 1,
+                 lbl_txt = my_txt,
+                 title_lbl = '',
+                 col_pal = pal_kn)
+                  #plot(covid_tree, by = 'cd')
+
              print(p)
          }, height=300)
     })

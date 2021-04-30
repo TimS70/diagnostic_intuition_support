@@ -1,6 +1,7 @@
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(sjmisc)
 
 clean_test_data <- function(data) {
     names(data) <- c('id',
@@ -43,7 +44,7 @@ clean_test_data <- function(data) {
                   'specifity_ci_95_ll',
                   'specifity_ci_95_ul')) {
         data[, col] <- data[, col] %>%
-            str_replace(pattern = ",", replacement = ".") %>%
+            str_replace(pattern = ",", replacement = "tests") %>%
             str_replace(pattern = " ", replacement = "") %>%
             str_replace(pattern = "-", replacement = "") %>%
             str_replace(pattern = "–", replacement = "") %>%
@@ -71,13 +72,11 @@ clean_test_data <- function(data) {
 }
 
 load_test_data <- function(file) {
-    data <- read.csv(file=file, sep = ';', dec=',')
+    data <- read.csv(file=file, sep = ';', dec=',',
+                     fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
     return(data)
 }
 
-data <- load_test_data(file= file.path('tests', 'antigentests.csv'))
-data %>% dplyr::select(handelsname, hersteller_name, sensitivity, specifity) %>%
-    head()
-
-# 1
+# dir.create(path='data')
+# write.csv(data, file.path('data', "test_data.csv"),fileEncoding = 'UTF-8')

@@ -3,14 +3,18 @@ library(ggplot2)
 library(dplyr)
 library(riskyr)
 
-source(file='plot_data.R')
-source(file=file.path('tests', 'main.R'))
+source(file='utils/load.R')
+source(file='utils/plot_data.R')
 source(file=file.path('txt_content/about.R'))
 source(file=file.path('txt_content/ppv_npv.R'))
 
+
+
 server <- function(input, output, session) {
+
+	data <- load_test_data(file= file.path('data', 'antigentests.csv'))
+
     introjs(session)
-    data <- load_test_data(file=file.path('tests', 'antigentests.csv'))
 
     # Take the first test from the list, when Hersteller changes
     observeEvent(input$hersteller, {
@@ -115,8 +119,6 @@ server <- function(input, output, session) {
         prevalence_data_manual <- reactive({get_prevalence_data(
             sensitivity = input$sensitivity,
             specifity = input$specifity)})
-
-        print(head(prevalence_data_manual()))
 
         prevalence_2 <- reactive({input$prevalence_2})
 

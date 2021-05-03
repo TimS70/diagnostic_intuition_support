@@ -4,11 +4,11 @@ library(dplyr)
 library(riskyr)
 
 source(file='utils/load.R')
-source(file='utils/plot_data.R')
-source(file=file.path('txt_content/about.R'))
-source(file=file.path('txt_content/ppv_npv.R'))
-source(file=file.path('utils', 'adjust_text_pos.R'))
-
+source(file='txt_content/about.R')
+source(file='txt_content/ppv_npv.R')
+source(file= 'visualize/load_data.R')
+source(file='visualize/adjust_text_pos.R')
+source(file='visualize/generate_plot.R')
 
 server <- function(input, output, session) {
 
@@ -77,67 +77,14 @@ server <- function(input, output, session) {
                                  selected_test()$specifity / 100)
             round(out, 2)})
 
-        ppv_x_pos <- reactive({adjust_x_pos(
-            prevalence = prevalence()
-        )})
-
-        npv_x_pos <- reactive({adjust_x_pos(
-            prevalence = prevalence()
-        )})
-
-        npv_y_pos <- reactive({adjust_y_pos(
-            y_target = npv_intersect(),
-            y_other = ppv_intersect()
-        )})
-
-        ppv_y_pos <- reactive({adjust_y_pos(
-            y_target = ppv_intersect(),
-            y_other = npv_intersect()
-        )})
-
-        # ppv_text_pos <- reactive({
-        #     if (npv_intersect() < ppv_intersect() &
-        #         ((ppv_intersect() - npv_intersect()) < 7.5)) {
-        #         ppv_intersect() - 7.5
-        #     } else {
-        #         ppv_intersect()
-        #     }
-        # })
-
         output$plot <- renderPlot({
-            p <- ggplot(data=prevalence_data(), aes(x=prevalence)) +
-                geom_line(aes(y=ppv, color = "#0C70B0"), size=1) +
-                geom_line(aes(y=npv, color = '#D72F20'), size=1) +
-                geom_vline(xintercept = prevalence(), linetype="dotted",
-                           color = "black", size=1.5) +
-                geom_text(x = ppv_x_pos() + 2,
-                          y = ppv_y_pos() - 2,
-                          size=5,
-                          hjust = 0,
-                          label=paste0("PPV: ", ppv_intersect(), '%')) +
-                annotate("point", x = prevalence(), y = ppv_intersect(),
-                             colour = "blue", size=5) +
-                geom_text(x = npv_x_pos() + 2,
-                          y = npv_y_pos() - 2,
-                          size=5,
-                          hjust = 0,
-                          label=paste0("NPV: ", npv_intersect(), '%')) +
-                annotate("point", x = prevalence(), y = npv_intersect(),
-                             colour = "red", size=5) +
-                scale_x_continuous(name="Prevalence [%]",
-                                   breaks= 0:10 *10) +
-                theme_bw() +
-                ylab(label = 'PPV / NPV [%]') +
-                xlab(label = 'Prevalence [%]') +
-                theme(legend.position="bottom",
-                      text = element_text(size=20, face='bold')) +
-                labs(color='Legend: ') +
-                scale_color_manual(labels = c("PPV", "NPV"),
-                                   values = c("#0C70B0", '#D72F20')) +
-                geom_ribbon(data=prevalence_data(), fill='#73A9CF',
-                                aes(ymin=ppv_ll,ymax=ppv_ul), alpha=0.3) +
-                geom_ribbon(data=prevalence_data(), fill='#EF6547',
-                            aes(ymin=npv_ll,ymax=npv_ul), alpha=0.3)
+
+            p <- generate_plot(
+                data=prevalence_data(),
+                prevalence = prevalence(),
+                ppv_intersect=ppv_intersect(),
+                npv_intersect=npv_intersect()
+            )
 
             print(p)
 
@@ -153,44 +100,21 @@ server <- function(input, output, session) {
             out <- 100 * calculate_ppv(prevalence_2() / 100 ,
                                  input$sensitivity / 100,
                                  input$specifity / 100)
-            out <- round(out, 2)})
+            round(out, 2)})
 
         npv_intersect_2 <- reactive({
             out <- 100 * calculate_npv(prevalence_2() / 100 ,
                                  input$sensitivity / 100,
                                  input$specifity / 100)
-            out <- round(out, 2)})
+            round(out, 2)})
 
         output$plot_2 <- renderPlot({
-            p <- ggplot(data=prevalence_data_manual(), aes(x=prevalence)) +
-                geom_line(aes(y=ppv, color = '#0C70B0'), size=1) +
-                geom_line(aes(y=npv, color = "#D72F20"), size=1) +
-                geom_vline(xintercept = prevalence_2(), linetype="dotted",
-                           color = "black", size=1.5) +
-                geom_text(x = prevalence_2() + 2,
-                          y = ppv_intersect_2() - 2,
-                          size=5,
-                          hjust = 0,
-                          label=paste0("PPV: ", ppv_intersect_2(), '%')) +
-                annotate("point", x = prevalence_2(), y = ppv_intersect_2(),
-                             colour = "blue", size=5) +
-                geom_text(x = prevalence_2() + 2,
-                          y = npv_intersect_2() - 2,
-                          size=5,
-                          hjust = 0,
-                          label=paste0("NPV: ", npv_intersect_2(), '%')) +
-                annotate("point", x = prevalence_2(), y = npv_intersect_2(),
-                             colour = "red", size=5) +
-                scale_x_continuous(name="Prevalence [%]",
-                                   breaks= 0:10 * 10) +
-                theme_bw() +
-                ylab(label = 'PPV / NPV [%]') +
-                xlab(label = 'Prevalence [%]') +
-                theme(legend.position="bottom",
-                      text = element_text(size=20, face='bold')) +
-                labs(color='Legend: ') +
-                scale_color_manual(labels = c("PPV", "NPV"),
-                                   values = c("#0C70B0", '#D72F20'))
+            p <- generate_plot(
+                data=prevalence_data_manual(),
+                prevalence = prevalence_2(),
+                ppv_intersect=ppv_intersect_2(),
+                npv_intersect=npv_intersect_2()
+            )
 
             print(p)
 

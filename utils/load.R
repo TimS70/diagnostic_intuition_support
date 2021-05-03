@@ -44,7 +44,7 @@ clean_test_data <- function(data) {
                   'specifity_ci_95_ll',
                   'specifity_ci_95_ul')) {
         data[, col] <- data[, col] %>%
-            str_replace(pattern = ",", replacement = "tests") %>%
+            str_replace(pattern = ",", replacement = ".") %>%
             str_replace(pattern = " ", replacement = "") %>%
             str_replace(pattern = "-", replacement = "") %>%
             str_replace(pattern = "–", replacement = "") %>%
@@ -75,6 +75,8 @@ load_test_data <- function(file) {
     data <- read.csv(file=file, sep = ';', dec=',',
                      fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
+
+
     return(data)
 }
 

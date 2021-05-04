@@ -1,4 +1,10 @@
-intro_txt_1 <- "Willkommen zum Diagnostik-Tool “Diagnostic Intuition Support” (DIS) von Simply Rational. Das Tools kann Sie in der Interpretation von Covid-19 Schnelltests unterstützen und Ihnen dabei helfen einzuschätzen, wie wahrscheinlich es ist, dass bei einem positiven oder negativen Testergebnis auch wirklich eine bzw. keine Covid-19 Erkrankung vorliegt. Dieses Tutorial wird Sie durch die korrekte Anwendung des Tools führen. Fangen wir an!"
+intro_txt_1 <- "Willkommen zum Diagnostik-Tool “Diagnostic Intuition Support”
+    (DIS) von Simply Rational. Das Tools kann Sie in der Interpretation von
+    Covid-19 Schnelltests unterstützen und Ihnen dabei helfen einzuschätzen,
+    wie wahrscheinlich es ist, dass bei einem positiven oder negativen
+    Testergebnis auch wirklich eine bzw. keine Covid-19 Erkrankung vorliegt.
+    Dieses Tutorial wird Sie durch die korrekte Anwendung des Tools führen.
+    Fangen wir an!"
 
 intro_txt_2 <- "Wählen Sie zuerst den Testhersteller und dann den spezifischen
     Test aus. Alle Tests haben eine Sensitivität und Spezifität (aktuelle

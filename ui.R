@@ -4,7 +4,7 @@ library(shinythemes)
 library(rintrojs)
 
 source(file.path('utils', 'load.R'))
-source('txt_content/intro.R')
+source(file.path('txt_content', 'intro.R'))
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 

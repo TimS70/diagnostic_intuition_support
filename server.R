@@ -27,7 +27,7 @@ server <- function(input, output, session) {
             dplyr::pull(handelsname)})
 
             updateSelectInput(session, inputId="test",
-                  label = paste0('All tests available by ', input$hersteller),
+                  label = paste0('Alle Tests von ', input$hersteller),
                   choices = as.list(hersteller_tests()$handelsname),
                   selected = proposed_test())
         })
@@ -39,12 +39,12 @@ server <- function(input, output, session) {
 
         output$test_out <- renderUI({
             HTML(paste(
-                paste0('Sensitivity = ',
+                paste0('Sensitivität = ',
                        selected_test()$sensitivity, '%',
                        ' [95% CI = ', selected_test()$sensitivity_ci_95_ll, ' - ',
                        selected_test()$sensitivity_ci_95_ul, ']'
                 ),
-                paste0('Specifity = ',
+                paste0('Spezifität   = ',
                        selected_test()$specifity, '%',
                        ' [95% CI = ', selected_test()$specifity_ci_95_ll, ' - ',
                        selected_test()$specifity_ci_95_ul, ']'

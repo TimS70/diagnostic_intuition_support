@@ -32,25 +32,25 @@ generate_plot <- function(
                   y = ppv_y_pos() - 2,
                   size=5,
                   hjust = 0,
-                  label=paste0("PPV: ", ppv_intersect, '%')) +
+                  label=paste0("PPW: ", ppv_intersect, '%')) +
         annotate("point", x = prevalence, y = ppv_intersect,
                      colour = "blue", size=5) +
         geom_text(x = npv_x_pos() + 2,
                   y = npv_y_pos() - 2,
                   size=5,
                   hjust = 0,
-                  label=paste0("NPV: ", npv_intersect, '%')) +
+                  label=paste0("NPW: ", npv_intersect, '%')) +
         annotate("point", x = prevalence, y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_continuous(name="Prevalence [%]",
+        scale_x_continuous(name="Prävalenz [%]",
                            breaks= 0:10 *10) +
         theme_bw() +
-        ylab(label = 'PPV / NPV [%]') +
-        xlab(label = 'Prevalence [%]') +
+        ylab(label = 'PPW / NPW [%]') +
+        xlab(label = 'Prävalenz [%]') +
         theme(legend.position="bottom",
               text = element_text(size=20, face='bold')) +
         labs(color='Legend: ') +
-        scale_color_manual(labels = c("PPV", "NPV"),
+        scale_color_manual(labels = c("PPW", "NPW"),
                            values = c("#0C70B0", '#D72F20'))
 
     if ('ppv_ll' %in% colnames(data)) {

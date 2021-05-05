@@ -65,13 +65,13 @@ server <- function(input, output, session) {
             out <- 100 * calculate_ppv(prevalence() / 100 ,
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
-            round(out, 2)})
+            round(out, 1)})
 
         npv_intersect <- reactive({
             out <- 100 * calculate_npv(prevalence() / 100 ,
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
-            round(out, 2)})
+            round(out, 1)})
 
         output$plot <- renderPlot({
 
@@ -96,13 +96,13 @@ server <- function(input, output, session) {
             out <- 100 * calculate_ppv(prevalence_2() / 100 ,
                                  input$sensitivity / 100,
                                  input$specifity / 100)
-            round(out, 2)})
+            round(out, 1)})
 
         npv_intersect_2 <- reactive({
             out <- 100 * calculate_npv(prevalence_2() / 100 ,
                                  input$sensitivity / 100,
                                  input$specifity / 100)
-            round(out, 2)})
+            round(out, 1)})
 
         output$plot_2 <- renderPlot({
             p <- generate_plot(

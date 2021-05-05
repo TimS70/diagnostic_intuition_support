@@ -37,7 +37,7 @@ ui <- fluidPage(
                             data.intro = intro_txt_2),
                         introBox(
                             hr(),
-                            sliderInput(inputId="prevalence", label='Prävalenz in %',
+                            sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',
                                         min = 0, max = 100, value = 10),
                             data.step = 6,
                             data.intro = intro_txt_6)
@@ -45,13 +45,13 @@ ui <- fluidPage(
                     mainPanel(
 		                introBox(
 		                    introBox(
-								h2('Positiver und Negativer Prädiktiver Wert vs. Prävalenz'),
+								h2('Positiver und Negativer Pr\u00e4diktiver Wert vs. Pr\u00e4valenz'),
 								plotOutput(outputId = 'plot'),
 								data.step = 5,
 								data.intro = intro_txt_5),
 						data.step = 3,
-						data.intro = intro_txt_3),
-                    ), # mainPanel
+						data.intro = intro_txt_3)
+                    ) # mainPanel
                 ), # Test Library, tabPanel
                 tabPanel(
                     title='Manuelle Einstellungen', # introBox
@@ -63,11 +63,11 @@ ui <- fluidPage(
                                    min = 0, max = 100, value = 80),
                         hr(),
                         sliderInput(inputId="prevalence_2", label='Prevalence in %',
-                                    min = 0, max = 100, value = 10),
+                                    min = 0, max = 100, value = 10)
                         ),
                     mainPanel(
                         h1('Positive and Negative Predictive Value vs. Prevalence'),
-                        plotOutput(outputId = 'plot_2'),
+                        plotOutput(outputId = 'plot_2')
                     ) # mainPanel
                 ) # Manual Settings, tabPanel
             ) # tabset Panel
@@ -82,7 +82,7 @@ ui <- fluidPage(
                 uiOutput(outputId='ppv_formula'),
                 uiOutput(outputId='npv_formula'),
                 uiOutput(outputId='plot_legend'),
-                plotOutput(outputId='tree'),
+                plotOutput(outputId='tree')
             )
         ), # tabPanel
         tabPanel(title = 'About',

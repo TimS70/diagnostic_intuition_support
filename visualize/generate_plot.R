@@ -42,11 +42,11 @@ generate_plot <- function(
                   label=paste0("NPW: ", npv_intersect, '%')) +
         annotate("point", x = prevalence, y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_continuous(name="Prävalenz [%]",
+        scale_x_continuous(name="Pr\u00e4valenz [%]",
                            breaks= 0:10 *10) +
         theme_bw() +
         ylab(label = 'PPW / NPW [%]') +
-        xlab(label = 'Prävalenz [%]') +
+        xlab(label = 'Pr\u00e4valenz [%]') +
         theme(legend.position="bottom",
               text = element_text(size=20, face='bold')) +
         labs(color='Legend: ') +

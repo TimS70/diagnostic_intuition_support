@@ -39,12 +39,12 @@ server <- function(input, output, session) {
 
         output$test_out <- renderUI({
             HTML(paste(
-                paste0('Sensitivität = ',
+                paste0('Sensitivit\u00e4t = ',
                        selected_test()$sensitivity, '%',
                        ' [95% CI = ', selected_test()$sensitivity_ci_95_ll, ' - ',
                        selected_test()$sensitivity_ci_95_ul, ']'
                 ),
-                paste0('Spezifität   = ',
+                paste0('Spezifit\u00e4t   = ',
                        selected_test()$specifity, '%',
                        ' [95% CI = ', selected_test()$specifity_ci_95_ll, ' - ',
                        selected_test()$specifity_ci_95_ul, ']'

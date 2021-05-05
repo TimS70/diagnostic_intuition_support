@@ -65,8 +65,7 @@ clean_test_data <- function(data) {
         str_to_title()
 
     # Remove duplicate tests (remove the one with the lower ID)
-    data  <- data %>%
-        filter(!id %in% c('AT342/21'))
+    data <- data[!duplicated(data[c('hersteller', 'handelsname')]),]
 
     return(data)
 }
@@ -75,7 +74,6 @@ load_test_data <- function(file) {
     data <- read.csv(file=file, sep = ';', dec=',',
                      fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
-
 
     return(data)
 }

@@ -18,7 +18,6 @@ ui <- fluidPage(
         tabPanel(
             title=introBox(
             	'Input',
-                data.hint = "Here is clue",
 				data.step=1,
 				data.intro=intro_txt_1),
             tabsetPanel(id = "inTabset",
@@ -57,17 +56,17 @@ ui <- fluidPage(
                 tabPanel(
                     title='Manuelle Einstellungen', # introBox
                     sidebarPanel(
-                        h3('Manually define the test properties'),
-                        sliderInput(inputId="sensitivity", label='Sensitivity',
+                        h3('Definiere eigene Sensitivit\u00e4ts- und Spezifit\u00e4t-Werte'),
+                        sliderInput(inputId="sensitivity", label='Sensitivit\u00e4t',
                                     min = 0, max = 100, value = 80),
-                        sliderInput(inputId="specifity", label='Specifity',
+                        sliderInput(inputId="specifity", label='Spezifit\u00e4t',
                                    min = 0, max = 100, value = 80),
                         hr(),
-                        sliderInput(inputId="prevalence_2", label='Prevalence in %',
+                        sliderInput(inputId="prevalence_2", label='Pr\u00e4valenz in %',
                                     min = 0, max = 100, value = 10)
                         ),
                     mainPanel(
-                        h1('Positive and Negative Predictive Value vs. Prevalence'),
+                        h1('Positiver und Negativer Pr\u00e4diktiver Wert vs. Pr\u00e4valenz'),
                         plotOutput(outputId = 'plot_2')
                     ) # mainPanel
                 ) # Manual Settings, tabPanel
@@ -75,7 +74,7 @@ ui <- fluidPage(
         ), # Input, tabPanel
          # introBox(
         tabPanel(
-            title= introBox('PPV & NPV',
+            title= introBox('PPW & NPW',
                             data.step = 6,
                             data.intro = intro_txt_6),
             mainPanel(
@@ -86,7 +85,7 @@ ui <- fluidPage(
                 plotOutput(outputId='tree')
             )
         ), # tabPanel
-        tabPanel(title = 'About',
+        tabPanel(title = 'Simply Rational',
             mainPanel(
                 uiOutput("simply_homepage"),
                 uiOutput("about_us"),
@@ -95,9 +94,6 @@ ui <- fluidPage(
                     width=480, height=200),
                 htmlOutput(outputId="contact_us")
             )
-        ),
-        tabPanel(title = 'More Products',
-                 'Contact us for more products: kontakt@simplyrational.de')
+        )
     ) # navbarPage
-
 )

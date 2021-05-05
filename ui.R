@@ -20,60 +20,38 @@ ui <- fluidPage(
 				data.step=1,
 				data.intro=intro_txt_1),
             h2('Wie wahrscheinlich ist eine COVID-19 Erkrankung basierend auf einem Testergebnis?'),
-            tabsetPanel(id = "inTabset",
-                tabPanel(
-                    title = 'Test Bibliothek',
-                    sidebarPanel(
-                        introBox(
-                            h3('Test Bibliothek'),
-                            selectInput(inputId = "hersteller",
-                                        label = "Hersteller:",
-                                        choices = as.list(unique(data$hersteller))),
-                            selectInput(inputId = "test",
-                                                    label = "Test",
-                                                    choices = as.list(data$handelsname)),
-                            htmlOutput(outputId='test_out'),
-                            data.step = 2,
-                            data.intro = intro_txt_2),
-                        checkboxGroupInput(inputId = "show_ci",
-                                           label = '',
-                                           choices = c("Confidence Intervals" = "show_ci")),
-                        htmlOutput(outputId='ci_out'),
-                        introBox(
-                            hr(),
-                            sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',
-                                        min = 0, max = 100, value = 10),
-                            data.step = 5,
-                            data.intro = intro_txt_5)
-                    ), # sidebarPanel
-                    mainPanel(
-		                introBox(
-		                    introBox(
-								plotOutput(outputId = 'plot'),
-								data.step = 4,
-								data.intro = intro_txt_4),
-						data.step = 3,
-						data.intro = intro_txt_3)
-                    ) # mainPanel
-                ), # Test Library, tabPanel
-                tabPanel(
-                    title='Manuelle Einstellungen', # introBox
-                    sidebarPanel(
-                        h3('Definiere eigene Sensitivit\u00e4ts- und Spezifit\u00e4t-Werte'),
-                        sliderInput(inputId="sensitivity", label='Sensitivit\u00e4t',
-                                    min = 0, max = 100, value = 80),
-                        sliderInput(inputId="specifity", label='Spezifit\u00e4t',
-                                   min = 0, max = 100, value = 80),
-                        hr(),
-                        sliderInput(inputId="prevalence_2", label='Pr\u00e4valenz in %',
-                                    min = 0, max = 100, value = 10)
-                        ),
-                    mainPanel(
-                        h1('Positiver und Negativer Pr\u00e4diktiver Wert vs. Pr\u00e4valenz'),
-                        plotOutput(outputId = 'plot_2')
-                    ) # mainPanel
-                ) # Manual Settings, tabPanel
-            ) # tabset Panel
+            sidebarPanel(
+                introBox(
+                    h3('Test Bibliothek'),
+                    selectInput(inputId = "hersteller",
+                                label = "Hersteller:",
+                                choices = as.list(unique(data$hersteller))),
+                    selectInput(inputId = "test",
+                                            label = "Test",
+                                            choices = as.list(data$handelsname)),
+                    htmlOutput(outputId='test_out'),
+                    data.step = 2,
+                    data.intro = intro_txt_2),
+                checkboxGroupInput(inputId = "show_ci",
+                                   label = '',
+                                   choices = c("Confidence Intervals" = "show_ci")),
+                htmlOutput(outputId='ci_out'),
+                introBox(
+                    hr(),
+                    sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',
+                                min = 0, max = 100, value = 10),
+                    data.step = 5,
+                    data.intro = intro_txt_5)
+            ), # sidebarPanel
+            mainPanel(
+                introBox(
+                    introBox(
+                        plotOutput(outputId = 'plot'),
+                        data.step = 4,
+                        data.intro = intro_txt_4),
+                data.step = 3,
+                data.intro = intro_txt_3)
+            ) # mainPanel
         ), # Input, tabPanel
          # introBox(
         tabPanel(

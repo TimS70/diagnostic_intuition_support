@@ -95,36 +95,6 @@ server <- function(input, output, session) {
 
         }, height=500)
 
-        prevalence_data_manual <- reactive({get_prevalence_data(
-            sensitivity = input$sensitivity,
-            specifity = input$specifity)})
-
-        prevalence_2 <- reactive({input$prevalence_2})
-
-        ppv_intersect_2 <- reactive({
-            out <- 100 * calculate_ppv(prevalence_2() / 100 ,
-                                 input$sensitivity / 100,
-                                 input$specifity / 100)
-            round(out, 1)})
-
-        npv_intersect_2 <- reactive({
-            out <- 100 * calculate_npv(prevalence_2() / 100 ,
-                                 input$sensitivity / 100,
-                                 input$specifity / 100)
-            round(out, 1)})
-
-        output$plot_2 <- renderPlot({
-            p <- generate_plot(
-                data=prevalence_data_manual(),
-                prevalence = prevalence_2(),
-                ppv_intersect=ppv_intersect_2(),
-                npv_intersect=npv_intersect_2()
-            )
-
-            print(p)
-
-        }, height=400)
-
         # About
         output$about_us <- renderUI({HTML(about_us)})
         output$about_the_test <- renderUI({HTML(about_the_tool)})

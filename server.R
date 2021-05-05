@@ -93,7 +93,7 @@ server <- function(input, output, session) {
 
             print(p)
 
-        }, height=400)
+        }, height=500)
 
         prevalence_data_manual <- reactive({get_prevalence_data(
             sensitivity = input$sensitivity,

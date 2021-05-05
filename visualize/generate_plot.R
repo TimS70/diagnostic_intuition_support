@@ -49,7 +49,7 @@ generate_plot <- function(
         ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
         xlab(label = 'Pr\u00e4valenz [%]') +
         theme(legend.position="bottom",
-              text = element_text(size=20, face='bold')) +
+              text = element_text(size=17, face='bold')) +
         labs(color='Legende: ') +
         scale_color_manual(labels = c("PPW", "NPW"),
                            values = c("#0C70B0", '#D72F20'))

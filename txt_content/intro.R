@@ -42,4 +42,4 @@ intro_txt_5 <- "Geben Sie nun Ihre Einsch\u00e4tzung der
     und den NPW (wie verl\u00e4sslich ein negatives Testergebnis wirklich ist)."
 
 intro_txt_6 <- "Hier finden Sie eine weiterf\u00fchrende Erkl\u00e4rung des PPV und
-    NPV und warum diese wichtig sind"
+    NPV und warum diese wichtig sind."

@@ -35,6 +35,10 @@ ui <- fluidPage(
                             htmlOutput(outputId='test_out'),
                             data.step = 2,
                             data.intro = intro_txt_2),
+                        checkboxGroupInput(inputId = "show_ci",
+                                           label = '',
+                                           choices = c("Confidence Intervals" = "show_ci")),
+                        htmlOutput(outputId='ci_out'),
                         introBox(
                             hr(),
                             sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',

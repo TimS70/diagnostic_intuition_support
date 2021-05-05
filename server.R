@@ -73,13 +73,22 @@ server <- function(input, output, session) {
                                  selected_test()$specifity / 100)
             round(out, 1)})
 
+
+        show_ci  <- reactive({
+            if (length(input$show_ci) > 0) {
+                 TRUE
+            } else {
+                 FALSE
+            }})
+
         output$plot <- renderPlot({
 
             p <- generate_plot(
                 data=prevalence_data(),
                 prevalence = prevalence(),
                 ppv_intersect=ppv_intersect(),
-                npv_intersect=npv_intersect()
+                npv_intersect=npv_intersect(),
+                confidence_intervals=show_ci()
             )
 
             print(p)

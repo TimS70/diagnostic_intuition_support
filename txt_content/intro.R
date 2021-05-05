@@ -24,7 +24,7 @@ intro_txt_3 <- "Dieses Diagramm zeigt den Positiven Pr\u00e4diktiven Wert
     wirklich kein COVID-19 hat. (F\u00fcr eine genauere Erkl\u00e4rung, siehe 'PPW & NPW'
     im Reiter)"
 
-intro_txt_5 <- "Die Interpretation des Testergebnisses h\u00e4ngt stark davon ab,
+intro_txt_4 <- "Die Interpretation des Testergebnisses h\u00e4ngt stark davon ab,
     wie wahrscheinlich der Krankheitszustand war, bevor der Test durchgef\u00fchrt
     wurde. Das Problem: dies auf der individuellen Ebene anhand bestehender,
     publizierter Evidenz zu bestimmen ist oft unm\u00f6glich. Ihre Intuition ist
@@ -36,10 +36,10 @@ intro_txt_5 <- "Die Interpretation des Testergebnisses h\u00e4ngt stark davon ab
     dieser Frage keine absolut richtige oder falsche Antwort, sie m\u00fcssen es
     einfach sch\u00e4tzen."
 
-intro_txt_6 <- "Geben Sie nun Ihre Einsch\u00e4tzung der
+intro_txt_5 <- "Geben Sie nun Ihre Einsch\u00e4tzung der
     Krankheitswahrscheinlichkeit hier ein. Das Tool zeigt Ihnen dann darauf
     basierend den PPW (wie verl\u00e4sslich ein positives Testergebnis wirklich ist)
     und den NPW (wie verl\u00e4sslich ein negatives Testergebnis wirklich ist)."
 
-intro_txt_8 <- "Hier finden Sie eine weiterf\u00fchrende Erkl\u00e4rung des PPV und
+intro_txt_6 <- "Hier finden Sie eine weiterf\u00fchrende Erkl\u00e4rung des PPV und
     NPV und warum diese wichtig sind"

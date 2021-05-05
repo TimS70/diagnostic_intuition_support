@@ -39,16 +39,16 @@ ui <- fluidPage(
                             hr(),
                             sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',
                                         min = 0, max = 100, value = 10),
-                            data.step = 6,
-                            data.intro = intro_txt_6)
+                            data.step = 5,
+                            data.intro = intro_txt_5)
                     ), # sidebarPanel
                     mainPanel(
 		                introBox(
 		                    introBox(
 								h2('Positiver und Negativer Pr\u00e4diktiver Wert vs. Pr\u00e4valenz'),
 								plotOutput(outputId = 'plot'),
-								data.step = 5,
-								data.intro = intro_txt_5),
+								data.step = 4,
+								data.intro = intro_txt_4),
 						data.step = 3,
 						data.intro = intro_txt_3)
                     ) # mainPanel
@@ -75,8 +75,8 @@ ui <- fluidPage(
          # introBox(
         tabPanel(
             title= introBox('PPV & NPV',
-                            data.step = 8,
-                            data.intro = intro_txt_8),
+                            data.step = 6,
+                            data.intro = intro_txt_6),
             mainPanel(
                 uiOutput("explain_ppv_npv"),
                 uiOutput(outputId='ppv_formula'),

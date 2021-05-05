@@ -18,6 +18,7 @@ ui <- fluidPage(
         tabPanel(
             title=introBox(
             	'Input',
+                data.hint = "Here is clue",
 				data.step=1,
 				data.intro=intro_txt_1),
             tabsetPanel(id = "inTabset",

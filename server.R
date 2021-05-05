@@ -14,7 +14,9 @@ server <- function(input, output, session) {
 
 	data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
-    introjs(session)
+    introjs(session, options = list("nextLabel"="Weiter",
+                                    "prevLabel"="Zur\u00FCck",
+                                    "skipLabel"="Schlie\u00DFen"))
 
     # Take the first test from the list, when Hersteller changes
     observeEvent(input$hersteller, {

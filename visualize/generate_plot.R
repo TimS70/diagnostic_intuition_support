@@ -2,7 +2,8 @@ generate_plot <- function(
     data,
     prevalence,
     ppv_intersect,
-    npv_intersect) {
+    npv_intersect,
+    confidence_intervals=FALSE) {
 
     ppv_x_pos <- reactive({adjust_x_pos(
         prevalence = prevalence
@@ -45,20 +46,18 @@ generate_plot <- function(
         scale_x_continuous(name="Pr\u00e4valenz [%]",
                            breaks= 0:10 *10) +
         theme_bw() +
-        ylab(label = 'PPW / NPW [%]') +
+        ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
         xlab(label = 'Pr\u00e4valenz [%]') +
         theme(legend.position="bottom",
               text = element_text(size=20, face='bold')) +
-        labs(color='Legend: ') +
+        labs(color='Legende: ') +
         scale_color_manual(labels = c("PPW", "NPW"),
                            values = c("#0C70B0", '#D72F20'))
 
-    if ('ppv_ll' %in% colnames(data)) {
+    if (confidence_intervals == TRUE) {
         p <- p + geom_ribbon(data=data, fill='#73A9CF',
                              aes(ymin=data$ppv_ll,ymax=data$ppv_ul), alpha=0.3)
-    }
 
-    if ('npv_ll' %in% colnames(data)) {
         p <- p + geom_ribbon(data=data, fill='#EF6547',
                              aes(ymin=data$npv_ll,ymax=data$npv_ul), alpha=0.3)
     }

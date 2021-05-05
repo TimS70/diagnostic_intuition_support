@@ -12,7 +12,6 @@ ui <- fluidPage(
 
 	theme = shinytheme('cerulean'),
     introjsUI(),
-
     navbarPage(
         title="Simply Diagnostic Intuition Support",
         tabPanel(
@@ -20,6 +19,7 @@ ui <- fluidPage(
             	'Input',
 				data.step=1,
 				data.intro=intro_txt_1),
+            h2('Wie wahrscheinlich ist eine COVID-19 Erkrankung basierend auf einem Testergebnis?'),
             tabsetPanel(id = "inTabset",
                 tabPanel(
                     title = 'Test Bibliothek',
@@ -45,7 +45,6 @@ ui <- fluidPage(
                     mainPanel(
 		                introBox(
 		                    introBox(
-								h2('Positiver und Negativer Pr\u00e4diktiver Wert vs. Pr\u00e4valenz'),
 								plotOutput(outputId = 'plot'),
 								data.step = 4,
 								data.intro = intro_txt_4),

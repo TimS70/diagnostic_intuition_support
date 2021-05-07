@@ -1,38 +1,33 @@
-about_us <- paste('
-    We are
-    <a href="https://www.simplyrational.de/">Simply Rational GmbH -
-    the Institute for Decisions</a>
+about_us <- '
+    Wir sind
+    <a href="https://www.simplyrational.de/">Simply Rational -
+    das Entscheidungsinstitut: </a>
     <br><br>
-    <p>We are a Spin-Off from the Research Group for Adaptive Behavior and Cognition under
-    the supervision of Prof. Gerd Gigerenzer at the
-    Max Planck Institute for Human Development.
-    Our team comprises trained Behavioral and Data Scientists as well as
-    experienced partners from diverse business areas.
-    Our mission is to to improve clinical decision processes and empower
-    health care workers to make best use of
-    diagnostic tools, their expertise and collaboration in the team.
-    </p><br>
-    ', sep='')
+    <p>Wir sind eine Ausgr\u00fcndung aus der Forschungsgruppe f\u00fcr Adaptives Verhalten
+    und Kognition (Adaptive Behavior and Cognition; ABC) unter der Leitung von
+    Prof. Gerd Gigerenzer am Max Planck Institut f\u00fcr Bildungsforschung in Berlin (Max Planck Institute for Human Development).
+    Unser Team besteht aus Experten in den Bereichen Verhaltenswissenschaften und
+    Data Science, sowie weiteren erfahrenen Partern aus verschiedenen wirtschaftlichen Branchen.
+    Mit diesem Werkzeug wollen wir klinische Entscheidungsprozesse verbessern und
+    es Gesundheitspersonal erm\u00f6glichen, ihre klinische Expertise und die Zusammenarbeit im Team
+    m\u00f6glichst wirkungsvoll einzusetzen.
+    </p>'
 
-about_the_tool <- paste('
-    About this tool:
-    <p>The Diagnostic Intuition Support Tool serves the purpose of giving a
-    basic orientation for interpreting COVID-19 Antigen Tests.
-    We do not give any warranty that the information provided on the
-    website will be accurate or complete at any particular time or at all.
-    The information about the presented tests are directly obtained from the
-    from the Federal Institute for Drugs and Medical Devices.
-    The sensitivity and specifity information originates from the manufacturer.
-    The most recend dataset can be found
+about_the_tool <- '
+    <h3>\u00dcber das Diagnostic Intuition Support:</h3>
+    <p>Das Diagnostic Intuition Support Werkzeug soll eine grundlegende Orientierung f\u00fcr die Interpretation
+    von COVID-19 Antigen Tests (COVID-19 Schnelltests) bieten.
+    Wir gew\u00e4hren keine Garantie, dass die Informationen auf der Webseite zu einem bestimmten Zeitpunkt bzw.
+    immer korrekt bzw. vollst\u00e4ndig sind. Allerdings sind die Informationen \u00fcber die Tests direkt vom
+    Deutschen Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte bezogen und werden nach M\u00f6glichkeit stetig
+    aktualisiert. Die dort bezogenen Sensitivit\u00e4ts- und Spezifit\u00e4tswerte entstammen den Herstellerangaben.
+    Die aktuelle Datenbank kann
     <a href="https://www.bfarm.de/DE/Medizinprodukte/Antigentests/_node.html;jsessionid=4F3D066A1BAB04CBFD7B0C7ACE1BA6B2.1_cid506">
-    here</a>.</p><br>
-    ', sep='')
+    hier</a> bezogen werden.</p>'
 
 contact_us <- paste(
-    ' ',
-    'Contact us',
+    '<h3>Kontakt</h3>',
     'kontakt@simplyrational.de',
-    ' ',
     'Simply Rational GmbH',
     'Eberhard-Roters-Platz 7a',
     'DE-10965 Berlin',

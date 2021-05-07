@@ -1,33 +1,35 @@
 explain_ppv_npv <-
-    '<p>When a COVID Antigen test (Rapid test) shows you a positive or negative result, this does not
-    mean automatically mean that the patient has a CORONA or not.
-    Tests can be wrong in the way that they either show a positive result
-    for a healthy patient (False Positive) or a negative result
-    for a person who actually has a disease (False Negative). How likely is a
-    test to actually show a true result? </p><br>
-    <p>Let us define a few terms: <br>
+    '<p>Wenn ein COVID-19 Antigen Test (Schnelltest) ein positives oder negatives Ergebnis zeigt,
+     bedeutet dies nicht automatisch, dass sich der Patient mit COVID-19 infiziert hat oder gesund ist.
+     Tests k\u00f6nnen insofern falsch liegen, dass sie entweder ein positives Ergebnis f\u00fcr einen gesunden
+     Patienten zeigen (Falsch Positiv) oder ein negatives Ergebnis f\u00fcr eine infizierte Person (Falsch Negativ).
+     Wie wahrscheinlich ist es, dass ein Test ein wahres positives Ergebnis oder wahres negatives Ergebnis zeigt? </p><br>
+    <p>Lassen Sie uns zu einige wichtige Begriffe unterscheiden: <br>
     <ul>
-        <li>Prevalence: The probability of having the disease in a given population</li>
-        <li>Sensitivity: The probability that an individual who has COVID also has a positive test</li>
-        <li>Specifity: The probability that a healthy individual has a negative test</li>
-        <li>Positive Predictive Value (PPV): The probability that an individual with a positive test result has COVID</li>
-        <li>Negative Predictive Value (NPV): The probability that an individual with a negative test result has COVID</li>
+        <li><b>Pr\u00e4valenz:</b> Die Wahrscheinlichkeit, mit der eine Erkrankung in einer bestimmten Bev\u00f6lkerung auftritt.
+            Je nach definierter Personengruppe, also ob die gesamte Bev\u00f6lkerung oder eine bestimmte Risikogruppe (z.B. Pendler)
+            gemeint ist, kann die Pr\u00e4valenz variieren. </li>
+        <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit COVID-19 infizierte Person ein positives Testergebnis hat. </li>
+        <li><b>Spezifit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine gesunde Person, ein negatives Testergebnis hat. </li>
+        <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis auch
+            tats\u00e4chlich COVID-19 hat.</li>
+        <li><b>Negativer Pr\u00e4diktiver Wert (NPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>negativen</u> Testergebnis auch
+            tats\u00e4chlich gesund ist.</li>
     </ul>
     <br>
-    <p>For interpreting a positive or negative COVID-19 test result, the last two terms are crucial to understand. </p>
-
+    <p>Zur Interpretation eines positiven oder negativen Testergebnisses spielen die letzten beiden Begriffe eine gro\u00dfe Rolle. </p>
     '
 
 #   https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/15077#15077
-ppv_formula <- withMathJax("$$PPV = \\frac{True Positives}{True Positives + False Positives}$$")
-npv_formula <- withMathJax("$$NPV = \\frac{True Negatives}{True Negatives + False Negatives}$$")
+ppv_formula <- withMathJax("$$PPW = \\frac{Wahr Positive}{Wahr Positive + Falsch Positive}$$")
+npv_formula <- withMathJax("$$NPW = \\frac{Wahr Negative}{Wahr Negative + Falsch Negative}$$")
 
 plot_legend <- '
     <p>
-    <h3>Exemplary frequency tree:</h3>
-    True Pos. = True Positives <br>
-    False Pos. = False Positives <br>
-    True Neg. = True Negatives <br>
-    False Neg. = False Negatives
+    <h3>Beispielhafter H\u00e4ufigkeitenbaum:</h3>
+    True Pos. = Wahr Positive <br>
+    False Pos. = Falsch Positive <br>
+    True Neg. = Wahr Negative <br>
+    False Neg. = Falsch Negative
     </p>
 '

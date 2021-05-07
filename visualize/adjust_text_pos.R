@@ -1,8 +1,8 @@
 adjust_x_pos <- function(prevalence) {
     pos <- prevalence
 
-    if (prevalence > 90) {
-        pos <- prevalence - 14
+    if (prevalence > (1/150)) {
+        pos <- prevalence - (1/900)
     }
 
     return(pos)

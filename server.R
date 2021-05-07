@@ -51,7 +51,7 @@ server <- function(input, output, session) {
         })
 
     observe({
-        prevalence <- reactive({input$prevalence})
+        prevalence <- reactive({1/input$prevalence})
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &
@@ -62,13 +62,13 @@ server <- function(input, output, session) {
             get_prevalence_data(test_data=selected_test())})
 
         ppv_intersect <- reactive({
-            out <- 100 * calculate_ppv(prevalence() / 100 ,
+            out <- 100 * calculate_ppv(prevalence(),
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
             round(out, 1)})
 
         npv_intersect <- reactive({
-            out <- 100 * calculate_npv(prevalence() / 100 ,
+            out <- 100 * calculate_npv(prevalence(),
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
             round(out, 1)})

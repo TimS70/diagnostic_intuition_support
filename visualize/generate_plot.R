@@ -29,22 +29,44 @@ generate_plot <- function(
         geom_line(aes(y=npv, color = '#D72F20'), size=1) +
         geom_vline(xintercept = prevalence, linetype="dotted",
                    color = "black", size=1.5) +
-        geom_text(x = ppv_x_pos() + 2,
+        geom_text(x = ppv_x_pos(),
                   y = ppv_y_pos() - 2,
                   size=5,
                   hjust = 0,
-                  label=paste0("PPW: ", ppv_intersect, '%')) +
-        annotate("point", x = prevalence, y = ppv_intersect,
+                  label=paste0(" PPW: ", ppv_intersect, '%')) +
+        annotate(geom="point", x = prevalence, y = ppv_intersect,
                      colour = "blue", size=5) +
-        geom_text(x = npv_x_pos() + 2,
+        geom_text(x = npv_x_pos(),
                   y = npv_y_pos() - 2,
                   size=5,
                   hjust = 0,
-                  label=paste0("NPW: ", npv_intersect, '%')) +
+                  label=paste0(" NPW: ", npv_intersect, '%')) +
         annotate("point", x = prevalence, y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_continuous(name="Pr\u00e4valenz [%]",
-                           breaks= 0:10 *10) +
+        scale_x_continuous(name="Pr\u00e4valenz",
+                           minor_breaks=c(1/10000,
+                                    1/1000,
+                                    1/500,
+                                    1/250,
+                                    1/200,
+                                    1/150,
+                                    1/100),
+                           breaks=c(1/10000,
+                                    1/1000,
+                                    1/500,
+                                    1/250,
+                                    1/200,
+                                    1/150,
+                                    1/100),
+                           labels = c('1/10.000',
+                                      '1/1.000',
+                                      '1/500',
+                                      '1/250',
+                                      '1/200',
+                                      '1/150',
+                                      '1/100')) +
+        scale_y_continuous(name = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]',
+                           breaks=seq(0, 100, 10)) +
         theme_bw() +
         ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
         xlab(label = 'Pr\u00e4valenz [%]') +

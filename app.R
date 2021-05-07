@@ -22,6 +22,7 @@ get_packages(c('tidyverse',
                'riskyr',
                'shiny',
                'shinythemes',
+               'shinyWidgets',
                'sjmisc'))
 
 # Define UI for application that draws a histogram

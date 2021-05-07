@@ -13,7 +13,9 @@ calculate_npv <- function(prevalence, sensitivity, specifity) {
 get_prevalence_data <- function(test_data=FALSE,
                                 sensitivity=FALSE, specifity=FALSE){
 
-    data <- data.frame(prevalence = c(0:100) * 0.01)
+    data <- data.frame(prevalence = 1/(1000:10 * 10))
+
+    # 1/10.000; 2/10.000; 5/10.000; 1/1000; 1/100;
 
     if (sensitivity==FALSE) {
         sensitivity <- test_data$sensitivity / 100
@@ -58,6 +60,7 @@ get_prevalence_data <- function(test_data=FALSE,
     }
 
     data <- data * 100
+    data$prevalence <- data$prevalence / 100
 
     return(data)
 }

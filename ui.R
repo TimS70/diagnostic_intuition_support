@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(shinythemes)
+library(shinyWidgets)
 library(rintrojs)
 
 source(file.path('utils', 'load.R'))
@@ -34,12 +35,21 @@ ui <- fluidPage(
                     data.intro = intro_txt_2),
                 checkboxGroupInput(inputId = "show_ci",
                                    label = '',
-                                   choices = c("Confidence Intervals" = "show_ci")),
+                                   choices = c("Konfidenz Intervalle" = "show_ci")),
                 htmlOutput(outputId='ci_out'),
                 introBox(
                     hr(),
-                    sliderInput(inputId="prevalence", label='Pr\u00e4valenz in %',
-                                min = 0, max = 100, value = 10),
+                    sliderTextInput(
+                          inputId="prevalence",
+                          label='Pr\u00e4valenz: \nEine Person unter wie vielen anderen Personen hat COVID-19?',
+                          choices = c(10:1 * 1000,
+                                      9:1 * 100),
+                          selected = 1000,
+                          width = "100%",
+                          post = " Personen",
+                          grid = TRUE,
+                          force_edges=TRUE
+                        ),
                     data.step = 5,
                     data.intro = intro_txt_5)
             ), # sidebarPanel

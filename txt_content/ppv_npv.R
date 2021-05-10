@@ -6,9 +6,9 @@ explain_ppv_npv <-
      Wie wahrscheinlich ist es, dass ein Test ein wahres positives Ergebnis oder wahres negatives Ergebnis zeigt? </p><br>
     <p>Lassen Sie uns zu einige wichtige Begriffe unterscheiden: <br>
     <ul>
-        <li><b>Pr\u00e4valenz:</b> Die Wahrscheinlichkeit, mit der eine Erkrankung in einer bestimmten Bev\u00f6lkerungsgruppe auftritt.
+        <li><b>Pr\u00e4valenz bzw. Infektionsrisiko:</b> Die Wahrscheinlichkeit, mit der eine Erkrankung in einer bestimmten Bev\u00f6lkerungsgruppe auftritt.
             Je nach definierter Personengruppe, also ob die gesamte Bev\u00f6lkerung oder eine bestimmte Risikogruppe (z.B. Pendler*innen)
-            gemeint ist, kann die Pr\u00e4valenz variieren. </li>
+            gemeint ist, kann das Infektionsrisiko variieren. </li>
         <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit COVID-19 infizierte Person ein positives Testergebnis hat. </li>
         <li><b>Spezifit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine gesunde Person ein negatives Testergebnis hat. </li>
         <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis auch

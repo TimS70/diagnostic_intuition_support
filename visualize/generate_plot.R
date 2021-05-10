@@ -43,7 +43,7 @@ generate_plot <- function(
                   label=paste0(" NPW: ", npv_intersect, '%')) +
         annotate("point", x = prevalence, y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_continuous(name="Pr\u00e4valenz",
+        scale_x_continuous(name="Infektionsrisiko",
                            minor_breaks=c(1/10000,
                                     1/1000,
                                     1/500,
@@ -69,7 +69,7 @@ generate_plot <- function(
                            breaks=seq(0, 100, 10)) +
         theme_bw() +
         ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
-        xlab(label = 'Pr\u00e4valenz [%]') +
+        xlab(label = 'Infektionsrisiko [%]') +
         theme(legend.position="bottom",
               text = element_text(size=17, face='bold')) +
         labs(color='Legende: ') +

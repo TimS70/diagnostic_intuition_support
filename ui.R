@@ -37,18 +37,24 @@ ui <- fluidPage(
                                    choices = c("Konfidenzintervalle" = "show_ci")),
                 htmlOutput(outputId='ci_out'),
                 introBox(
-                    hr(),
-                    sliderTextInput(
-                          inputId="prevalence",
-                          label='Pr\u00e4valenz: \nEine Person unter wie vielen anderen Personen hat COVID-19?',
-                          choices = c(10:1 * 1000,
-                                      9:1 * 100),
-                          selected = 1000,
-                          width = "100%",
-                          post = " Personen",
-                          grid = TRUE,
-                          force_edges=TRUE
-                        ),
+                    introBox(
+                        introBox(
+                            hr(),
+                            sliderTextInput(
+                                  inputId="prevalence",
+                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat COVID-19?',
+                                  choices = c(10:1 * 1000,
+                                              9:1 * 100),
+                                  selected = 1000,
+                                  width = "100%",
+                                  post = " Personen",
+                                  grid = TRUE,
+                                  force_edges=TRUE
+                                ),
+                            data.step = 7,
+                            data.intro = intro_txt_7),
+                        data.step = 6,
+                        data.intro = intro_txt_6),
                     data.step = 5,
                     data.intro = intro_txt_5)
             ), # sidebarPanel
@@ -62,11 +68,7 @@ ui <- fluidPage(
                 data.intro = intro_txt_3)
             ) # mainPanel
         ), # Input, tabPanel
-         # introBox(
-        tabPanel(
-            title= introBox('PPW & NPW',
-                            data.step = 6,
-                            data.intro = intro_txt_6),
+        tabPanel(title= 'PPW & NPW',
             mainPanel(
                 uiOutput("explain_ppv_npv"),
                 uiOutput(outputId='ppv_formula'),

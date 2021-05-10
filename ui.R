@@ -10,8 +10,8 @@ source('txt_content/intro.R')
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
 ui <- fluidPage(
-
 	theme = shinytheme('cerulean'),
+    tags$head(includeScript("google-analytics.js")),
     introjsUI(),
     navbarPage(
         title="Simply Diagnostic Intuition Support",

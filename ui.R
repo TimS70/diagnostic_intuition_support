@@ -16,7 +16,7 @@ ui <- fluidPage(
         title="Simply Diagnostic Intuition Support",
         tabPanel(
             title=introBox(
-            	'Input',
+            	'Das Tool',
 				data.step=1,
 				data.intro=intro_txt_1),
             h2('Wie wahrscheinlich ist eine COVID-19 Erkrankung basierend auf einem Testergebnis?'),

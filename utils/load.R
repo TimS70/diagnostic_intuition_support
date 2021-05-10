@@ -83,6 +83,8 @@ load_test_data <- function(file) {
                      fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
 
+    print(head(data))
+
     return(data)
 }
 

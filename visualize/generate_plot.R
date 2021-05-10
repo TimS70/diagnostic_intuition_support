@@ -66,7 +66,7 @@ generate_plot <- function(
                                       '1/150',
                                       '1/100')) +
         scale_y_continuous(name = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]',
-                           breaks=seq(0, 100, 10)) +
+                           breaks=seq(0, 100, 10), limits=c(0, 100)) +
         theme_bw() +
         ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
         xlab(label = 'Infektionsrisiko [%]') +

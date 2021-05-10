@@ -14,7 +14,8 @@ source(file.path('utils', 'get_packages.R'))
 source('ui.R')
 source('server.R')
 
-get_packages(c('tidyverse',
+get_packages(c('data.table',
+               'tidyverse',
                'dplyr',
                'rsconnect',
                'ggplot2',

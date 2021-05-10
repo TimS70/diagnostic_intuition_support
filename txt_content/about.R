@@ -23,7 +23,7 @@ about_the_tool <- '
     aktualisiert. Die dort bezogenen Sensitivit\u00e4ts- und Spezifit\u00e4tswerte entstammen den Herstellerangaben.
     Die aktuelle Datenbank kann
     <a href="https://www.bfarm.de/DE/Medizinprodukte/Antigentests/_node.html;jsessionid=4F3D066A1BAB04CBFD7B0C7ACE1BA6B2.1_cid506">
-    hier</a> bezogen werden.</p>'
+    hier</a> bezogen werden (letzter Stand 10.05.2021).</p>'
 
 contact_us <- paste(
     '<h3>Kontakt</h3>',

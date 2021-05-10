@@ -16,7 +16,8 @@ server <- function(input, output, session) {
 
     introjs(session, options = list("nextLabel"="Weiter",
                                     "prevLabel"="Zur\u00FCck",
-                                    "skipLabel"="Schlie\u00DFen"))
+                                    "skipLabel"="Schlie\u00DFen",
+                                    'doneLabel'='Fertig'))
 
     # Take the first test from the list, when Hersteller changes
     observeEvent(input$hersteller, {

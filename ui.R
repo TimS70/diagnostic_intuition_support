@@ -23,7 +23,7 @@ ui <- fluidPage(
             h2('Wie wahrscheinlich ist eine COVID-19 Erkrankung basierend auf einem Testergebnis?'),
             sidebarPanel(
                 introBox(
-                    h3('Test Bibliothek'),
+                    h3('Testbibliothek'),
                     selectInput(inputId = "hersteller",
                                 label = "Hersteller:",
                                 choices = as.list(unique(data$hersteller))),
@@ -35,7 +35,7 @@ ui <- fluidPage(
                     data.intro = intro_txt_2),
                 checkboxGroupInput(inputId = "show_ci",
                                    label = '',
-                                   choices = c("Konfidenz Intervalle" = "show_ci")),
+                                   choices = c("Konfidenzintervalle" = "show_ci")),
                 htmlOutput(outputId='ci_out'),
                 introBox(
                     hr(),

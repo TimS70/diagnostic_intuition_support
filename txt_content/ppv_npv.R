@@ -1,6 +1,6 @@
 explain_ppv_npv <-
     '<p>Wenn ein COVID-19 Antigen Test (Schnelltest) ein positives oder negatives Ergebnis zeigt,
-     bedeutet dies nicht automatisch, dass sich der Person mit COVID-19 infiziert hat oder gesund ist.
+     bedeutet dies nicht automatisch, dass sich der Person mit SARS-CoV-2 infiziert hat oder gesund ist.
      Tests k\u00f6nnen insofern falsch liegen, dass sie entweder ein positives Ergebnis f\u00fcr einen gesunden
      Personen zeigen (Falsch Positiv) oder ein negatives Ergebnis f\u00fcr eine infizierte Person (Falsch Negativ).
      Wie wahrscheinlich ist es, dass ein Test ein wahres positives Ergebnis oder wahres negatives Ergebnis zeigt? </p><br>
@@ -11,11 +11,11 @@ explain_ppv_npv <-
             gemeint ist, kann das Infektionsrisiko variieren.
             Die Pr\u00e4valenz wird aus einer Faustformel mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der aufgedeckten F\u00e4lle von
             einem Drittel (zwei Drittel Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten).</li>
-        <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit COVID-19 infizierte Person ein positives Testergebnis hat. </li>
+        <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit SARS-CoV-2 infizierte Person ein positives Testergebnis hat. </li>
         <li><b>Spezifit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine gesunde Person ein negatives Testergebnis hat. </li>
-        <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis auch
-            tats\u00e4chlich COVID-19 hat.</li>
-        <li><b>Negativer Pr\u00e4diktiver Wert (NPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>negativen</u> Testergebnis auch
+        <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis sich
+            tats\u00e4chlich mit SARS-CoV-2 infiziert hat.</li>
+        <li><b>Negativer Pr\u00e4diktiver Wert (NPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>negativen</u> Testergebnis
             tats\u00e4chlich gesund ist.</li>
     </ul>
     <br>

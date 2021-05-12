@@ -111,7 +111,7 @@ server <- function(input, output, session) {
         output$tree <- renderPlot({
 
             my_txt <- init_txt(
-                cond_lbl = "True COVID Infection",
+                cond_lbl = "True SARS-CoV-2 Infection",
                 cond_true_lbl = "True", cond_false_lbl = "False",
                 hi_lbl = "True Pos.", mi_lbl = "False Neg.",
                 fa_lbl = "False Pos.", cr_lbl = "True Neg.")

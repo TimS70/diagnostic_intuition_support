@@ -45,6 +45,8 @@ intro_txt_6 <- "Hilfreich ist bei dieser Einsch\u00e4tzung jedoch, das
     derzeitige Infektionsgeschehen zu betrachten. Derzeit (Mitte Mai 2021) liegt die
     7-Tage-Inzidenz (eine zeitlich begrenzte Sch\u00e4tzung f\u00fcr das Infektionsrisiko)
     in Deutschland bei ca. 100 pro 100.000 Einwohner oder bei ca. 1 in 1000.
+    Die Inzidenz wird mithilfe einer Faustformel (siehe PPW & NPW im Reiter) in eine
+    Pr\u00e4valenz umgerechnet.
     Dies liegt auf dem DIS ungef\u00e4hr hier."
 
 intro_txt_7 <- "Geben Sie Ihre Einsch\u00e4tzung der

@@ -49,8 +49,8 @@ ui <- fluidPage(
                         introBox(
                             hr(),
                             sliderTextInput(
-                                  inputId="prevalence",
-                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich infiziert?',
+                                  inputId="incidence",
+                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich neu infiziert?',
                                   choices = infection_risk_range,
                                   selected = select_risk,
                                   width = "100%",
@@ -58,7 +58,7 @@ ui <- fluidPage(
                                   grid = TRUE,
                                   force_edges=TRUE
                                 ),
-                                helpText(paste0("Die aktuelle 7-Tage Inzidenz (Quelle Robert Koch Institut) liegt bei ",
+                                helpText(paste0("Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) liegt bei ",
                                                round(100000/infection_risk, 2), ".",
                                                 "Innerhalb von 7 Tagen, haben sich ca. ",
                                                 round(100000/infection_risk), " von 100.000 Personen ",
@@ -87,6 +87,7 @@ ui <- fluidPage(
                 uiOutput("explain_ppv_npv"),
                 uiOutput(outputId='ppv_formula'),
                 uiOutput(outputId='npv_formula'),
+                uiOutput(outputId='prevalence_estimation_formula'),
                 uiOutput(outputId='plot_legend'),
                 plotOutput(outputId='tree')
             )

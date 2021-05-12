@@ -4,6 +4,7 @@ library(dplyr)
 library(riskyr)
 
 source(file='utils/load.R')
+source(file='utils/estimate_prevalence.R')
 source(file='txt_content/about.R')
 source(file='txt_content/ppv_npv.R')
 source(file= 'visualize/load_data.R')
@@ -52,7 +53,9 @@ server <- function(input, output, session) {
         })
 
     observe({
-        prevalence <- reactive({1/input$prevalence})
+        prevalence <- reactive({estimate_prevalence(
+            incidence = 1/input$incidence,
+            fraction_cases = 0.33)})
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &
@@ -105,6 +108,7 @@ server <- function(input, output, session) {
         output$explain_ppv_npv <- renderUI({HTML(explain_ppv_npv)})
         output$ppv_formula <- renderUI({ppv_formula})
         output$npv_formula <- renderUI({npv_formula})
+        output$prevalence_estimation_formula <- renderUI({prevalence_estimation_formula})
         output$plot_legend <- renderUI({HTML(plot_legend)})
         output$tree <- renderPlot({
 

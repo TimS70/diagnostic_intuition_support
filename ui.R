@@ -2,12 +2,20 @@ library(shiny)
 library(ggplot2)
 library(shinythemes)
 library(shinyWidgets)
+library(readxl)
+library(rio)
 library(rintrojs)
 
 source(file.path('utils', 'load.R'))
+source(file.path('utils', 'incidence.R'))
 source('txt_content/intro.R')
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
+
+infection_risk <- obtain_incidence()
+infection_risk_range <- c(10:1 * 1000, 9:1 * 100)
+select_risk <- infection_risk_range[
+    which.min(abs(infection_risk_range - infection_risk))]
 
 ui <- fluidPage(
 	theme = shinytheme('cerulean'),
@@ -43,14 +51,20 @@ ui <- fluidPage(
                             sliderTextInput(
                                   inputId="prevalence",
                                   label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich infiziert?',
-                                  choices = c(10:1 * 1000,
-                                              9:1 * 100),
-                                  selected = 1000,
+                                  choices = infection_risk_range,
+                                  selected = select_risk,
                                   width = "100%",
                                   post = " Personen",
                                   grid = TRUE,
                                   force_edges=TRUE
                                 ),
+                                helpText(paste0("Die aktuelle 7-Tage Inzidenz (Quelle Robert Koch Institut) liegt bei ",
+                                               round(100000/infection_risk, 2), ".",
+                                                "Innerhalb von 7 Tagen, haben sich ca. ",
+                                                round(100000/infection_risk), " von 100.000 Personen ",
+                                                "mit SARS-CoV-2 infiziert. Das ist umgerechnet eine von ca. ",
+                                                round(infection_risk),
+                                                " Personen.")),
                             data.step = 7,
                             data.intro = intro_txt_7),
                         data.step = 6,

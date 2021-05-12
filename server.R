@@ -53,26 +53,24 @@ server <- function(input, output, session) {
         })
 
     observe({
-        prevalence <- reactive({estimate_prevalence(
-            incidence = 1/input$incidence,
-            fraction_cases = 0.33)})
+        incidence <- reactive({incidence = 1/input$incidence})
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &
                             handelsname == input$test)})
 
         # Plot
-        prevalence_data <- reactive({
-            get_prevalence_data(test_data=selected_test())})
+        risk_data <- reactive({
+            get_risk_data(test_data=selected_test())})
 
         ppv_intersect <- reactive({
-            out <- 100 * calculate_ppv(prevalence(),
+            out <- 100 * calculate_ppv(incidence(),
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
             round(out, 1)})
 
         npv_intersect <- reactive({
-            out <- 100 * calculate_npv(prevalence(),
+            out <- 100 * calculate_npv(incidence(),
                                  selected_test()$sensitivity / 100,
                                  selected_test()$specifity / 100)
             round(out, 1)})
@@ -88,8 +86,8 @@ server <- function(input, output, session) {
         output$plot <- renderPlot({
 
             p <- generate_plot(
-                data=prevalence_data(),
-                prevalence = prevalence(),
+                data=risk_data(),
+                incidence = incidence(),
                 ppv_intersect=ppv_intersect(),
                 npv_intersect=npv_intersect(),
                 confidence_intervals=show_ci()

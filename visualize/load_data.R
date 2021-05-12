@@ -1,21 +1,27 @@
-calculate_ppv <- function(prevalence, sensitivity, specifity) {
+source('utils/estimate_prevalence.R')
+
+calculate_ppv <- function(incidence, sensitivity, specifity) {
+
+    prevalence <- estimate_prevalence(incidence, fraction_cases = 0.33)
+
     ppv <- sensitivity * prevalence /
         (sensitivity * prevalence + (1-prevalence) * (1-specifity))
     return(ppv)
 }
 
-calculate_npv <- function(prevalence, sensitivity, specifity) {
+calculate_npv <- function(incidence, sensitivity, specifity) {
+
+    prevalence <- estimate_prevalence(incidence, fraction_cases = 0.33)
+
     npv <- sensitivity * (1-prevalence) /
         (specifity * (1-prevalence) + prevalence * (1-sensitivity))
     return(npv)
 }
 
-get_prevalence_data <- function(test_data=FALSE,
-                                sensitivity=FALSE, specifity=FALSE){
+get_risk_data <- function(test_data=FALSE,
+                          sensitivity=FALSE, specifity=FALSE){
 
-    data <- data.frame(prevalence = 1/(1000:10 * 10))
-
-    # 1/10.000; 2/10.000; 5/10.000; 1/1000; 1/100;
+    data <- data.frame(incidence = 1/(1000:10 * 10))
 
     if (sensitivity==FALSE) {
         sensitivity <- test_data$sensitivity / 100
@@ -33,34 +39,34 @@ get_prevalence_data <- function(test_data=FALSE,
         specifity <- specifity / 100
     }
 
-    data$ppv <- calculate_ppv(data$prevalence,
+    data$ppv <- calculate_ppv(data$incidence,
                               sensitivity,
                               specifity)
 
-    data$npv <- calculate_npv(data$prevalence,
+    data$npv <- calculate_npv(data$incidence,
                               sensitivity,
                               specifity)
 
     if (test_data!=FALSE) {
-        data$ppv_ll <- calculate_ppv(data$prevalence,
+        data$ppv_ll <- calculate_ppv(data$incidence,
                                      sensitivity_ci_95_ll,
                                      specifity_ci_95_ll)
 
-        data$ppv_ul <- calculate_ppv(data$prevalence,
+        data$ppv_ul <- calculate_ppv(data$incidence,
                                      sensitivity_ci_95_ul,
                                      specifity_ci_95_ul)
 
-        data$npv_ll <- calculate_npv(data$prevalence,
+        data$npv_ll <- calculate_npv(data$incidence,
                                      sensitivity_ci_95_ll,
                                      specifity_ci_95_ll)
 
-        data$npv_ul <- calculate_npv(data$prevalence,
+        data$npv_ul <- calculate_npv(data$incidence,
                                      sensitivity_ci_95_ul,
                                      specifity_ci_95_ul)
     }
 
     data <- data * 100
-    data$prevalence <- data$prevalence / 100
+    data$incidence <- data$incidence / 100
 
     return(data)
 }

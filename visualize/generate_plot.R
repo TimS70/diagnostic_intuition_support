@@ -1,47 +1,38 @@
 generate_plot <- function(
     data,
-    prevalence,
+    incidence,
     ppv_intersect,
     npv_intersect,
     confidence_intervals=FALSE) {
 
-    ppv_x_pos <- reactive({adjust_x_pos(
-        prevalence = prevalence
-    )})
+    ppv_x_pos <- reactive({adjust_x_pos(incidence = incidence)})
+    npv_x_pos <- reactive({adjust_x_pos(incidence = incidence)})
 
-    npv_x_pos <- reactive({adjust_x_pos(
-        prevalence = prevalence
-    )})
+    npv_y_pos <- reactive({adjust_y_pos(y_target = npv_intersect,
+                                        y_other = ppv_intersect)})
 
-    npv_y_pos <- reactive({adjust_y_pos(
-        y_target = npv_intersect,
-        y_other = ppv_intersect
-    )})
-
-    ppv_y_pos <- reactive({adjust_y_pos(
-        y_target = ppv_intersect,
-        y_other = npv_intersect
-    )})
+    ppv_y_pos <- reactive({adjust_y_pos(y_target = ppv_intersect,
+                                        y_other = npv_intersect)})
 
 
-    p <- ggplot(data=data, aes(x=data$prevalence)) +
+    p <- ggplot(data=data, aes(x=data$incidence)) +
         geom_line(aes(y=ppv, color = "#0C70B0"), size=1) +
         geom_line(aes(y=npv, color = '#D72F20'), size=1) +
-        geom_vline(xintercept = prevalence, linetype="dotted",
+        geom_vline(xintercept = incidence, linetype="dotted",
                    color = "black", size=1.5) +
         geom_text(x = ppv_x_pos(),
                   y = ppv_y_pos() - 2,
                   size=5,
                   hjust = 0,
                   label=paste0(" PPW: ", ppv_intersect, '%')) +
-        annotate(geom="point", x = prevalence, y = ppv_intersect,
+        annotate(geom="point", x = incidence, y = ppv_intersect,
                      colour = "blue", size=5) +
         geom_text(x = npv_x_pos(),
                   y = npv_y_pos() - 2,
                   size=5,
                   hjust = 0,
                   label=paste0(" NPW: ", npv_intersect, '%')) +
-        annotate("point", x = prevalence, y = npv_intersect,
+        annotate("point", x = incidence, y = npv_intersect,
                      colour = "red", size=5) +
         scale_x_continuous(name="Infektionsrisiko",
                            minor_breaks=c(1/10000,

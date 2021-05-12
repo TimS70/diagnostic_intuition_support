@@ -26,7 +26,7 @@ npv_formula <- withMathJax("$$NPW = \\frac{Wahr Negative}{Wahr Negative + Falsch
 
 plot_legend <- '
     <p>
-    <h3>Beispielhafter H\u00e4ufigkeitenbaum:</h3>
+    <h3>Beispielhafter H\u00e4ufigkeitsbaum:</h3>
     True Pos. = Wahr Positive <br>
     False Pos. = Falsch Positive <br>
     True Neg. = Wahr Negative <br>

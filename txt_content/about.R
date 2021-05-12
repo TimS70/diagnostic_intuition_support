@@ -6,17 +6,17 @@ about_us <- '
     <p>Wir sind eine Ausgr\u00fcndung aus der Forschungsgruppe f\u00fcr Adaptives Verhalten
     und Kognition (Adaptive Behavior and Cognition; ABC) unter der Leitung von
     Prof. Gerd Gigerenzer am Max Planck Institut f\u00fcr Bildungsforschung in Berlin (Max Planck Institute for Human Development).
-    Unser Team besteht aus Expert*innen in den Bereichen Verhaltenswissenschaften und
-    Data Science, sowie weiteren erfahrenen Partner*innen aus verschiedenen wirtschaftlichen Branchen.
+    Unser Team besteht aus Expert:innen in den Bereichen Verhaltenswissenschaften und
+    Data Science, sowie weiteren erfahrenen Partner:innen aus verschiedenen wirtschaftlichen Branchen.
     Mit diesem Werkzeug wollen wir klinische Entscheidungsprozesse verbessern und
     es Gesundheitspersonal erm\u00f6glichen, ihre klinische Expertise und die Zusammenarbeit im Team
     m\u00f6glichst wirkungsvoll einzusetzen.
     </p>'
 
 about_the_tool <- '
-    <h3>\u00dcber das Diagnostic Intuition Support Tool:</h3>
+    <h3>\u00dcber das Diagnostic Intuition Support Tool (DIS):</h3>
     <p>Das Diagnostic Intuition Support Tool soll eine grundlegende Orientierung f\u00fcr die Interpretation
-    von COVID-19 Antigen Tests (COVID-19 Schnelltests) bieten.
+    von SARS-CoV-2 Antigen Tests (Schnelltests) bieten.
     Wir gew\u00e4hren keine Garantie, dass die Informationen auf der Webseite zu einem bestimmten Zeitpunkt bzw.
     immer korrekt bzw. vollst\u00e4ndig sind. Allerdings sind die Informationen \u00fcber die Tests direkt vom
     Deutschen Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte bezogen und werden nach M\u00f6glichkeit stetig

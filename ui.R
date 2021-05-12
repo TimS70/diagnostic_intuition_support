@@ -19,7 +19,7 @@ ui <- fluidPage(
             	'Das Tool',
 				data.step=1,
 				data.intro=intro_txt_1),
-            h2('Wie wahrscheinlich ist eine COVID-19 Erkrankung basierend auf einem Testergebnis?'),
+            h2('Wie wahrscheinlich ist eine SARS-CoV-2 Infektion basierend auf einem Testergebnis?'),
             sidebarPanel(
                 introBox(
                     h3('Testbibliothek'),
@@ -42,7 +42,7 @@ ui <- fluidPage(
                             hr(),
                             sliderTextInput(
                                   inputId="prevalence",
-                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat COVID-19?',
+                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich infiziert?',
                                   choices = c(10:1 * 1000,
                                               9:1 * 100),
                                   selected = 1000,

@@ -9,8 +9,8 @@ explain_ppv_npv <-
         <li><b>Pr\u00e4valenz:</b> Die Wahrscheinlichkeit, mit der eine Erkrankung in einer bestimmten Bev\u00f6lkerungsgruppe auftritt.
             Je nach definierter Personengruppe, also ob die gesamte Bev\u00f6lkerung oder eine bestimmte Risikogruppe (z.B. Pendler*innen)
             gemeint ist, kann das Infektionsrisiko variieren.
-            Die Pr\u00e4valenz wird aus einer Faustformel mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der Dunkelziffer von
-            zwei Drittel (Ein Drittel aller F\u00e4 wird aufgedeckt) gesch\u00e4tzt (siehe Formel unten).</li>
+            Die Pr\u00e4valenz wird aus einer Faustformel mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der aufgedeckten F\u00e4lle von
+            einem Drittel (zwei Drittel Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten).</li>
         <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit COVID-19 infizierte Person ein positives Testergebnis hat. </li>
         <li><b>Spezifit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine gesunde Person ein negatives Testergebnis hat. </li>
         <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis auch
@@ -26,7 +26,7 @@ explain_ppv_npv <-
 #   https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/15077#15077
 ppv_formula <- withMathJax("$$PPW = \\frac{Wahr Positive}{Wahr Positive + Falsch Positive}$$")
 npv_formula <- withMathJax("$$NPW = \\frac{Wahr Negative}{Wahr Negative + Falsch Negative}$$")
-prevalence_estimation_formula <- withMathJax("$$Pr\u00e4valenz Sch\u00e4tzung = \\frac{2 * Inzidenz}{Anteil Dunkeziffer}$$")
+prevalence_estimation_formula <- withMathJax("$$Pr\u00e4valenz Sch\u00e4tzung = \\frac{2 * Inzidenz}{Anteil Aufgedeckt}$$")
 
 plot_legend <- '
     <p>

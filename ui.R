@@ -13,7 +13,7 @@ source('txt_content/intro.R')
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
 current_incidence <- obtain_incidence()
-infection_incidence_range <- c(1:9*10, 1:10*100) # 50, 10, 2)
+infection_incidence_range <- c(1:9*10, 1:10*100, 10000) # 50, 10, 2)
 select_incidence <- infection_incidence_range[
     which.min(abs(infection_incidence_range - current_incidence))]
 

@@ -1,9 +1,9 @@
 adjust_x_pos <- function(incidence) {
     pos <- incidence
 
-    if (incidence > (1/150)) {
-        pos <- incidence - (1/900)
-    }
+    # if (incidence > (1/150)) {
+    #     pos <- incidence - (1/900)
+    # }
 
     return(pos)
 }

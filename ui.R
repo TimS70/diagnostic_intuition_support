@@ -12,10 +12,10 @@ source('txt_content/intro.R')
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
-infection_risk <- obtain_incidence()
-infection_risk_range <- c(10:1 * 1000, 9:1 * 100) # 50, 10, 2)
-select_risk <- infection_risk_range[
-    which.min(abs(infection_risk_range - infection_risk))]
+current_incidence <- obtain_incidence()
+infection_incidence_range <- c(1:9*10, 1:10*100) # 50, 10, 2)
+select_incidence <- infection_incidence_range[
+    which.min(abs(infection_incidence_range - current_incidence))]
 
 ui <- fluidPage(
 	theme = shinytheme('cerulean'),
@@ -50,9 +50,9 @@ ui <- fluidPage(
                             introBox(
                                 sliderTextInput(
                                       inputId="incidence",
-                                      label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich neu infiziert?',
-                                      choices = infection_risk_range,
-                                      selected = select_risk,
+                                      label='Inzidenz: Von 100.000 Personen haben sich wie viele neu infiziert?',
+                                      choices = infection_incidence_range,
+                                      selected = select_incidence,
                                       width = "100%",
                                       post = " Personen",
                                       grid = TRUE,
@@ -60,13 +60,10 @@ ui <- fluidPage(
                                 data.step = 8,
                                 data.intro = intro_txt_8),
                             helpText(paste0("Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) liegt bei ",
-                                           round(100000/infection_risk, 2), ".",
+                                            round(current_incidence, 1), ". ",
                                             "Innerhalb von 7 Tagen, haben sich ca. ",
-                                            round(100000/infection_risk), " von 100.000 Personen ",
-                                            "mit SARS-CoV-2 infiziert. Umgerechnet bedeutet dass, dass
-                                             eine Person von ca. ",
-                                            round(infection_risk),
-                                            " mit SARS-CoV-2 infiziert ist.")),
+                                            round(current_incidence), " von 100.000 Personen ",
+                                            "mit SARS-CoV-2 infiziert.")),
                             helpText('*Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
                                     asymptomatischen Personen und pr\u00e4symptomatischen Personen
                                     mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass

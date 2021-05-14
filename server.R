@@ -53,7 +53,7 @@ server <- function(input, output, session) {
         })
 
     observe({
-        incidence <- reactive({incidence = 1/input$incidence})
+        incidence <- reactive({incidence <- input$incidence/100000})
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &

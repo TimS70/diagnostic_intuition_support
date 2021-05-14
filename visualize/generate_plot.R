@@ -5,6 +5,8 @@ generate_plot <- function(
     npv_intersect,
     confidence_intervals=FALSE) {
 
+    print(incidence)
+
     ppv_x_pos <- reactive({adjust_x_pos(incidence = incidence)})
     npv_x_pos <- reactive({adjust_x_pos(incidence = incidence)})
 

@@ -3,7 +3,6 @@ obtain_incidence <- function() {
     data_incidence <- rio::import(url)
     total_incidence <- incidence <- data_incidence[data_incidence[, 1] == 'Gesamt', 3]
     total_incidence <- as.numeric(total_incidence[!is.na(total_incidence)])
-    infection_risk <- 100000/total_incidence
 
-    return(infection_risk)
+    return(total_incidence)
 }

@@ -43,7 +43,7 @@ server <- function(input, output, session) {
 
         output$test_out <- renderUI({
             HTML(paste(
-                paste0('Sensitivit\u00e4t = ',
+                paste0('Sensitivit\u00e4t* = ',
                        selected_test()$sensitivity, '%'),
                 paste0('Spezifit\u00e4t   = ',
                        selected_test()$specifity, '%'),

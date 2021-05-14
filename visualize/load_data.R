@@ -21,7 +21,7 @@ calculate_npv <- function(incidence, sensitivity, specifity) {
 get_risk_data <- function(test_data=FALSE,
                           sensitivity=FALSE, specifity=FALSE){
 
-    data <- data.frame(incidence = 1/(1000:10 * 10))
+    data <- data.frame(incidence = 1/c(1000:10 * 10)) #  9:2))
 
     if (sensitivity==FALSE) {
         sensitivity <- test_data$sensitivity / 100
@@ -68,5 +68,6 @@ get_risk_data <- function(test_data=FALSE,
     data <- data * 100
     data$incidence <- data$incidence / 100
 
+    print(tail(data, 15))
     return(data)
 }

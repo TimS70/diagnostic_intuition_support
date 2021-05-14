@@ -13,7 +13,7 @@ source('txt_content/intro.R')
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
 infection_risk <- obtain_incidence()
-infection_risk_range <- c(10:1 * 1000, 9:1 * 100)
+infection_risk_range <- c(10:1 * 1000, 9:1 * 100) # 50, 10, 2)
 select_risk <- infection_risk_range[
     which.min(abs(infection_risk_range - infection_risk))]
 
@@ -42,29 +42,37 @@ ui <- fluidPage(
                     data.intro = intro_txt_2),
                 checkboxGroupInput(inputId = "show_ci",
                                    label = '',
-                                   choices = c("Konfidenzintervalle" = "show_ci")),
-                htmlOutput(outputId='ci_out'),
+                                   choices = c("Konfidenzintervalle anzeigen" = "show_ci")),
                 introBox(
                     introBox(
                         introBox(
                             hr(),
-                            sliderTextInput(
-                                  inputId="incidence",
-                                  label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich neu infiziert?',
-                                  choices = infection_risk_range,
-                                  selected = select_risk,
-                                  width = "100%",
-                                  post = " Personen",
-                                  grid = TRUE,
-                                  force_edges=TRUE
-                                ),
-                                helpText(paste0("Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) liegt bei ",
-                                               round(100000/infection_risk, 2), ".",
-                                                "Innerhalb von 7 Tagen, haben sich ca. ",
-                                                round(100000/infection_risk), " von 100.000 Personen ",
-                                                "mit SARS-CoV-2 infiziert. Das ist umgerechnet eine von ca. ",
-                                                round(infection_risk),
-                                                " Personen.")),
+                            introBox(
+                                sliderTextInput(
+                                      inputId="incidence",
+                                      label='Infektionsrisiko: \nEine Person unter wie vielen anderen Personen hat sich neu infiziert?',
+                                      choices = infection_risk_range,
+                                      selected = select_risk,
+                                      width = "100%",
+                                      post = " Personen",
+                                      grid = TRUE,
+                                      force_edges=TRUE),
+                                data.step = 8,
+                                data.intro = intro_txt_8),
+                            helpText(paste0("Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) liegt bei ",
+                                           round(100000/infection_risk, 2), ".",
+                                            "Innerhalb von 7 Tagen, haben sich ca. ",
+                                            round(100000/infection_risk), " von 100.000 Personen ",
+                                            "mit SARS-CoV-2 infiziert. Umgerechnet bedeutet dass, dass
+                                             eine Person von ca. ",
+                                            round(infection_risk),
+                                            " mit SARS-CoV-2 infiziert ist.")),
+                            helpText('*Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
+                                    asymptomatischen Personen und pr\u00e4symptomatischen Personen
+                                    mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass
+                                    diese Tests Personen mit einer Infektion aber ohne Symptome
+                                    nur sehr schlecht identifizieren k\u00f6nnen. Somit besteht das
+                                    erh\u00f6hte Risiko eines falsch-negativen Testergebnisses.'),
                             data.step = 7,
                             data.intro = intro_txt_7),
                         data.step = 6,

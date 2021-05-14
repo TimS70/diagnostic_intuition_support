@@ -53,3 +53,10 @@ intro_txt_7 <- "Geben Sie Ihre Einsch\u00e4tzung der
     Krankheitswahrscheinlichkeit hier ein. Das Tool zeigt Ihnen darauf
     basierend den PPW (wie verl\u00e4sslich ein positives Testergebnis wirklich ist)
     und den NPW (wie verl\u00e4sslich ein negatives Testergebnis wirklich ist)."
+
+intro_txt_8 <- HTML('Hinweis: Das lokale Infektionsgeschehen kann von dem bundesweiten
+    Infektionsgeschehen teilweise stark abweichen. Das aktuelle Infektionsgeschehen
+    in ihrem Landkreis k\u00f6nnen sie
+    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
+    target="_blank" rel="noopener noreferrer">hier</a>
+    auf der Website des Robert-Koch-Institutes einsehen.')

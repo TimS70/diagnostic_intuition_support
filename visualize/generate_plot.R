@@ -24,12 +24,14 @@ generate_plot <- function(data,
         annotate("point", x = x_incidence(), y = npv_intersect,
                      colour = "red", size=5) +
         scale_x_reverse(name="Infektionsrisiko",
-                           minor_breaks=4:1,
-                           breaks=4:1,
+                           minor_breaks=c(4:1, abs(log10(0.5))),
+                           breaks=c(4:1, abs(log10(0.5))),
                            labels = c('1/10.000',
                                       '1/1.000',
                                       '1/100',
-                                      '1/10')) +
+                                      '1/10',
+                                      '1/2'
+                           )) +
         scale_y_continuous(name = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]',
                            breaks=seq(0, 100, 10), limits=c(0, 100)) +
         theme_bw() +

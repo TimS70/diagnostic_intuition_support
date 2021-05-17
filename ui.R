@@ -8,14 +8,18 @@ library(rintrojs)
 
 source(file.path('utils', 'load.R'))
 source(file.path('utils', 'incidence.R'))
-source('txt_content/intro.R')
+source(file='txt_content/intro.R')
+source(file='utils/estimate_prevalence.R')
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
 current_incidence <- obtain_incidence()
-infection_incidence_range <- c(1:9*10, 1:10*100, 10000) # 50, 10, 2)
-select_incidence <- infection_incidence_range[
-    which.min(abs(infection_incidence_range - current_incidence))]
+estimated_current_prevalence <- estimate_prevalence(
+    incidence=current_incidence,
+    fraction_cases = 0.33)
+infection_prevalence_range <- c(10000, 10:1*100, 9:1*10, 2)
+select_prevalence <- infection_prevalence_range[
+    which.min(abs(infection_prevalence_range - estimated_current_prevalence))]
 
 ui <- fluidPage(
 	theme = shinytheme('cerulean'),
@@ -49,10 +53,13 @@ ui <- fluidPage(
                             hr(),
                             introBox(
                                 sliderTextInput(
-                                      inputId="incidence",
-                                      label='Inzidenz: Von 100.000 Personen haben sich wie viele neu infiziert?',
-                                      choices = infection_incidence_range,
-                                      selected = select_incidence,
+                                      inputId="prevalence",
+                                      label='Pr\u00e4valenz:
+                                      Die Wahrscheinlichkeit f\u00fcr diese Person, sich mit
+                                      SARS-CoV-2 zu infizieren ist eins zu
+                                      (eine unter wie vielen Personen hat sich mit SARS-CoV-2 infiziert)?',
+                                      choices = infection_prevalence_range,
+                                      selected = select_prevalence,
                                       width = "100%",
                                       post = " Personen",
                                       grid = TRUE,
@@ -63,7 +70,9 @@ ui <- fluidPage(
                                             round(current_incidence, 1), ". ",
                                             "Innerhalb von 7 Tagen, haben sich ca. ",
                                             round(current_incidence), " von 100.000 Personen ",
-                                            "mit SARS-CoV-2 infiziert.")),
+                                            "mit SARS-CoV-2 infiziert.",
+                                            "Das entspricht einer gesch\u00e4tzten Pr\u00e4valenz von eine unter ",
+                                            round(select_prevalence), " Personen.")),
                             helpText('*Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
                                     asymptomatischen Personen und pr\u00e4symptomatischen Personen
                                     mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass

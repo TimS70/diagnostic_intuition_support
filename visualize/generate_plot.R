@@ -1,12 +1,12 @@
 generate_plot <- function(data,
-                          incidence,
+                          prevalence,
                           ppv_intersect,
                           npv_intersect,
                           confidence_intervals=FALSE) {
 
-    x_incidence <- reactive({log10(1/incidence)})
-    ppv_x_pos <- reactive({log10(1/incidence)})
-    npv_x_pos <- reactive({log10(1/incidence)})
+    x_incidence <- reactive({log10(1/prevalence)})
+    ppv_x_pos <- reactive({log10(1/prevalence)})
+    npv_x_pos <- reactive({log10(1/prevalence)})
 
     npv_y_pos <- reactive({adjust_y_pos(y_target = npv_intersect,
                                         y_other = ppv_intersect)})
@@ -23,20 +23,17 @@ generate_plot <- function(data,
                      colour = "blue", size=5) +
         annotate("point", x = x_incidence(), y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_reverse(name="Infektionsrisiko",
-                           minor_breaks=c(4:1, abs(log10(0.5))),
-                           breaks=c(4:1, abs(log10(0.5))),
-                           labels = c('1/10.000',
-                                      '1/1.000',
-                                      '1/100',
-                                      '1/10',
-                                      '1/2'
-                           )) +
+        scale_x_reverse(name="Infektionsrisiko (Pr\u00e4valenz)",
+                        minor_breaks=c(4:1, abs(log10(0.5))),
+                        breaks=c(4:1, abs(log10(0.5))),
+                        labels = c('1/10.000',
+                                   '1/1.000',
+                                   '1/100',
+                                   '1/10',
+                                   '1/2')) +
         scale_y_continuous(name = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]',
                            breaks=seq(0, 100, 10), limits=c(0, 100)) +
         theme_bw() +
-        ylab(label = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]') +
-        xlab(label = 'Infektionsrisiko [%]') +
         theme(legend.position="bottom",
               text = element_text(size=17, face='bold')) +
         labs(color='Legende: ') +

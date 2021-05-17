@@ -6,7 +6,7 @@ library(readxl)
 library(rio)
 library(rintrojs)
 
-source(file.path('utils', 'load.R'))
+source(file.path('utils', 'load_test_data.R'))
 source(file.path('utils', 'incidence.R'))
 source(file='txt_content/intro.R')
 source(file='utils/estimate_prevalence.R')

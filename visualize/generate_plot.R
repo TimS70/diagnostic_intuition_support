@@ -14,7 +14,7 @@ generate_plot <- function(data,
     ppv_y_pos <- reactive({adjust_y_pos(y_target = ppv_intersect,
                                         y_other = npv_intersect)})
 
-    p <- ggplot(data=data, aes(x=data$x)) +
+    p <- ggplot(data=data, aes(x=x)) +
         geom_line(aes(y=ppv, color = "#0C70B0"), size=1) +
         geom_line(aes(y=npv, color = '#D72F20'), size=1) +
         geom_vline(xintercept = x_incidence(), linetype="dotted",

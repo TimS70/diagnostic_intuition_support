@@ -1,4 +1,5 @@
-source('utils/estimate_prevalence.R')
+library(dplyr)
+
 
 calculate_ppv <- function(prevalence, sensitivity, specifity) {
 
@@ -7,6 +8,7 @@ calculate_ppv <- function(prevalence, sensitivity, specifity) {
     return(ppv)
 }
 
+
 calculate_npv <- function(prevalence, sensitivity, specifity) {
 
     npv <- sensitivity * (1-prevalence) /
@@ -14,11 +16,13 @@ calculate_npv <- function(prevalence, sensitivity, specifity) {
     return(npv)
 }
 
-get_risk_data <- function(test_data=FALSE,
-                          sensitivity=FALSE, specifity=FALSE){
 
-    data <- data.frame(x=c(40:10/10, 9:3/10))
-    data$prevalence <- 1/10^data$x
+get_risk_data <- function(test_data=FALSE,
+                          sensitivity=FALSE,
+                          specifity=FALSE){
+
+    data <- data.frame(x=c(40:10/10, 9:3/10)) %>%
+        mutate(prevalence = 1/10^x)
 
     if (sensitivity==FALSE) {
         sensitivity <- test_data$sensitivity / 100
@@ -44,7 +48,7 @@ get_risk_data <- function(test_data=FALSE,
                               sensitivity,
                               specifity)
 
-    if (test_data!=FALSE) {
+    if (test_data != FALSE) {
         data$ppv_ll <- calculate_ppv(data$prevalence,
                                      sensitivity_ci_95_ll,
                                      specifity_ci_95_ll)
@@ -63,8 +67,9 @@ get_risk_data <- function(test_data=FALSE,
     }
 
     data <- data * 100
-    data$prevalence <- data$prevalence / 100
-    data$x <- data$x / 100
+    data <- data %>%
+        mutate(prevalence = prevalence / 100,
+               x = x / 100)
 
     print(tail(data, 15))
     return(data)

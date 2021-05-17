@@ -3,11 +3,11 @@ library(ggplot2)
 library(dplyr)
 library(riskyr)
 
-source(file='utils/load.R')
+source(file= 'utils/load_test_data.R')
 source(file='utils/estimate_prevalence.R')
 source(file='txt_content/about.R')
 source(file='txt_content/ppv_npv.R')
-source(file= 'visualize/load_data.R')
+source(file= 'visualize/plot_data.R')
 source(file='visualize/adjust_text_pos.R')
 source(file='visualize/generate_plot.R')
 

@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyWidgets)
 library(ggplot2)
 library(dplyr)
 library(riskyr)
@@ -13,7 +14,8 @@ source(file='visualize/generate_plot.R')
 
 server <- function(input, output, session) {
 
-	data <- load_test_data(file= file.path('data', 'antigentests.csv'))
+    data <- load_test_data(file= file.path('data', 'antigentests.csv'))
+    data_region <- region_incidence_data()
 
     introjs(session, options = list("nextLabel"="Weiter",
                                     "prevLabel"="Zur\u00FCck",
@@ -51,6 +53,47 @@ server <- function(input, output, session) {
                 sep="<br/>"))
             })
         })
+
+    observeEvent(input$region, {
+        incidence <- reactive({data_region %>%
+            filter(region == input$region) %>%
+            dplyr::pull(incidence)})
+
+        prevalence <- reactive({
+            estimate_prevalence(incidence=incidence(),
+                                fraction_cases = 0.33)
+        })
+
+        region_txt <- reactive({input$region})
+
+        infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
+
+        selected_prevalence <- reactive({
+            infection_prevalence_range[which.min(
+            abs(infection_prevalence_range - prevalence()))]
+        })
+
+        output$regional_incidence_prevalence <- reactive({paste0(
+            "Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) ",
+            "f\u00dcr die Region ",
+            region_txt(),
+            " liegt bei ",
+            round(incidence(), 1), ". ",
+            "Innerhalb von 7 Tagen haben sich ca. ",
+            round(incidence()),
+            " von 100.000 Personen mit SARS-CoV-2 infiziert. ",
+            "Das entspricht einer gesch\u00e4tzten Pr\u00e4valenz von eine ",
+            "unter ",
+            round(prevalence()),
+            " Personen."
+        )})
+
+        updateSliderTextInput(session,
+                              inputId="prevalence",
+                              selected = selected_prevalence())
+
+        })
+
 
     observe({
         prevalence <- reactive({1/input$prevalence})

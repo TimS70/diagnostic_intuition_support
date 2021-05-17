@@ -13,14 +13,6 @@ source(file='utils/estimate_prevalence.R')
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
-current_incidence <- obtain_incidence()
-estimated_current_prevalence <- estimate_prevalence(
-    incidence=current_incidence,
-    fraction_cases = 0.33)
-infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
-select_prevalence <- infection_prevalence_range[
-    which.min(abs(infection_prevalence_range - estimated_current_prevalence))]
-
 ui <- fluidPage(
 	theme = shinytheme('cerulean'),
     introjsUI(),
@@ -39,8 +31,8 @@ ui <- fluidPage(
                                 label = "Hersteller:",
                                 choices = as.list(unique(data$hersteller))),
                     selectInput(inputId = "test",
-                                            label = "Test",
-                                            choices = as.list(data$handelsname)),
+                                label = "Test",
+                                choices = as.list(data$handelsname)),
                     htmlOutput(outputId='test_out'),
                     data.step = 2,
                     data.intro = intro_txt_2),
@@ -51,6 +43,9 @@ ui <- fluidPage(
                     introBox(
                         introBox(
                             hr(),
+                            selectInput(inputId = "region",
+                                label = "W\u00e4hle eine Region",
+                                choices = region_names()),
                             introBox(
                                 sliderTextInput(
                                       inputId="prevalence",
@@ -58,21 +53,15 @@ ui <- fluidPage(
                                       Die Wahrscheinlichkeit f\u00fcr diese Person, sich mit
                                       SARS-CoV-2 zu infizieren ist eins zu
                                       (eine unter wie vielen Personen hat sich mit SARS-CoV-2 infiziert)?',
-                                      choices = infection_prevalence_range,
-                                      selected = select_prevalence,
+                                      choices = c(10000, 5000, 10:1*100, 9:1*10, 2),
+                                      selected = 100,
                                       width = "100%",
                                       post = " Personen",
                                       grid = TRUE,
                                       force_edges=TRUE),
                                 data.step = 8,
                                 data.intro = intro_txt_8),
-                            helpText(paste0("Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) liegt bei ",
-                                            round(current_incidence, 1), ". ",
-                                            "Innerhalb von 7 Tagen, haben sich ca. ",
-                                            round(current_incidence), " von 100.000 Personen ",
-                                            "mit SARS-CoV-2 infiziert.",
-                                            "Das entspricht einer gesch\u00e4tzten Pr\u00e4valenz von eine unter ",
-                                            round(select_prevalence), " Personen.")),
+                            htmlOutput(outputId="regional_incidence_prevalence"),
                             helpText('*Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
                                     asymptomatischen Personen und pr\u00e4symptomatischen Personen
                                     mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass

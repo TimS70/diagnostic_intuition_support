@@ -12,7 +12,7 @@ library(rsconnect)
 
 source(file.path('utils', 'get_packages.R'))
 source('ui.R')
-source('server.R')
+source('server.R', , encoding="utf-8")
 
 get_packages(c('data.table',
                'tidyverse',

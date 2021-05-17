@@ -48,7 +48,7 @@ get_risk_data <- function(test_data=FALSE,
                               sensitivity,
                               specifity)
 
-    if (test_data != FALSE) {
+    if (nrow(test_data>0)) {
         data$ppv_ll <- calculate_ppv(data$prevalence,
                                      sensitivity_ci_95_ll,
                                      specifity_ci_95_ll)

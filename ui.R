@@ -27,7 +27,7 @@ ui <- fluidPage(
             	'Das Tool',
 				data.step=1,
 				data.intro=intro_txt_1),
-            h2('Wie wahrscheinlich ist eine SARS-CoV-2 Infektion basierend auf einem Testergebnis?'),
+            h2('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?'),
             sidebarPanel(
                 introBox(
                     h3('Testbibliothek'),

@@ -19,10 +19,6 @@ generate_plot <- function(data,
         geom_line(aes(y=npv, color = '#D72F20'), size=1) +
         geom_vline(xintercept = x_incidence(), linetype="dotted",
                    color = "black", size=1.5) +
-        # geom_text(aes(y=ppv_y_pos(), x=x_incidence(),
-        #               label=paste0(" PPW: ", ppv_intersect, '%'), # PPW ", , '%'),
-        #               size=1.5), hjust=0, parse=FALSE, color='blue') +
-
         annotate(geom="point", x = x_incidence(), y = ppv_intersect,
                      colour = "blue", size=5) +
         annotate("point", x = x_incidence(), y = npv_intersect,
@@ -49,24 +45,20 @@ generate_plot <- function(data,
         p <- p +
             geom_text(aes(x = x_incidence(),
                       y = ppv_y_pos() - 2,
-                      size=5,
                       label=paste0("   PPW: ", ppv_intersect, '%   ')),
                   hjust = 0, parse=FALSE) +
             geom_text(aes(x = x_incidence(),
                       y = npv_y_pos() - 2,
-                      size=5,
                       label=paste0("   NPW: ", npv_intersect, '%   ')),
                   hjust = 0, parse=FALSE)
     } else {
         p <- p +
             geom_text(aes(x = x_incidence(),
                       y = ppv_y_pos() - 2,
-                      size=5,
                       label=paste0(" PPW: ", ppv_intersect, '%')),
                   hjust = 1, parse=FALSE) +
             geom_text(aes(x = x_incidence(),
                       y = npv_y_pos() - 2,
-                      size=5,
                       label=paste0(" NPW: ", npv_intersect, '%')),
                   hjust = 1, parse=FALSE)
     }

@@ -64,9 +64,15 @@ server <- function(input, output, session) {
                                 fraction_cases = 0.33)
         })
 
-        region_txt <- reactive({input$region})
+        region_txt <- reactive({
+            if (input$region == 'Gesamt') {
+                'Deutschland '
+            } else {
+                paste0('der Region ', input$region, ' ')
+            }
+        })
 
-        infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
+            infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
 
         selected_prevalence <- reactive({
             infection_prevalence_range[which.min(
@@ -74,10 +80,9 @@ server <- function(input, output, session) {
         })
 
         output$regional_incidence_prevalence <- reactive({paste0(
-            "Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) ",
-            "f\u00dcr die Region ",
+            "Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) in ",
             region_txt(),
-            " liegt bei ",
+            "liegt bei ",
             round(incidence(), 1), ". ",
             "Innerhalb von 7 Tagen haben sich ca. ",
             round(incidence()),

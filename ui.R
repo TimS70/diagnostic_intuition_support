@@ -17,7 +17,7 @@ current_incidence <- obtain_incidence()
 estimated_current_prevalence <- estimate_prevalence(
     incidence=current_incidence,
     fraction_cases = 0.33)
-infection_prevalence_range <- c(10000, 10:1*100, 9:1*10, 2)
+infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
 select_prevalence <- infection_prevalence_range[
     which.min(abs(infection_prevalence_range - estimated_current_prevalence))]
 

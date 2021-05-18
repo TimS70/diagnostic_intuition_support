@@ -1,3 +1,4 @@
+library(dplyr)
 library(openxlsx)
 library(janitor)
 library(stringr)
@@ -16,9 +17,10 @@ region_names <- function() {
                             paste0(landkreis, ' (', lknr, ')'))
 
     selection_list <- list(
-        Gesamt = names_bundesland[17],
+        Deutschland = 'Deutschland',
         Bundesland = names_bundesland[1:16],
-        'Land-/Stadtkreis' = names_landkreis)
+        'Land-/Stadtkreis' = names_landkreis
+    )
 
     return(selection_list)
 }
@@ -32,7 +34,7 @@ region_incidence_data <- function() {
                incidence = x7_tage_inzidenz) %>%
         dplyr::select(region, incidence)
 
-    data_bundesland %>% head()
+    data_bundesland[data_bundesland$'region'=='Gesamt', 'region'] <- 'Deutschland'
 
     data_landkreis <- read.xlsx(url, rows=3:1000, colNames=TRUE, sheet=2) %>%
         clean_names()
@@ -46,4 +48,12 @@ region_incidence_data <- function() {
                   data_landkreis)
 
     return(data)
+}
+
+
+incidence_date <- function() {
+    url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
+    date_txt <- read.xlsx(url, rows=2, colNames=FALSE)[1, ]
+
+    return(date_txt)
 }

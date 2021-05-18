@@ -1,3 +1,14 @@
+sensitivity_gap <- '
+    <p>
+    Beachten Sie: Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
+    asymptomatischen Personen und pr\u00e4symptomatischen Personen
+    mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass
+    diese Tests Personen mit einer Infektion aber ohne Symptome
+    nur sehr schlecht identifizieren k\u00f6nnen. Somit besteht das
+    erh\u00f6hte Risiko eines falsch-negativen Testergebnisses.
+    </p>
+'
+
 explain_ppv_npv <-
     '<p>Wenn ein COVID-19 Antigen Test (Schnelltest) ein positives oder negatives Ergebnis zeigt,
      bedeutet dies nicht automatisch, dass sich der Person mit SARS-CoV-2 infiziert hat oder gesund ist.

@@ -16,7 +16,8 @@ about_us <- '
 about_the_tool <- '
     <h3>\u00dcber das Diagnostic Intuition Support Tool (DIS):</h3>
     <p>Das Diagnostic Intuition Support Tool soll eine grundlegende Orientierung f\u00fcr die Interpretation
-    von SARS-CoV-2 Antigen Tests (Schnelltests) bieten.
+    von SARS-CoV-2 Antigen Tests (Schnelltests) bieten.</p>
+    <p>
     Wir gew\u00e4hren keine Garantie, dass die Informationen auf der Webseite zu einem bestimmten Zeitpunkt bzw.
     immer korrekt bzw. vollst\u00e4ndig sind. Allerdings sind die Informationen \u00fcber die Tests direkt vom
     Deutschen Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte bezogen und werden nach M\u00f6glichkeit stetig

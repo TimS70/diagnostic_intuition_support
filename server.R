@@ -12,6 +12,7 @@ source(file= 'visualize/plot_data.R')
 source(file='visualize/adjust_text_pos.R')
 source(file='visualize/generate_plot.R')
 
+
 server <- function(input, output, session) {
 
     data <- load_test_data(file= file.path('data', 'antigentests.csv'))
@@ -42,14 +43,13 @@ server <- function(input, output, session) {
         selected_test <- reactive({
             data %>% filter(handelsname == input$test)})
 
-        output$test_out <- renderUI({
-            HTML(paste(
-                paste0('Sensitivit\u00e4t* = ',
-                       selected_test()$sensitivity, '%'),
-                paste0('Spezifit\u00e4t   = ',
-                       selected_test()$specifity, '%'),
-                paste0(''),
-                sep="<br/>"))
+        output$sensitivity_out <- renderUI({
+            HTML(paste0('Sensitivit\u00e4t* = ',
+                       selected_test()$sensitivity, '%'))
+            })
+        output$specifity_out <- renderUI({
+            HTML(paste0('Spezifit\u00e4t*   = ',
+                       selected_test()$specifity, '%'))
             })
         })
 
@@ -63,39 +63,19 @@ server <- function(input, output, session) {
                                 fraction_cases = 0.33)
         })
 
-        region_txt <- reactive({
-            if (input$region == 'Gesamt') {
-                'Deutschland '
-            } else {
-                paste0('der Region ', input$region, ' ')
-            }
-        })
-
-            infection_prevalence_range <- c(10000, 5000, 10:1*100, 9:1*10, 2)
-
-        selected_prevalence <- reactive({
-            infection_prevalence_range[which.min(
-            abs(infection_prevalence_range - prevalence()))]
-        })
-
         output$regional_incidence_prevalence <- reactive({paste0(
-            "Die aktuelle 7-Tage-Inzidenz (Quelle Robert Koch Institut) in ",
-            region_txt(),
-            "liegt bei ",
-            round(incidence(), 1), ". ",
-            "Innerhalb von 7 Tagen haben sich ca. ",
-            round(incidence()),
-            " von 100.000 Personen mit SARS-CoV-2 infiziert. ",
-            "Das entspricht einer gesch\u00e4tzten Pr\u00e4valenz von eine ",
-            "unter ",
-            round(prevalence()),
-            " Personen."
+            "<b>", round(incidence()), "</b> ",
+            "von 100.000 Personen",
+            "<br>"
         )})
 
         updateNumericInput(session,
-                              inputId="prevalence",
-                              selected = selected_prevalence())
+                   inputId="incidence",
+                   value=round(incidence()))
 
+        updateNumericInput(session,
+                           inputId="prevalence",
+                           value=round(prevalence()))
         })
 
 
@@ -142,7 +122,7 @@ server <- function(input, output, session) {
 
             print(p)
 
-        }, height=500)
+        }, height=550)
 
         # About
         output$about_us <- renderUI({HTML(about_us)})
@@ -150,6 +130,7 @@ server <- function(input, output, session) {
         output$contact_us <- renderUI({HTML(contact_us)})
 
         # PPV & NPV
+        output$sensitivity_gap <- renderUI({HTML(sensitivity_gap)})
         output$explain_ppv_npv <- renderUI({HTML(explain_ppv_npv)})
         output$ppv_formula <- renderUI({ppv_formula})
         output$npv_formula <- renderUI({npv_formula})

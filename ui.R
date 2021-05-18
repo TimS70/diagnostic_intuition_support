@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(htmltools)
 library(shinythemes)
 library(shinyWidgets)
 library(readxl)
@@ -23,57 +24,111 @@ ui <- fluidPage(
             	'Das Tool',
 				data.step=1,
 				data.intro=intro_txt_1),
-            h2('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?'),
-            sidebarPanel(
+            sidebarPanel(width=4,
                 introBox(
-                    p('W\u00e4hlen Sie den Hersteller, Test, und den regionsspezifischen Inzidenzwert'),
-                    selectInput(inputId = "hersteller",
-                                label = "Hersteller:",
-                                choices = as.list(unique(data$hersteller))),
+                    HTML(text='W\u00e4hlen Sie den... <br>
+                        <b> &nbsp 1) Test-Hersteller,</b> dann den <br>
+                        <b> &nbsp 2) Test,</b> und sch\u00e4tzen Sie die Pr\u00e4valenz durch den <br>
+                        <b> &nbsp 3a) regionalen Inzidenzwert</b> oder das <br>
+                        <b> &nbsp 3b) personenspezifische Risiko</b>
+                    '),
+                    br(),
+                    br(),
+                    selectInput(
+                        inputId = "hersteller",
+                        label = "1) Hersteller*",
+                        choices = as.list(unique(data$hersteller)),
+                    ),
                     selectInput(inputId = "test",
-                                label = "Test",
-                                choices = as.list(data$handelsname)),
-                    htmlOutput(outputId='test_out'),
+                                label = "2) Test",
+                                choices = as.list(data$handelsname)
+                    ),
+                    helpText('Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
+                        bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke
+                        (Siehe Reiter PPW & NPW)!'),
+                    fluidRow(
+                        column(6,
+                               htmlOutput(outputId='sensitivity_out')
+                               ),
+                        column(6,
+                               htmlOutput(outputId='specifity_out')
+                               ),
+                    ),
+                    checkboxGroupInput(
+                        inputId = "show_ci",
+                        label = '',
+                        choices = c("Konfidenzintervalle anzeigen" = "show_ci")
+                    ),
                     data.step = 2,
-                    data.intro = intro_txt_2),
-                checkboxGroupInput(inputId = "show_ci",
-                                   label = '',
-                                   choices = c("Konfidenzintervalle anzeigen" = "show_ci")),
+                    data.intro = intro_txt_2
+                ),
                 introBox(
                     introBox(
                         introBox(
-                            selectInput(inputId = "region",
-                                label = "Inzidenzwert f\u00fcr Bundesland, Land- oder Stadtkreis",
-                                choices = region_names()),
+                            HTML(text="<b>3a) 7-Tage-Inzidenz (Bundesland, Land-/Stadtkreis**</b>"),
+                            tags$table(style = "width: 100%",
+                                 tags$tr(
+                                     tags$td(
+                                         style = "width: 50%",
+                                         align = "left",
+                                         valign="center",
+                                         selectInput(inputId = "region",
+                                                     label = NULL,
+                                                     choices = region_names()
+                                         )
+                                     ),
+                                     tags$td(
+                                         align = "right",
+                                         valign="center",
+                                         htmlOutput(outputId="regional_incidence_prevalence"),
+                                     )
+                                 )
+                            ),
                             introBox(
-                                numericInput(
-                                      inputId="prevalence",
-                                      label='Pr\u00e4valenz in Prozent:
-                                      Wie wahrscheinlich ist es, dass diese Person vor dem Test mit
-                                      SARS-CoV-2 zu infizieren ist?',
-                                      choices = c(10000, 5000, 10:1*100, 9:1*10, 2),
-                                      selected = 100,
-                                      width = "100%",
-                                      post = " Personen",
-                                      grid = TRUE,
-                                      force_edges=TRUE),
+                                HTML(text="<b>3b) 14-Tage Pr\u00e4valenz***</b><br>
+                                            <i>Wie wahrscheinlich ist es vor dem Test, dass diese Person
+                                            infiziert ist (wie viele von 100.000 Personen)?</i>"),
+                                tags$table(style = "width: 100%",
+                                     tags$tr(
+                                         tags$td(
+                                             style = "width: 50%",
+                                             align = "left",
+                                             valign="center",
+                                             numericInput(
+                                                inputId="prevalence",
+                                                label=NULL,
+                                                min=1,
+                                                max=5000,
+                                                step=1,
+                                                value = 100)
+                                             ),
+                                         tags$td(
+                                             align = "right",
+                                             valign="center",
+                                             p("von 100.000 Personen")
+                                         )
+                                     )
+                                ),
                                 data.step = 8,
-                                data.intro = intro_txt_8),
-                            htmlOutput(outputId="regional_incidence_prevalence"),
-                            helpText('*Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
-                                    asymptomatischen Personen und pr\u00e4symptomatischen Personen
-                                    mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass
-                                    diese Tests Personen mit einer Infektion aber ohne Symptome
-                                    nur sehr schlecht identifizieren k\u00f6nnen. Somit besteht das
-                                    erh\u00f6hte Risiko eines falsch-negativen Testergebnisses.'),
+                                data.intro = intro_txt_8
+                            ),
                             data.step = 7,
-                            data.intro = intro_txt_7),
+                            data.intro = intro_txt_7
+                        ),
                         data.step = 6,
-                        data.intro = intro_txt_6),
+                        data.intro = intro_txt_6
+                    ),
                     data.step = 5,
-                    data.intro = intro_txt_5)
+                    data.intro = intro_txt_5
+                ),
+                helpText('*Herstellerangeben wochenaktuell bezogen vom Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM)'),
+                helpText(paste('**Quelle Robert-Koch-Institut.', incidence_date())),
+                helpText('***Aus der Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
+                    manuell eingegeben.'),
             ), # sidebarPanel
             mainPanel(
+                h1('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?',
+                   style = "font-size:25px;"),
                 introBox(
                     introBox(
                         plotOutput(outputId = 'plot'),
@@ -81,10 +136,12 @@ ui <- fluidPage(
                         data.intro = intro_txt_4),
                 data.step = 3,
                 data.intro = intro_txt_3)
-            ) # mainPanel
+            ), # mainPanel
+
         ), # Input, tabPanel
         tabPanel(title= 'PPW & NPW',
             mainPanel(
+                uiOutput("sensitivity_gap"),
                 uiOutput("explain_ppv_npv"),
                 uiOutput(outputId='ppv_formula'),
                 uiOutput(outputId='npv_formula'),

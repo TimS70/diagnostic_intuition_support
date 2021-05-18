@@ -23,15 +23,15 @@ generate_plot <- function(data,
                      colour = "blue", size=5) +
         annotate("point", x = x_incidence(), y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_reverse(name="Infektionsrisiko (Pr\u00e4valenz)",
+        scale_x_reverse(name="Wahrscheinlichkeit, dass eine SARS-CoV-2 Infektion vorliegt (vor dem Test)",
                         minor_breaks=c(4:1, abs(log10(0.5))),
                         breaks=c(4:1, abs(log10(0.5))),
-                        labels = c('1/10.000',
-                                   '1/1.000',
-                                   '1/100',
-                                   '1/10',
-                                   '1/2')) +
-        scale_y_continuous(name = 'Positiver / Negativer Pr\u00e4diktiver Wert [%]',
+                        labels = c('10/100.000',
+                                   '100/100.000',
+                                   '1.000/100.000',
+                                   '10.000/100.000',
+                                   '50.000/100.000')) +
+        scale_y_continuous(name = 'Positiver/Negativer Pr\u00e4diktiver Wert [%]',
                            breaks=seq(0, 100, 10), limits=c(0, 100)) +
         theme_bw() +
         theme(legend.position="bottom",

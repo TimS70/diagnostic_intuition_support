@@ -37,7 +37,7 @@ ui <- fluidPage(
                     selectInput(
                         inputId = "hersteller",
                         label = "1) Hersteller*",
-                        choices = as.list(unique(data$hersteller)),
+                        choices = as.list(unique(data$hersteller))
                     ),
                     selectInput(inputId = "test",
                                 label = "2) Test",
@@ -47,12 +47,14 @@ ui <- fluidPage(
                         bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke
                         (Siehe Reiter PPW & NPW)!'),
                     fluidRow(
-                        column(6,
-                               htmlOutput(outputId='sensitivity_out')
+                        column(
+                            width=6,
+                            htmlOutput(outputId='sensitivity_out')
                                ),
-                        column(6,
-                               htmlOutput(outputId='specifity_out')
-                               ),
+                        column(
+                            width=6,
+                            htmlOutput(outputId='specifity_out')
+                        )
                     ),
                     checkboxGroupInput(
                         inputId = "show_ci",
@@ -121,10 +123,11 @@ ui <- fluidPage(
                     data.step = 5,
                     data.intro = intro_txt_5
                 ),
-                helpText('*Herstellerangeben wochenaktuell bezogen vom Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM)'),
+                helpText('*Herstellerangaben wochenaktuell bezogen vom
+                    Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)'),
                 helpText(paste('**Quelle Robert-Koch-Institut.', incidence_date())),
                 helpText('***Aus der Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
-                    manuell eingegeben.'),
+                         manuell eingegeben.')
             ), # sidebarPanel
             mainPanel(
                 h1('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?',
@@ -136,8 +139,7 @@ ui <- fluidPage(
                         data.intro = intro_txt_4),
                 data.step = 3,
                 data.intro = intro_txt_3)
-            ), # mainPanel
-
+            ) # mainPanel
         ), # Input, tabPanel
         tabPanel(title= 'PPW & NPW',
             mainPanel(

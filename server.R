@@ -33,7 +33,6 @@ server <- function(input, output, session) {
             dplyr::pull(handelsname)})
 
             updateSelectInput(session, inputId="test",
-                  label = paste0('Alle Tests von ', input$hersteller),
                   choices = as.list(hersteller_tests()$handelsname),
                   selected = proposed_test())
         })
@@ -93,7 +92,7 @@ server <- function(input, output, session) {
             " Personen."
         )})
 
-        updateSliderTextInput(session,
+        updateNumericInput(session,
                               inputId="prevalence",
                               selected = selected_prevalence())
 

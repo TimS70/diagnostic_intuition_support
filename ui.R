@@ -26,7 +26,7 @@ ui <- fluidPage(
             h2('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?'),
             sidebarPanel(
                 introBox(
-                    h3('Testbibliothek'),
+                    p('W\u00e4hlen Sie den Hersteller, Test, und den regionsspezifischen Inzidenzwert'),
                     selectInput(inputId = "hersteller",
                                 label = "Hersteller:",
                                 choices = as.list(unique(data$hersteller))),
@@ -42,17 +42,15 @@ ui <- fluidPage(
                 introBox(
                     introBox(
                         introBox(
-                            hr(),
                             selectInput(inputId = "region",
-                                label = "W\u00e4hle eine Region",
+                                label = "Inzidenzwert f\u00fcr Bundesland, Land- oder Stadtkreis",
                                 choices = region_names()),
                             introBox(
-                                sliderTextInput(
+                                numericInput(
                                       inputId="prevalence",
-                                      label='Pr\u00e4valenz:
-                                      Die Wahrscheinlichkeit f\u00fcr diese Person, sich mit
-                                      SARS-CoV-2 zu infizieren ist eins zu
-                                      (eine unter wie vielen Personen hat sich mit SARS-CoV-2 infiziert)?',
+                                      label='Pr\u00e4valenz in Prozent:
+                                      Wie wahrscheinlich ist es, dass diese Person vor dem Test mit
+                                      SARS-CoV-2 zu infizieren ist?',
                                       choices = c(10000, 5000, 10:1*100, 9:1*10, 2),
                                       selected = 100,
                                       width = "100%",

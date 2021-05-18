@@ -65,7 +65,7 @@ ui <- fluidPage(
                 introBox(
                     introBox(
                         introBox(
-                            HTML(text="<b>3a) 7-Tage-Inzidenz (Bundesland, Land-/Stadtkreis**</b>"),
+                            HTML(text="<b>3a) 7-Tage-Inzidenz (Bundesland, Land-/Stadtkreis)**</b>"),
                             tags$table(style = "width: 100%",
                                  tags$tr(
                                      tags$td(

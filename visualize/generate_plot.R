@@ -23,7 +23,7 @@ generate_plot <- function(data,
                      colour = "blue", size=5) +
         annotate("point", x = x_incidence(), y = npv_intersect,
                      colour = "red", size=5) +
-        scale_x_reverse(name="Wahrscheinlichkeit, dass eine SARS-CoV-2 Infektion vorliegt (vor dem Test)",
+        scale_x_reverse(name="Wahrscheinlichkeit vor dem Test, dass eine SARS-CoV-2 Infektion vorliegt (Pr\u00e4valenz)",
                         minor_breaks=c(4:1, abs(log10(0.5))),
                         breaks=c(4:1, abs(log10(0.5))),
                         labels = c('10/100.000',

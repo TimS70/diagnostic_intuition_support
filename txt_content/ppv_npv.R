@@ -1,12 +1,12 @@
 sensitivity_gap <- '
-    <p>
+    <div style=" border: 15px solid black;">
     Beachten Sie: Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
     asymptomatischen Personen und pr\u00e4symptomatischen Personen
     mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass
     diese Tests Personen mit einer Infektion aber ohne Symptome
     nur sehr schlecht identifizieren k\u00f6nnen. Somit besteht das
     erh\u00f6hte Risiko eines falsch-negativen Testergebnisses.
-    </p>
+    </div>
 '
 
 explain_ppv_npv <-

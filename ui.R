@@ -96,18 +96,17 @@ ui <- fluidPage(
                                   margin-left: 0;
                                   margin-right: 0;
                                   font-weight: bolder}
-
                         ')
                     )
                 ),
                 introBox(
                     HTML(text='
                         <p>
-                        W\u00e4hlen Sie den... <br>
-                        <b> &nbsp 1) Test-Hersteller,</b> dann den <br>
-                        <b> &nbsp 2) Test,</b> und sch\u00e4tzen Sie die Pr\u00e4valenz durch den <br>
-                        <b> &nbsp 3a) regionalen Inzidenzwert</b> oder das <br>
-                        <b> &nbsp 3b) personenspezifische Risiko</b>
+                        W\u00e4hlen Sie den
+                        <b> 1) Test-Hersteller,</b> dann den
+                        <b> 2) Test,</b> und sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
+                        <b> 3) regionalen Inzidenzwertes</b> (und der daraus gesch\u00e4tzten Pr\u00e4valenz) und
+                        <b> 4) passen Sie die Wahrscheinlichkeit situationsbedingt an.</b>
                         </p>
                     '),
                     selectInput(
@@ -161,7 +160,7 @@ ui <- fluidPage(
                 helpText('*Herstellerangaben wochenaktuell bezogen vom
                     Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)'),
                 helpText(paste('**Quelle Robert-Koch-Institut.', incidence_date())),
-                helpText('***Aus der Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
+                helpText('***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
                          manuell eingegeben.')
             ), # sidebarPanel
             mainPanel(

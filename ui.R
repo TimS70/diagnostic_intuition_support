@@ -119,9 +119,11 @@ ui <- fluidPage(
                                 label = h2("2) Test"),
                                 choices = as.list(data$handelsname)
                     ),
-                    helpText('Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
+                    p('Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
                         bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke
-                        (Siehe Reiter PPW & NPW)!'),
+                        (Siehe Reiter PPW & NPW)!',
+                      style='color: red; font-size: 12px;'
+                    ),
                     fluidRow(
                         column(
                             width=6,

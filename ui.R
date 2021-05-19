@@ -21,7 +21,7 @@ incidence_section <- tags$table(
          style = "height: 50%",
          valign='center',
          colspan="2",
-         h2("3a) 7-Tage-Inzidenz (Bundesland, Land-/Stadtkreis)**")
+         h2("3) 7-Tage-Inzidenz (Bundesland, Land-/Stadtkreis)**")
     ),
     tags$tr(
          style = "height: 50%",
@@ -47,10 +47,11 @@ prevalence_section <- tags$table(
          style = "height: 50%",
          valign='center',
          colspan="2",
-         h2("3b) 14-Tage Pr\u00e4valenz***"),
-         p("
-            Wie wahrscheinlich ist es vor dem Test, dass diese Person
-            infiziert ist (wie viele von 100.000 Personen)?")
+         h2("4) 14-Tage Pr\u00e4valenz***"),
+         p("Wie wahrscheinlich ist es vor dem Test, dass diese Person
+            infiziert ist (wie viele von 100.000 Personen)?",
+           style="font-size: 15px; font-weight: normal;"
+         )
      ),
      tags$tr(
          height='35',
@@ -133,7 +134,7 @@ ui <- fluidPage(
                     ),
                     checkboxGroupInput(
                         inputId = "show_ci",
-                        label = h2('', style = "font-size:5px;"),
+                        label = NULL,
                         choices = c("Konfidenzintervalle anzeigen" = "show_ci")
                     ),
                     data.step = 2,

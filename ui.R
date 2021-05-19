@@ -50,7 +50,7 @@ prevalence_section <- tags$table(
          h2("4) 14-Tage Pr\u00e4valenz***"),
          p("Wie wahrscheinlich ist es vor dem Test, dass diese Person
             infiziert ist (wie viele von 100.000 Personen)?",
-           style="font-size: 15px; font-weight: normal;"
+           style="font-size: 14px; font-weight: normal;"
          )
      ),
      tags$tr(
@@ -102,7 +102,7 @@ ui <- fluidPage(
                 ),
                 introBox(
                     HTML(text='
-                        <p>
+                        <p style="font-size: 14px;">
                         W\u00e4hlen Sie den
                         <b> 1) Test-Hersteller</b> und den <b> 2) Test.</b>
                         Sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
@@ -160,11 +160,15 @@ ui <- fluidPage(
                     data.step = 5,
                     data.intro = intro_txt_5
                 ),
-                helpText('*Herstellerangaben wochenaktuell bezogen vom
-                    Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)'),
-                helpText(paste('**Quelle Robert-Koch-Institut.', incidence_date())),
-                helpText('***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
-                         manuell eingegeben.')
+                HTML(paste(
+                    '<div style="color: grey; font-size:12px">',
+                    '<p>*Herstellerangaben wochenaktuell bezogen vom
+                    Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)</p>',
+                    paste('<p>**Quelle Robert-Koch-Institut.', incidence_date(), '</p>'),
+                    '<p>***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
+                    manuell eingegeben.</p>',
+                    '</div>')
+                )
             ), # sidebarPanel
             mainPanel(
                 h1('Wie verl\u00e4sslich ist das SARS-Cov-2 Antigen Schnelltest Ergebnis?',

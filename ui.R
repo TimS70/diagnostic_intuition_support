@@ -105,7 +105,7 @@ ui <- fluidPage(
                         <p>
                         W\u00e4hlen Sie den
                         <b> 1) Test-Hersteller,</b> dann den
-                        <b> 2) Test,</b> und sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
+                        <b> 2) Test,</b> sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
                         <b> 3) regionalen Inzidenzwertes</b> (und der daraus gesch\u00e4tzten Pr\u00e4valenz) und
                         <b> 4) passen Sie die Wahrscheinlichkeit situationsbedingt an.</b>
                         </p>

@@ -36,7 +36,7 @@ incidence_section <- tags$table(
          ),
          tags$td(
              align = "right",
-             htmlOutput(outputId="regional_incidence_prevalence"),
+             htmlOutput(outputId="regional_incidence_prevalence")
          )
     )
 )

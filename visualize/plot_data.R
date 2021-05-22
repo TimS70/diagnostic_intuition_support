@@ -72,6 +72,5 @@ get_risk_data <- function(test_data=FALSE,
         mutate(prevalence = prevalence / 100,
                x = x / 100)
 
-    print(tail(data, 15))
     return(data)
 }

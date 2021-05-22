@@ -41,7 +41,11 @@ server <- function(input, output, session) {
     observeEvent(input$test, {
 
         selected_test <- reactive({
-            data %>% filter(handelsname == input$test)})
+            data %>% filter(
+              hersteller == input$hersteller & 
+              handelsname == input$test)})
+        
+        print(selected_test)
 
         output$sensitivity_out <- renderUI({
             HTML(paste0('Sensitivit\u00e4t* = ',

@@ -80,7 +80,8 @@ server <- function(input, output, session) {
 
 
     observe({
-        prevalence <- reactive({1/input$prevalence})
+        prevalence <- reactive({input$prevalence/100000})
+        print(prevalence)
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &

@@ -21,8 +21,9 @@ get_risk_data <- function(test_data=FALSE,
                           sensitivity=FALSE,
                           specifity=FALSE){
 
-    data <- data.frame(x=c(40:10/10, 9:3/10)) %>%
+    data <- data.frame(x=c(40:10/10, 9:1/10, 0)) %>%
         mutate(prevalence = 1/10^x)
+    
 
     if (sensitivity==FALSE) {
         sensitivity <- test_data$sensitivity / 100

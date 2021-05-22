@@ -63,7 +63,7 @@ prevalence_section <- tags$table(
              numericInput(
                 inputId="prevalence",
                 label=NULL,
-                min=1,
+                min=10,
                 max=100000,
                 step=1,
                 value = 100)

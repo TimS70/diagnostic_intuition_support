@@ -6,19 +6,17 @@ library(stringr)
 
 region_names <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
-    names_bundesland <- read.xlsx(url, rows=3:22) %>%
-        clean_names() %>%
-        dplyr::pull(bundesland)
-
-    data_landkreis <- read.xlsx(url, rows=3:1000, colNames=TRUE, sheet=2) %>%
-        clean_names()
+    names_bundesland <- read.xlsx(url, rows=2:22, cols=1, sheet=3)
+    names(names_bundesland) <- 'bundesland'
+        
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=2:3, sheet=5) 
 
     names_landkreis <- with(data_landkreis,
-                            paste0(landkreis, ' (', lknr, ')'))
+                            paste0(LK, ' (', LKNR, ')'))
 
     selection_list <- list(
         Deutschland = 'Deutschland',
-        Bundesland = names_bundesland[1:16],
+        Bundesland = names_bundesland[1:16, 1],
         'Land-/Stadtkreis' = names_landkreis
     )
 

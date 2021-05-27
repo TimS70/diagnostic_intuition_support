@@ -120,7 +120,8 @@ ui <- fluidPage(
                                 choices = as.list(data$handelsname)
                     ),
                     p('Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
-                        bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke
+                        bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke bei 
+                        einer pr\u00e4- oder asymptomatischen Infektion 
                         (Siehe Reiter PPW & NPW)!',
                       style='color: red; font-size: 12px;'
                     ),

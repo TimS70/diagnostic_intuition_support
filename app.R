@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-setwd(file.path('github', 'decision_intuition_support'))
+setwd(file.path('github', 'diagnostic_intuition_support'))
 
 library(shiny)
 library(rsconnect)

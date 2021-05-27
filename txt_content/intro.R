@@ -18,7 +18,7 @@ intro_txt_2 <- "<b>W\u00e4hlen Sie zuerst den Testhersteller und dann den spezif
 intro_txt_3 <- "Dieses Diagramm zeigt den <b>positiven pr\u00e4diktiven Wert
     (PPW, blaue Kurve)</b> und den <b>negativen pr\u00e4diktiven Wert (NPW, rote Kurve)</b>
     des ausgew\u00e4hlten Tests gegeben der Verbreitung der Infektion in der
-    Bev\u00f6lkerungsgruppe (Infektionsrisiko von 1 in 10.000 (0.01%) bis 1 in 100 (1%)).
+    Bev\u00f6lkerungsgruppe (Infektionsrisiko von 0.01% (10 in 100.000) bis 100% (100.000 von 100.000)).
     Der PPW ist die Wahrscheinlichkeit, dass die Person bei einem
     positiven Testergebnis sich <u>tats\u00e4chlich mit SARS-CoV-2 infiziert hat</u>. Der NPW ist die
     Wahrscheinlichkeit, dass die Person bei einem negativen Testergebnis

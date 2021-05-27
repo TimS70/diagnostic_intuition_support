@@ -27,7 +27,7 @@ incidence_section <- tags$table(
          style = "height: 50%",
          valign="center",
          tags$td(
-             style = "width: 50%",
+             style = "width: 45%",
              align = "left",
              selectInput(inputId = "region",
                          label = NULL,

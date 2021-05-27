@@ -44,8 +44,6 @@ server <- function(input, output, session) {
             data %>% filter(
               hersteller == input$hersteller & 
               handelsname == input$test)})
-        
-        print(selected_test)
 
         output$sensitivity_out <- renderUI({
             HTML(paste0('Sensitivit\u00e4t* = ',
@@ -61,6 +59,7 @@ server <- function(input, output, session) {
         incidence <- reactive({data_region %>%
             filter(region == input$region) %>%
             dplyr::pull(incidence)})
+
 
         prevalence <- reactive({
             estimate_prevalence(incidence=incidence(),
@@ -85,7 +84,6 @@ server <- function(input, output, session) {
 
     observe({
         prevalence <- reactive({input$prevalence/100000})
-        print(prevalence)
 
         selected_test <- reactive({
             data %>% filter(hersteller == input$hersteller &

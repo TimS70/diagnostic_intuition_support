@@ -28,13 +28,16 @@ clean_test_data <- function(data) {
     data[49, 'sensitivity_ci_95'] <- '80,8 - 92,7'
     data[49, 'specifity_ci_95'] <- '96,3 - 99,6'
     data[399, 'sensitivity_ci_95'] <- '95,82 - 98,51'
-    data[235, 'specifity_ci_95'] <- '99,1 – 100,0'
-    data[86, 'specifity_ci_95'] <- '97,7- 99,9'
+    data[235, 'specifity_ci_95'] <- '99,1 - 100,0'
+    data[86, 'specifity_ci_95'] <- '97,7 - 99,9'
     data[341, 'sensitivity_ci_95'] <- '80.84 - 99.30'
     data[341, 'specifity_ci_95'] <- '96.84 - 100'
     data[403, 'specifity_ci_95'] <- '97,81 - 99,69'
-    data[403, 'sensitivity_ci_95'] <- ' 95,82 - 98,51'
+    data[403, 'sensitivity_ci_95'] <- '95,82 - 98,51'
     data[238, 'specifity_ci_95'] <- '96,9 - 99,9'
+    data[85, 'specifity_ci_95'] <- '97,7 - 99,9'
+    data[346, 'sensitivity_ci_95'] <- '80.84 - 99.30'
+    data[346, 'specifity_ci_95'] <- '96.84 - 100'
     
     for (txt in '%') {
         data <- data %>%
@@ -82,7 +85,7 @@ clean_test_data <- function(data) {
                  into=c('specifity_ci_95_ll', 'specifity_ci_95_ul'),
                  sep='-',
                  remove=FALSE)
-
+    
     for (col in c('sensitivity_ci_95_ll',
                   'sensitivity_ci_95_ul',
                   'specifity_ci_95_ll',
@@ -103,7 +106,7 @@ clean_test_data <- function(data) {
 
     # Remove duplicate tests (remove the one with the lower ID)
     data <- data[!duplicated(data[c('hersteller', 'handelsname')]),]
-
+    
     return(data)
 }
 

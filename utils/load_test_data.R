@@ -32,7 +32,10 @@ clean_test_data <- function(data) {
     data[86, 'specifity_ci_95'] <- '97,7- 99,9'
     data[341, 'sensitivity_ci_95'] <- '80.84 - 99.30'
     data[341, 'specifity_ci_95'] <- '96.84 - 100'
-
+    data[403, 'specifity_ci_95'] <- '97,81 - 99,69'
+    data[403, 'sensitivity_ci_95'] <- ' 95,82 - 98,51'
+    data[238, 'specifity_ci_95'] <- '96,9 - 99,9'
+    
     for (txt in '%') {
         data <- data %>%
             mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%

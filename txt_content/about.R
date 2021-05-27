@@ -34,3 +34,11 @@ contact_us <- paste(
     'DE-10965 Berlin',
     sep="<br/>")
 
+contact_us_2 <- paste(
+  '<h3>Kontakt</h3>',
+  'kontakt@simplyrational.de',
+  'Simply Rational GmbH',
+  'Eberhard-Roters-Platz 7a',
+  'DE-10965 Berlin',
+  sep="<br/>")
+

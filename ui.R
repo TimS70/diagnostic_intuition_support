@@ -203,6 +203,9 @@ ui <- fluidPage(
                     width=480, height=200),
                 htmlOutput(outputId="contact_us")
             )
-        )
+        ),
+				tabPanel(title = 'Geben Sie uns Feedback!',
+				        uiOutput("contact_us_2")
+				)
     ) # navbarPage
 )

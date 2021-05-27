@@ -131,6 +131,9 @@ server <- function(input, output, session) {
         output$about_us <- renderUI({HTML(about_us)})
         output$about_the_test <- renderUI({HTML(about_the_tool)})
         output$contact_us <- renderUI({HTML(contact_us)})
+        
+        # Feedback
+        output$contact_us_2 <- renderUI({HTML(contact_us_2)})
 
         # PPV & NPV
         output$sensitivity_gap <- renderUI({HTML(sensitivity_gap)})

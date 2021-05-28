@@ -147,16 +147,16 @@ ui <- fluidPage(
                     introBox(
                         introBox(
                             incidence_section,
-                            introBox(
-                                prevalence_section,
-                                data.step = 8,
-                                data.intro = intro_txt_8
-                            ),
-                            data.step = 7,
-                            data.intro = intro_txt_7
+                            data.step = 6,
+                            data.intro = intro_txt_6
                         ),
-                        data.step = 6,
-                        data.intro = intro_txt_6
+                    data.step = 7,
+                    data.intro = intro_txt_7
+                    ),
+                    introBox(
+                        prevalence_section,
+                        data.step = 8,
+                        data.intro = intro_txt_8
                     ),
                     data.step = 5,
                     data.intro = intro_txt_5

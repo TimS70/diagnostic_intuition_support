@@ -1,3 +1,10 @@
+source(file.path('utils', 'incidence.R'))
+data_region <- region_incidence_data()
+incidence <- data_region %>%
+    filter(region == "Deutschland") %>%
+    dplyr::pull(incidence) %>%
+    round()
+
 intro_txt_1 <- "<b>Willkommen zum Diagnostik-Tool 'Diagnostic Intuition Support'
     (DIS) von Simply Rational</b>. Das Tool kann Sie in der Interpretation von
     COVID-19 Schnelltests unterst\u00fctzen und Ihnen bei der Einsch\u00e4tzung helfen,
@@ -34,29 +41,32 @@ intro_txt_4 <- "Die Interpretation des Testergebnisses h\u00e4ngt stark davon ab
 intro_txt_5 <- "<b>\u00dcberlegen Sie sich: Von 100 Menschen mit dem Risikoprofil der
     Person, an der Sie den Test durchf\u00fchren bzw. durchf\u00fchren m\u00f6chten,
     wie viele k\u00f6nnten sich mit SARS-CoV-2 infiziert haben?</b>
-    Beispielsweise hat die Person sich in den letzten zwei Wochen sozial total
-    isoliert und ist auch sonst keine Risiken eingegangen? Hatte sie Kontakt
+    Hat die Person sich in den letzten zwei Wochen sozial total
+    isoliert und ist auch sonst keine Risiken eingegangen? Oder hatte sie vielleicht Kontakt
     mit einer best\u00e4tigt SARS-CoV-2-positiven Person und zeigt COVID-19 Symptome?
-    Es gibt bzg. der Einsch\u00e4tzung des Infektionsrisikos
+    Es gibt bzgl. der Einsch\u00e4tzung des Infektionsrisikos
     keine 100%ig richtige oder falsche Antwort, Sie m\u00fcssen es
     einfach sch\u00e4tzen."
 
-intro_txt_6 <- "Hilfreich ist bei dieser Einsch\u00e4tzung jedoch, das
-    derzeitige Infektionsgeschehen zu betrachten. Derzeit (Mitte Mai 2021) liegt die
+intro_txt_6 <- paste("Hilfreich ist bei dieser Einsch\u00e4tzung jedoch, das
+    derzeitige Infektionsgeschehen zu betrachten. Derzeit liegt die
     7-Tage-Inzidenz (eine zeitlich begrenzte Sch\u00e4tzung f\u00fcr das Infektionsrisiko)
-    in Deutschland bei ca. 100 pro 100.000 Einwohner oder bei ca. 1 in 1000.
-    Die Inzidenz wird mithilfe einer Faustformel (siehe PPW & NPW im Reiter) in eine
+    in Deutschland bei ca.",
+    incidence, 
+    "pro 100.000 Einwohner.", 
+    "Die Inzidenz wird mithilfe einer Faustformel (siehe PPW & NPW im Reiter) in eine
     Pr\u00e4valenz umgerechnet.
-    Dies liegt auf dem DIS ungef\u00e4hr hier."
+    Dies liegt auf dem DIS ungef\u00e4hr hier (siehe gestrichelte Linie).")
 
-intro_txt_7 <- "Geben Sie Ihre Einsch\u00e4tzung der
+intro_txt_7 <- HTML('<b>Hinweis:</b> Das lokale Infektionsgeschehen kann von dem bundesweiten
+    Infektionsgeschehen jedoch stark abweichen. Das aktuelle Infektionsgeschehen
+                    in ihrem Landkreis k\u00f6nnen sie
+                    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
+                    target="_blank" rel="noopener noreferrer">hier</a>
+                    auf der Website des Robert-Koch-Institutes einsehen.')
+
+intro_txt_8 <- "Geben Sie nun Ihre Einsch\u00e4tzung der
     Krankheitswahrscheinlichkeit hier ein. Das Tool zeigt Ihnen darauf
     basierend den PPW (wie verl\u00e4sslich ein positives Testergebnis wirklich ist)
     und den NPW (wie verl\u00e4sslich ein negatives Testergebnis wirklich ist)."
 
-intro_txt_8 <- HTML('Hinweis: Das lokale Infektionsgeschehen kann von dem bundesweiten
-    Infektionsgeschehen teilweise stark abweichen. Das aktuelle Infektionsgeschehen
-    in ihrem Landkreis k\u00f6nnen sie
-    <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
-    target="_blank" rel="noopener noreferrer">hier</a>
-    auf der Website des Robert-Koch-Institutes einsehen.')

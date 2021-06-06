@@ -38,7 +38,7 @@ intro_txt_4 <- "Die Interpretation des Testergebnisses h\u00e4ngt stark davon ab
     publizierter Evidenz zu bestimmen ist oft unm\u00f6glich.
     <b>Ihre Intuition ist gefragt</b>!"
 
-intro_txt_5 <- "<b>\u00dcberlegen Sie sich: Von 100 Menschen mit dem Risikoprofil der
+intro_txt_5 <- "<b>\u00dcberlegen Sie sich: Von 100.000 Menschen mit dem Risikoprofil der
     Person, an der Sie den Test durchf\u00fchren bzw. durchf\u00fchren m\u00f6chten,
     wie viele k\u00f6nnten sich mit SARS-CoV-2 infiziert haben?</b>
     Hat die Person sich in den letzten zwei Wochen sozial total

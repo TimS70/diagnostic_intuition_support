@@ -5,6 +5,10 @@ incidence <- data_region %>%
     dplyr::pull(incidence) %>%
     round()
 
+prevalence <- estimate_prevalence(incidence=incidence,
+                                  fraction_cases = 0.7)
+
+
 intro_txt_1 <- "<b>Willkommen zum Diagnostik-Tool 'Diagnostic Intuition Support'
     (DIS) von Simply Rational</b>. Das Tool kann Sie in der Interpretation von
     COVID-19 Schnelltests unterst\u00fctzen und Ihnen bei der Einsch\u00e4tzung helfen,
@@ -14,9 +18,9 @@ intro_txt_1 <- "<b>Willkommen zum Diagnostik-Tool 'Diagnostic Intuition Support'
     f\u00fchren. Fangen wir an!"
 
 intro_txt_2 <- "<b>W\u00e4hlen Sie zuerst den Testhersteller und dann den spezifischen
-    Test aus.</b> Alle Tests haben eine <u>Sensitivit\u00e4t</u> und <u>Spezifit\u00e4t</u> (aktuelle
+    Test aus.</b> Alle Tests haben <u>Sensitivit\u00e4t</u> und <u>Spezifit\u00e4t</u> (aktuelle
     Herstellerangaben). Das sind Ma\u00dfeinheiten, die Auskunft dar\u00fcber geben, wie
-    genau der Test ist. Die Sensitivit\u00e4t ist die Wahrscheinlichkeit, dass eine
+    genau der Test ist. Diese Angaben k\u00fcnnen von Test zu Test stark variieren. Die Sensitivit\u00e4t ist die Wahrscheinlichkeit, dass eine
     Person, die sich mit SARS-CoV-2 infiziert hat, von dem Test korrekt als solche erkannt wird und
     ein <u>positives</u> Testergebnis erh\u00e4lt (Richtig-Positiv-Rate). Die Spezifizit\u00e4t ist die
     Wahrscheinlichkeit, dass eine gesunde Person vom Test korrekt als solche
@@ -56,7 +60,9 @@ intro_txt_6 <- paste("Hilfreich ist bei dieser Einsch\u00e4tzung jedoch, das
     "pro 100.000 Einwohner.", 
     "Die Inzidenz wird mithilfe einer Faustformel (siehe PPW & NPW im Reiter) in eine
     Pr\u00e4valenz umgerechnet.
-    Dies liegt auf dem DIS ungef\u00e4hr hier (siehe gestrichelte Linie).")
+    Diese betr\u00e4gt ungef\u00e4hr",
+    round(prevalence),
+    "pro 100.000 Einwohner (siehe gestrichelte Linie).")
 
 intro_txt_7 <- HTML('<b>Hinweis:</b> Das lokale Infektionsgeschehen kann von dem bundesweiten
     Infektionsgeschehen jedoch stark abweichen. Das aktuelle Infektionsgeschehen

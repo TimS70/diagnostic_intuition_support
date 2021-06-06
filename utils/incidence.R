@@ -33,7 +33,7 @@ region_incidence_data <- function() {
 
     data_bundesland[data_bundesland$'region'=='Gesamt', 'region'] <- 'Deutschland'
     
-    data_landkreis <- read.xlsx(url, rows=3:22, cols=2:1000, sheet=6, colNames=TRUE, 
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=2:1000, sheet=6, colNames=TRUE, 
                                 detectDates=TRUE) 
     
     data_landkreis <- data_landkreis[,c(1:2, ncol(data_landkreis))]

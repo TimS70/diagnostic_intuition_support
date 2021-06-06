@@ -1,5 +1,5 @@
 sensitivity_gap <- '
-    <div style=" border: 15px solid black;">
+    <div style=" border: 10px solid black;">
     Beachten Sie: Antigen-Schnelltests weisen eine Sensitivit\u00e4tsl\u00fccke bei
     asymptomatischen Personen und pr\u00e4symptomatischen Personen
     mit einer SARS-CoV-2 Infektion auf. Dies bedeutet, dass
@@ -7,6 +7,7 @@ sensitivity_gap <- '
     nur sehr schlecht identifizieren k\u00f6nnen. Somit besteht das
     erh\u00f6hte Risiko eines falsch-negativen Testergebnisses.
     </div>
+    <br>
 '
 
 explain_ppv_npv <-
@@ -20,8 +21,7 @@ explain_ppv_npv <-
         <li><b>Pr\u00e4valenz:</b> Die Wahrscheinlichkeit, mit der eine Erkrankung in einer bestimmten Bev\u00f6lkerungsgruppe auftritt.
             Je nach definierter Personengruppe, also ob die gesamte Bev\u00f6lkerung oder eine bestimmte Risikogruppe (z.B. Pendler*innen)
             gemeint ist, kann das Infektionsrisiko variieren.
-            Die Pr\u00e4valenz wird aus einer Faustformel mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der aufgedeckten F\u00e4lle von
-            einem Drittel (zwei Drittel Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten).</li>
+        </li>
         <li><b>Sensitivit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine mit SARS-CoV-2 infizierte Person ein positives Testergebnis hat. </li>
         <li><b>Spezifit\u00e4t:</b> Die Wahrscheinlichkeit, mit der eine gesunde Person ein negatives Testergebnis hat. </li>
         <li><b>Positiver Pr\u00e4diktiver Wert (PPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>positiven</u> Testergebnis sich
@@ -29,8 +29,14 @@ explain_ppv_npv <-
         <li><b>Negativer Pr\u00e4diktiver Wert (NPW):</b> Die Wahrscheinlichkeit, mit der eine Person mit einem <u>negativen</u> Testergebnis
             tats\u00e4chlich gesund ist.</li>
     </ul>
-    <br>
     <p>Zur Interpretation eines positiven oder negativen Testergebnisses spielen die letzten beiden Begriffe eine gro\u00dfe Rolle. </p>
+
+    <p><b>Beachten Sie zudem, dass Pr\u00e4valenz und Inzidenz nicht gleichzusetzen sind.</b> W\u00e4rend die Inzidenz die neu 
+    dazugekommenen Infektionen beschreibt, geht es bei der Pr\u00e4valenz darum, wie viele Personen 
+    infiziert sind, egal wann sie sich infiziert haben. Die Pr\u00e4valenz wird aus einer Faustformel 
+    mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der aufgedeckten F\u00e4lle von
+    einem Drittel (zwei Drittel Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten). </p>
+    <br>
     <h3>Formeln</h3>
     '
 

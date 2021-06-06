@@ -56,7 +56,7 @@ server <- function(input, output, session) {
         })
 
     observeEvent(input$region, {
-      
+ 
         incidence <- reactive({data_region %>%
             filter(region == input$region) %>%
             dplyr::pull(incidence)})

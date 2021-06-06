@@ -100,16 +100,17 @@ ui <- fluidPage(
                         ')
                     )
                 ),
+                
+                HTML(text='
+                    <p style="font-size: 14px;">
+                    W\u00e4hlen Sie den
+                    <b> 1) Test-Hersteller</b> und den <b> 2) Test.</b>
+                    Sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
+                    <b> 3) regionalen Inzidenzwertes</b> (und der daraus gesch\u00e4tzten Pr\u00e4valenz) und
+                    <b> 4) passen Sie die Wahrscheinlichkeit situationsbedingt an.</b>
+                    </p>
+                '),
                 introBox(
-                    HTML(text='
-                        <p style="font-size: 14px;">
-                        W\u00e4hlen Sie den
-                        <b> 1) Test-Hersteller</b> und den <b> 2) Test.</b>
-                        Sch\u00e4tzen Sie die Wahrscheinlichkeit einer Infektion anhand des
-                        <b> 3) regionalen Inzidenzwertes</b> (und der daraus gesch\u00e4tzten Pr\u00e4valenz) und
-                        <b> 4) passen Sie die Wahrscheinlichkeit situationsbedingt an.</b>
-                        </p>
-                    '),
                     selectInput(
                         inputId = "hersteller",
                         label = h2("1) Hersteller*"),

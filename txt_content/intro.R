@@ -20,7 +20,7 @@ intro_txt_2 <- "<b>W\u00e4hlen Sie zuerst den Testhersteller und dann den spezif
     Person, die sich mit SARS-CoV-2 infiziert hat, von dem Test korrekt als solche erkannt wird und
     ein <u>positives</u> Testergebnis erh\u00e4lt (Richtig-Positiv-Rate). Die Spezifizit\u00e4t ist die
     Wahrscheinlichkeit, dass eine gesunde Person vom Test korrekt als solche
-    erkannt wird und ein <u>negatives</u> Testergebnis erh\u00e4lt (Falsch-Positiv-Rate)."
+    erkannt wird und ein <u>negatives</u> Testergebnis erh\u00e4lt (Richtig-Negativ-Rate)."
 
 intro_txt_3 <- "Dieses Diagramm zeigt den <b>positiven pr\u00e4diktiven Wert
     (PPW, blaue Kurve)</b> und den <b>negativen pr\u00e4diktiven Wert (NPW, rote Kurve)</b>

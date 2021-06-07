@@ -6,7 +6,7 @@ incidence <- data_region %>%
     round()
 
 prevalence <- estimate_prevalence(incidence=incidence,
-                                  fraction_cases = 0.7)
+                                  fraction_cases = 0.33)
 
 
 intro_txt_1 <- "<b>Willkommen zum Diagnostik-Tool 'Diagnostic Intuition Support'

@@ -13,7 +13,25 @@ generate_plot <- function(data,
 
     ppv_y_pos <- reactive({adjust_y_pos(y_target = ppv_intersect,
                                         y_other = npv_intersect)})
-
+    
+    
+    if (ppv_intersect == 100) {
+        ppv_intersect_text = '>99.99'    
+    }
+    else if (ppv_intersect == 0) {
+        ppv_intersect_text = '<0.01'    
+    } else {
+        ppv_intersect_text <- ppv_intersect
+    }
+    npv_intersect_text <- npv_intersect
+    if (npv_intersect == 100) {
+        npv_intersect_text = '>99.99'   
+    } else if (ppv_intersect == 0) {
+        npv_intersect_text = '<0.01'    
+    } else {
+        npv_intersect_text <- npv_intersect
+    }
+    
     p <- ggplot(data=data, aes(x=x)) +
         geom_line(aes(y=ppv, color = "#0C70B0"), size=1) +
         geom_line(aes(y=npv, color = '#D72F20'), size=1) +
@@ -44,21 +62,22 @@ generate_plot <- function(data,
         p <- p +
             geom_text(aes(x = x_incidence(),
                       y = ppv_y_pos() - 2,
-                      label=paste0("   PPW: ", ppv_intersect, '%   ')),
-                  hjust = 0, parse=FALSE) +
+                      label=paste0("   PPW: ", ppv_intersect_text, '%   ')),
+                  hjust = 0, parse=FALSE) + 
             geom_text(aes(x = x_incidence(),
                       y = npv_y_pos() - 2,
-                      label=paste0("   NPW: ", npv_intersect, '%   ')),
+                      label=paste0("   NPW: ", npv_intersect_text, '%   ')),
                   hjust = 0, parse=FALSE)
     } else {
+        print(npv_intersect_text)
         p <- p +
             geom_text(aes(x = x_incidence(),
                       y = ppv_y_pos() - 2,
-                      label=paste0(" PPW: ", ppv_intersect, '%')),
+                      label=paste0(" PPW: ", ppv_intersect_text, '%')),
                   hjust = 1, parse=FALSE) +
             geom_text(aes(x = x_incidence(),
                       y = npv_y_pos() - 2,
-                      label=paste0(" NPW: ", npv_intersect, '%')),
+                      label=paste0(" NPW: ", npv_intersect_text, '%')),
                   hjust = 1, parse=FALSE)
     }
 

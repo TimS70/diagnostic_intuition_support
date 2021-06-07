@@ -6,10 +6,10 @@ library(stringr)
 
 region_names <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
-    names_bundesland <- read.xlsx(url, rows=2:22, cols=1, sheet=2)
+    names_bundesland <- read.xlsx(url, rows=2:22, cols=1, sheet=1)
     names(names_bundesland) <- 'bundesland'
         
-    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:2, sheet=3) 
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:2, sheet=2) 
 
     names_landkreis <- with(data_landkreis,
                             paste0(Landkreis, ' (', LKNR, ')'))
@@ -26,14 +26,14 @@ region_names <- function() {
 
 region_incidence_data <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
-    data_bundesland <- read.xlsx(url, rows=3:22, sheet=2, colNames=TRUE, 
+    data_bundesland <- read.xlsx(url, rows=3:22, sheet=1, colNames=TRUE, 
                                  detectDates=TRUE) 
     data_bundesland <- data_bundesland[,c(1, ncol(data_bundesland))]
     names(data_bundesland) <- c('region', 'incidence')
 
     data_bundesland[data_bundesland$'region'=='Gesamt', 'region'] <- 'Deutschland'
     
-    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:4, sheet=3, colNames=TRUE, 
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:4, sheet=2, colNames=TRUE, 
                                 detectDates=TRUE) 
     
     # For wide format

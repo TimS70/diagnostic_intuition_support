@@ -63,7 +63,7 @@ server <- function(input, output, session) {
 
         prevalence <- reactive({
             estimate_prevalence(incidence=incidence(),
-                                fraction_cases = 0.7)
+                                fraction_cases = 0.33)
         })
 
         output$regional_incidence_prevalence <- reactive({paste0(

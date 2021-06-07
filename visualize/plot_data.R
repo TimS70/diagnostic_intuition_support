@@ -11,7 +11,7 @@ calculate_ppv <- function(prevalence, sensitivity, specifity) {
 
 calculate_npv <- function(prevalence, sensitivity, specifity) {
 
-    npv <- sensitivity * (1-prevalence) /
+    npv <- specifity * (1-prevalence) / # True Negative rate
         (specifity * (1-prevalence) + prevalence * (1-sensitivity))
     return(npv)
 }
@@ -42,12 +42,12 @@ get_risk_data <- function(test_data=FALSE,
     }
 
     data$ppv <- calculate_ppv(data$prevalence,
-                              sensitivity,
-                              specifity)
+                              sensitivity = sensitivity,
+                              specifity = specifity)
 
     data$npv <- calculate_npv(data$prevalence,
-                              sensitivity,
-                              specifity)
+                              sensitivity = sensitivity,
+                              specifity = specifity)
 
     if (nrow(test_data>0)) {
         data$ppv_ll <- calculate_ppv(data$prevalence,

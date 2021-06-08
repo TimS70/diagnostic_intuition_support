@@ -6,11 +6,14 @@ library(stringr)
 
 region_names <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
-    names_bundesland <- read.xlsx(url, rows=2:22, cols=1, sheet=1)
+    names_bundesland <- read.xlsx(url, rows=3:(3+17), cols=1, sheet=4)
     names(names_bundesland) <- 'bundesland'
         
-    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:2, sheet=2) 
+    print(names_bundesland)
+    
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=2:(2+1), sheet=6) 
 
+    names(data_landkreis) <- c('Landkreis', 'LKNR')
     names_landkreis <- with(data_landkreis,
                             paste0(Landkreis, ' (', LKNR, ')'))
 
@@ -20,25 +23,25 @@ region_names <- function() {
         'Land-/Stadtkreis' = names_landkreis
     )
 
+    print(selection_list %>% head(20))
     return(selection_list)
 }
 
 
 region_incidence_data <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
-    data_bundesland <- read.xlsx(url, rows=3:22, sheet=1, colNames=TRUE, 
-                                 detectDates=TRUE) 
-    data_bundesland <- data_bundesland[,c(1, ncol(data_bundesland))]
+    data_bundesland <- read.xlsx(url, rows=3:(3+17), sheet=4)
+    data_bundesland <- data_bundesland[, c(1, ncol(data_bundesland))]
+    
     names(data_bundesland) <- c('region', 'incidence')
 
     data_bundesland[data_bundesland$'region'=='Gesamt', 'region'] <- 'Deutschland'
     
-    data_landkreis <- read.xlsx(url, rows=3:1000, cols=1:4, sheet=2, colNames=TRUE, 
-                                detectDates=TRUE) 
+    data_landkreis <- read.xlsx(url, rows=3:1000, cols=2:1000, sheet=6) 
     
     # For wide format
-    # data_landkreis <- data_landkreis[,c(1:2, ncol(data_landkreis))]
-    names(data_landkreis) <- c('Landkreis', 'LKNR', 'count', 'incidence')
+    data_landkreis <- data_landkreis[,c(1:2, ncol(data_landkreis))]
+    names(data_landkreis) <- c('Landkreis', 'LKNR', 'incidence')
     
     data_landkreis$region <- with(data_landkreis, paste0(Landkreis, ' (', LKNR, ')'))
     

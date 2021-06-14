@@ -47,7 +47,7 @@ prevalence_section <- tags$table(
          style = "height: 50%",
          valign='center',
          colspan="2",
-         h2("4) 14-Tage Pr\u00e4valenz***"),
+         h2("4) 14-Tage Pr\u00e4valenz bzw. Infektionsrisiko***"),
          p("Wie wahrscheinlich ist es vor dem Test, dass diese Person
             infiziert ist (wie viele von 100.000 Personen)?",
            style="font-size: 14px; font-weight: normal;"
@@ -82,9 +82,12 @@ ui <- fluidPage(
         title="Simply Diagnostic Intuition Support",
         tabPanel(
             title=introBox(
-            	'Das Tool',
-				data.step=1,
-				data.intro=intro_txt_1),
+                    introBox(
+                	'Das Tool',
+    				data.step=2,
+    				data.intro=intro_txt_2),
+			    data.step=1,
+			    data.intro=intro_txt_1),
             sidebarPanel(width=4,
                 tags$head(
                     tags$style(
@@ -97,6 +100,11 @@ ui <- fluidPage(
                                   margin-left: 0;
                                   margin-right: 0;
                                   font-weight: bolder}
+                            .introjs-tooltip {
+                                 max-width: 100%;
+                                min-width: 500px;
+                             }
+                             
                         ')
                     )
                 ),
@@ -141,34 +149,34 @@ ui <- fluidPage(
                         label = NULL,
                         choices = c("Konfidenzintervalle anzeigen" = "show_ci")
                     ),
-                    data.step = 2,
-                    data.intro = intro_txt_2
+                    data.step = 3,
+                    data.intro = intro_txt_3
                 ),
                 introBox(
                     introBox(
                         introBox(
                             incidence_section,
-                            data.step = 6,
-                            data.intro = intro_txt_6
+                            data.step = 7,
+                            data.intro = intro_txt_7
                         ),
-                    data.step = 7,
-                    data.intro = intro_txt_7
+                    data.step = 8,
+                    data.intro = intro_txt_8
                     ),
                     introBox(
                         prevalence_section,
-                        data.step = 8,
-                        data.intro = intro_txt_8
+                        data.step = 9,
+                        data.intro = intro_txt_9
                     ),
-                    data.step = 5,
-                    data.intro = intro_txt_5
+                    data.step = 6,
+                    data.intro = intro_txt_6
                 ),
                 HTML(paste(
                     '<div style="color: grey; font-size:12px">',
                     '<p>*Herstellerangaben wochenaktuell bezogen vom
                     Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)</p>',
                     paste('<p>**Quelle Robert-Koch-Institut.', incidence_date(), '</p>'),
-                    '<p>***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter PPW & NPW), wenn nicht
-                    manuell eingegeben.</p>',
+                    '<p>***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter Erkl\u00e4rung), 
+                    <u>oder</u> manuell eingegeben.</p>',
                     '</div>')
                 )
             ), # sidebarPanel
@@ -178,13 +186,13 @@ ui <- fluidPage(
                 introBox(
                     introBox(
                         plotOutput(outputId = 'plot'),
-                        data.step = 4,
-                        data.intro = intro_txt_4),
-                data.step = 3,
-                data.intro = intro_txt_3)
+                        data.step = 5,
+                        data.intro = intro_txt_5),
+                data.step = 4,
+                data.intro = intro_txt_4)
             ) # mainPanel
         ), # Input, tabPanel
-        tabPanel(title= 'PPW & NPW',
+        tabPanel(title= 'Erkl\u00e4rung',
             mainPanel(
                 uiOutput("sensitivity_gap"),
                 uiOutput("explain_ppv_npv"),

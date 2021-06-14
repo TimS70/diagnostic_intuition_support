@@ -1,12 +1,3 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 root <- "C:/Users/TimSchneegans/Documents"
 setwd(file.path(root, 'github', 'diagnostic_intuition_support'))
 
@@ -37,3 +28,4 @@ get_packages(c('data.table',
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+

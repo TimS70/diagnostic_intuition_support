@@ -8,8 +8,6 @@ region_names <- function() {
     url <- 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Daten/Fallzahlen_Kum_Tab.xlsx?__blob=publicationFile'
     names_bundesland <- read.xlsx(url, rows=3:(3+17), cols=1, sheet=4)
     names(names_bundesland) <- 'bundesland'
-        
-    print(names_bundesland)
     
     data_landkreis <- read.xlsx(url, rows=3:1000, cols=2:(2+1), sheet=6) 
 
@@ -23,7 +21,6 @@ region_names <- function() {
         'Land-/Stadtkreis' = names_landkreis
     )
 
-    print(selection_list %>% head(20))
     return(selection_list)
 }
 

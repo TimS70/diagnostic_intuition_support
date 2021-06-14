@@ -55,7 +55,8 @@ generate_plot <- function(data,
         theme(legend.position="bottom",
               text = element_text(size=17, face='bold')) +
         labs(color='Legende: ') +
-        scale_color_manual(labels = c("PPW", "NPW"),
+        scale_color_manual(labels = c("Positiver Pr\u00e4diktiver Wert (PPW)", 
+                                      "Negativer Pr\u00e4diktiver Wert (NPW)"),
                            values = c("#0C70B0", '#D72F20'))
 
     if (x_incidence() > 1) {

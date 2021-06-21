@@ -15,6 +15,9 @@ source(file='utils/estimate_prevalence.R')
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
+data %>% 
+    filter_all(any_vars(is.na(.)))
+
 incidence_section <- tags$table(
     style = "width: 100%; height: 70px;",
     tags$th(

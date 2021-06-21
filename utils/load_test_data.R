@@ -7,9 +7,6 @@ library(pins)
 
 clean_test_data <- function(data) {
     
-    data <- read.csv(file=file, sep = ';', dec=',',
-                     fileEncoding='windows-1252')
-
     names(data) <- c('id',
                           'handelsname',
                           'evaluierung',

@@ -15,13 +15,14 @@ library(lubridate)
 #     until=as.numeric(as.POSIXct("2021-06-10", format="%Y-%m-%d"))
 # )
 
+
 data_connect <- rsconnect::showMetrics(
     metricSeries="container_status",
     metricNames=c("connect_count", 'connect_procs'),
     appName="diagnostic_intuition_support",
     server="shinyapps.io",
     from=as.numeric(as.POSIXct("2021-05-31", format="%Y-%m-%d")),
-    until=as.numeric(as.POSIXct("2021-06-10", format="%Y-%m-%d"))
+    until=as.numeric(as.POSIXct("2021-06-21", format="%Y-%m-%d"))
 ) 
 names(data_connect) = c('connect_count', 
                         'metric_series', 
@@ -61,7 +62,7 @@ ggplot(data=grouped_new_connect, aes(x=date, y=n)) +
     geom_bar(stat="identity") + 
     theme_minimal() +
     scale_x_date(
-        labels = date_format("%m-%Y"),
+        labels = date_format("%d-%m-%Y"),
         breaks = grouped_new_connect$date) + 
     theme(
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),

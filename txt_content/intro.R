@@ -20,7 +20,7 @@ intro_txt_2 <- "
     </p>
     <p>
         Dieses Tool wurde f\u00fcr <b>medizinisches Personal</b> entwickelt, um bei der 
-        Interpretation von COVID-19 Schnelltests zu unterst\u00fctzen. 
+        Interpretation von SARS-CoV-2 Schnelltests zu unterst\u00fctzen. 
         Das Tool soll Ihnen bei der Einsch\u00e4tzung helfen, 
         wie wahrscheinlich es ist, dass bei einem positiven oder
         negativen Testergebnis auch wirklich eine bzw. keine SARS-CoV-2 Infektion
@@ -80,6 +80,7 @@ intro_txt_5 <- "
     </p>
 "
 
+# Wie viel höher/niedriger könnte das Risiko durch das Verhalten des Individuums sein?
 intro_txt_6 <- "
     <p>
         <b>\u00dcberlegen Sie sich: Von 100.000 Menschen mit dem Risikoprofil der

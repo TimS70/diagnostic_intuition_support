@@ -188,7 +188,7 @@ ui <- fluidPage(
                     '<p>*Herstellerangaben wochenaktuell bezogen vom
                     Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte (BfArM)</p>',
                     paste('<p>**Quelle Robert-Koch-Institut.', incidence_date(), '</p>'),
-                    '<p>***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter Erkl\u00e4rung), 
+                    '<p>***Aus der 7-Tage-Inzidenz gesch\u00e4tzt (siehe Reiter Erkl\u00e4rung) 
                     <u>oder</u> manuell eingegeben.</p>',
                     '</div>')
                 )

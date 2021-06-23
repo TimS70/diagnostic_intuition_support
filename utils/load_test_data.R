@@ -13,9 +13,9 @@ clean_test_data <- function(data) {
                           'hersteller_name',
                           'hersteller_stadt',
                           'hersteller_land',
-                          'eu_bevollmächtigter_name',
-                          'eu_bevollmächtigter_stadt',
-                          'eu_bevollmächtigter_land',
+                          'eu_bevollmaechtigter_name',
+                          'eu_bevollmaechtigter_stadt',
+                          'eu_bevollmaechtigter_land',
                           'test_ort',
                           'sensitivity',
                           'sensitivity_ci_95',
@@ -105,7 +105,35 @@ clean_test_data <- function(data) {
     data$evaluierung = factor(data$evaluierung)
     
     data$evaluierung = recode(data$evaluierung, "Ja" = 1, "Nein" = 0)
-        
+    
+    return(data)
+}
+
+add_pei_criteria <- function(data) {
+    
+    data <- data %>% add_row(
+        id = NA,
+        handelsname = ' - ',
+        evaluierung = 1,
+        hersteller_name = NA,
+        hersteller_stadt = NA,
+        hersteller_land = NA,
+        eu_bevollmaechtigter_name = NA,
+        eu_bevollmaechtigter_stadt = NA,
+        eu_bevollmaechtigter_land = NA,
+        test_ort = NA,
+        sensitivity = 80.0,
+        sensitivity_ci_95 = NA,
+        sensitivity_ci_95_ll = 80.0,
+        sensitivity_ci_95_ul = 80.0,
+        specifity = 97.0,
+        specifity_ci_95 = NA,
+        specifity_ci_95_ll = 97.0,
+        specifity_ci_95_ul = 97.0,
+        hersteller = 'Paul Ehrlich Institut - Mindestkriterien',
+        .before = 1
+    )
+    rownames(data)
     return(data)
 }
 
@@ -113,6 +141,8 @@ load_test_data <- function(file) {
     data <- read.csv(file=file, sep = ';', dec=',',
                      fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
+    
+    data <- add_pei_criteria(data)
     
     # Ceiling all values > 99.9 
     data[, 

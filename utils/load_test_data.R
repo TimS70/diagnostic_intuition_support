@@ -113,6 +113,24 @@ load_test_data <- function(file) {
     data <- read.csv(file=file, sep = ';', dec=',',
                      fileEncoding='windows-1252')
     data <- clean_test_data(data = data)
-
+    
+    # Ceiling all values > 99.9 
+    data[, 
+         c("sensitivity",
+           "sensitivity_ci_95_ll",
+           "sensitivity_ci_95_ul",
+           "specifity",
+           "specifity_ci_95_ll",
+           "specifity_ci_95_ul")] = apply(
+        data[, 
+             c("sensitivity",
+               "sensitivity_ci_95_ll",
+               "sensitivity_ci_95_ul",
+               "specifity",
+               "specifity_ci_95_ll",
+               "specifity_ci_95_ul")], 
+        MARGIN=2, 
+        FUN=function(x) ifelse(x>99.9, 99.9, x))
+        
     return(data)
 }

@@ -15,8 +15,8 @@ generate_plot <- function(data,
                                         y_other = npv_intersect)})
     
     
-    if (ppv_intersect == 100) {
-        ppv_intersect_text = '>99.99'    
+    if (ppv_intersect >= 99.9) {
+        ppv_intersect_text = '>99.9'    
     }
     else if (ppv_intersect == 0) {
         ppv_intersect_text = '<0.01'    
@@ -24,8 +24,8 @@ generate_plot <- function(data,
         ppv_intersect_text <- ppv_intersect
     }
     npv_intersect_text <- npv_intersect
-    if (npv_intersect == 100) {
-        npv_intersect_text = '>99.99'   
+    if (npv_intersect >= 99.9) {
+        npv_intersect_text = '>99.9'   
     } else if (ppv_intersect == 0) {
         npv_intersect_text = '<0.01'    
     } else {

@@ -21,8 +21,11 @@ about_the_tool <- '
     Wir gew\u00e4hren keine Garantie, dass die Informationen auf der Webseite zu einem bestimmten Zeitpunkt bzw.
     immer korrekt bzw. vollst\u00e4ndig sind. Allerdings sind die Informationen \u00fcber die Tests direkt vom
     Deutschen Bundesinstitut f\u00fcr Arzneimittel und Medizinprodukte bezogen und werden nach M\u00f6glichkeit stetig
-    aktualisiert. Die dort bezogenen Sensitivit\u00e4ts- und Spezifit\u00e4tswerte entstammen den Herstellerangaben.
-    Die aktuelle Datenbank kann
+    aktualisiert. 
+    Die dort bezogenen Sensitivit\u00e4ts- und Spezifit\u00e4tswerte entstammen den Herstellerangaben. 
+    Teilweise sind in diesen Daten allerdings Sensitivit\u00e4ts- und Spezifit\u00e4tsangaben von 
+    \u00fcber 99.9% (z.B. 100%) aufgef\u00fchrt. Diese Werte sind als unrealistisch zu bewerten und 
+    wurden von uns deshalb als 99.9% angegeben. Die aktuelle Datenbank kann
     <a href="https://www.bfarm.de/DE/Medizinprodukte/Antigentests/_node.html;jsessionid=4F3D066A1BAB04CBFD7B0C7ACE1BA6B2.1_cid506">
     hier</a> bezogen werden (letzter Stand 21.06.2021).</p>'
 

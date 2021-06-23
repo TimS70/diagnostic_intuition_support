@@ -35,7 +35,7 @@ explain_ppv_npv <-
     dazugekommenen Infektionen beschreibt, geht es bei der Pr\u00e4valenz darum, wie viele Personen 
     infiziert sind, egal wann sie sich infiziert haben. Die Pr\u00e4valenz wird aus einer Faustformel 
     mithilfe der aktuellen Inzidenz und einem angenommenen Anteil der aufgedeckten F\u00e4lle von
-    einem Drittel (zwei Drittel Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten). </p>
+    ca. 56% (ca. 44% Anteil der Dunkelziffer) gesch\u00e4tzt (siehe Formel unten). </p>
     <br>
     <h3>Formeln</h3>
     '

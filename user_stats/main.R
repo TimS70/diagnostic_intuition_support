@@ -8,7 +8,9 @@ library(lubridate)
 
 source('load_data.R')
 
-data = load_data()
+data = load_connection_data(
+    date_from="2021-05-31",
+    date_to="2021-06-22")
 
 grouped_new_connect <- data %>% 
     group_by(date) %>%

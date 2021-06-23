@@ -1,4 +1,4 @@
-load_data <- function() {
+load_connection_data <- function(date_from, date_to) {
     
     # http://docs.rstudio.com/shinyapps.io/metrics.html#ApplicationMetrics
     # data_usage <- rsconnect::showUsage(
@@ -14,8 +14,8 @@ load_data <- function() {
         metricNames=c("connect_count", 'connect_procs'),
         appName="diagnostic_intuition_support",
         server="shinyapps.io",
-        from=as.numeric(as.POSIXct("2021-05-31", format="%Y-%m-%d")),
-        until=as.numeric(as.POSIXct("2021-06-21", format="%Y-%m-%d"))
+        from=as.numeric(as.POSIXct(date_from, format="%Y-%m-%d")),
+        until=as.numeric(as.POSIXct(date_to, format="%Y-%m-%d"))
     ) 
     names(data_connect) = c('connect_count', 
                             'metric_series', 

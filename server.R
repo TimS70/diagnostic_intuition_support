@@ -32,7 +32,7 @@ server <- function(input, output, session) {
             data %>% filter(hersteller == input$hersteller)})
 
         proposed_test <- reactive({data %>%
-            filter(hersteller == input$hersteller) %>%
+            filter(hersteller==input$hersteller) %>%
             slice(1) %>%
             dplyr::pull(handelsname)})
 
@@ -47,6 +47,12 @@ server <- function(input, output, session) {
             data %>% filter(
               hersteller == input$hersteller & 
               handelsname == input$test)})
+        
+        if (!selected_test()$evaluierung) {
+            shinyjs::show(id='pei_eval_info')
+        } else {
+            shinyjs::hide(id='pei_eval_info')
+        }
 
         output$sensitivity_out <- renderUI({
             HTML(paste0('Sensitivit\u00e4t* = ',
@@ -64,9 +70,11 @@ server <- function(input, output, session) {
             filter(region == input$region) %>%
             dplyr::pull(incidence)})
 
+        # Dunkelziffer 1-1/1.8 = 0.55
+        # https://twitter.com/rki_de/status/1402602335776432132
         prevalence <- reactive({
             estimate_prevalence(incidence=incidence(),
-                                fraction_cases = 0.33)
+                                fraction_cases = 0.56)
         })
 
         output$regional_incidence_prevalence <- reactive({paste0(

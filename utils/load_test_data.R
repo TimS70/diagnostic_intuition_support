@@ -101,6 +101,11 @@ clean_test_data <- function(data) {
     # Remove duplicate tests (remove the one with the lower ID)
     data <- data[!duplicated(data[c('hersteller', 'handelsname')]),]
     
+    # Dichotomize evaluierung
+    data$evaluierung = factor(data$evaluierung)
+    
+    data$evaluierung = recode(data$evaluierung, "Ja" = 1, "Nein" = 0)
+        
     return(data)
 }
 

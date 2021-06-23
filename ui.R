@@ -7,6 +7,7 @@ library(shinyWidgets)
 library(readxl)
 library(rio)
 library(rintrojs)
+library(shinyjs)
 
 source(file.path('utils', 'load_test_data.R'))
 source(file.path('utils', 'incidence.R'))
@@ -81,6 +82,7 @@ prevalence_section <- tags$table(
 ui <- fluidPage(
 	theme = shinytheme('flatly'),
     introjsUI(),
+	useShinyjs(),
     navbarPage(
         title="Simply Diagnostic Intuition Support",
         tabPanel(
@@ -131,11 +133,19 @@ ui <- fluidPage(
                                 label = h2("2) Test"),
                                 choices = as.list(data$handelsname)
                     ),
-                    p('Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
+                    p(
+                        id='pei_eval_info', 
+                        style='color: red; font-size: 12px;',
+                        'Dieser Test wurde nicht von dem Paul-Ehrlich Institut evaluiert! 
+                         Die Herstellerangaben k\u00f6nnen von der tats\u00e4chlichen 
+                         Testg\u00fcte stark abweichen!'
+                    ),
+                    p(
+                        'Beachten Sie das erh\u00f6hte Risiko eines falsch-negativen Testergebnisses
                         bei Antigen-Schnelltests aufgrund einer Sensitivit\u00e4tsl\u00fccke bei 
                         einer pr\u00e4- oder asymptomatischen Infektion 
                         (Siehe Reiter PPW & NPW)!',
-                      style='color: red; font-size: 12px;'
+                        style='color: red; font-size: 12px;'
                     ),
                     fluidRow(
                         column(

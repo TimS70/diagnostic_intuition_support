@@ -92,6 +92,12 @@ intro_txt_6 <- "
         zeigt COVID-19 Symptome?
     </p>
     <p>
+        Beispielsweise geht der physisch nahe Kontakt zu anderen Personen (<1 Meter) mit einem 
+        ca. 10% h\u00f6heren Risiko und der Kontakt ohne Gesichtsmaske mit 
+        einem ca. 14% h\u00f6heren Risiko der \u00dcbertragung von SARS-CoV-2 einher 
+        (Chu et al., 2020, <i>Lancet</i>).   
+    </p>
+    <p>
         Es gibt bzgl. der Einsch\u00e4tzung des Infektionsrisikos
         keine 100%ig richtige oder falsche Antwort, Sie m\u00fcssen es
         einfach sch\u00e4tzen.

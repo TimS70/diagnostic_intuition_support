@@ -6,7 +6,7 @@ library(pins)
 
 
 clean_test_data <- function(data) {
-    print(data %>% names())
+    
     names(data) <- c('id',
                           'handelsname',
                           'evaluierung',

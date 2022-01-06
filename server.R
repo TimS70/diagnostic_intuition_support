@@ -70,6 +70,9 @@ server <- function(input, output, session) {
             filter(region == input$region) %>%
             dplyr::pull(incidence)})
 
+        print("incidence")
+        print(incidence())
+        
         # Dunkelziffer 1-1/1.8 = 0.55
         # https://twitter.com/rki_de/status/1402602335776432132
         prevalence <- reactive({
@@ -104,11 +107,18 @@ server <- function(input, output, session) {
         risk_data <- reactive({
             get_risk_data(test_data=selected_test())})
 
+        print("prevalence()")
+        print(prevalence())
+        print("selected_test()")
+        print(selected_test())
         ppv_intersect <- reactive({
             out <- 100 * calculate_ppv(prevalence(),
                                        selected_test()$sensitivity / 100,
                                        selected_test()$specifity / 100)
             round(out, 1)})
+        
+        print("ppv_intersect")
+        print(ppv_intersect)
 
         npv_intersect <- reactive({
             out <- 100 * calculate_npv(prevalence(),

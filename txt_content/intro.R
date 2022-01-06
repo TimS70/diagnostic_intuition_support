@@ -1,4 +1,6 @@
 source(file.path('utils', 'incidence.R'))
+source(file.path('utils', 'estimate_prevalence.R'))
+
 data_region <- region_incidence_data()
 incidence <- data_region %>%
     filter(region == "Deutschland") %>%

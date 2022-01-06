@@ -6,7 +6,7 @@ library(pins)
 
 
 clean_test_data <- function(data) {
-    
+    print(data %>% names())
     names(data) <- c('id',
                           'handelsname',
                           'evaluierung',
@@ -20,7 +20,8 @@ clean_test_data <- function(data) {
                           'sensitivity',
                           'sensitivity_ci_95',
                           'specifity',
-                          'specifity_ci_95')
+                          'specifity_ci_95',
+                          'manual')
 
     data[data[, 'id']=='AT586/21', 'specifity_ci_95'] = '97,7 - 99,9'
     data[data[, 'id']=='AT550/21', 'sensitivity_ci_95'] = '80,84 - 99,30'
@@ -33,42 +34,42 @@ clean_test_data <- function(data) {
     data[data[, 'id']=='AT656/21', 'specifity_ci_95'] = '96,3 - 99,6'
     
     
-    for (txt in '%') {
-        data <- data %>%
-            mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
-                    str_replace(regex(txt, dotall = TRUE),
-                                replacement = ""),
-               specifity_ci_95 = specifity_ci_95 %>%
-                    str_replace(regex(txt, dotall = TRUE),
-                                replacement = ""))
-    }
+    # for (txt in c("%")) {
+    #     data <- data %>%
+    #         mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
+    #                 str_replace(regex(txt, dotall = TRUE),
+    #                             replacement = ""),
+    #            specifity_ci_95 = specifity_ci_95 %>%
+    #                 str_replace(regex(txt, dotall = TRUE),
+    #                             replacement = ""))
+    # }
 
-    for (txt in c("[~; A-Za-z%]",
-                  ", ",
-                  ",-"
-    )) {
+    # for (txt in c("[~; A-Za-z%]",
+    #               ", ",
+    #               ",-"
+    # )) {
+    # 
+    #     data <- data %>%
+    #         mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
+    #                 str_replace(pattern = txt, replacement = "-"),
+    #            specifity_ci_95 = specifity_ci_95 %>%
+    #                 str_replace(pattern = txt, replacement = "-"))
+    # }
 
-        data <- data %>%
-            mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
-                    str_replace(pattern = txt, replacement = "-"),
-               specifity_ci_95 = specifity_ci_95 %>%
-                    str_replace(pattern = txt, replacement = "-"))
-    }
-
-    for (txt in c("- - ",
-                  "- - ",
-                  "--",
-                  "-–",
-                  ", ",
-                  ",-"
-    )) {
-
-        data <- data %>%
-            mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
-                    str_replace(pattern = txt, replacement = "-"),
-               specifity_ci_95 = specifity_ci_95 %>%
-                    str_replace(pattern = txt, replacement = "-"))
-    }
+    # for (txt in c("- - ",
+    #               "- - ",
+    #               "--",
+    #               "-–",
+    #               ", ",
+    #               ",-"
+    # )) {
+    # 
+    #     data <- data %>%
+    #         mutate(sensitivity_ci_95 = sensitivity_ci_95 %>%
+    #                 str_replace(pattern = txt, replacement = "-"),
+    #            specifity_ci_95 = specifity_ci_95 %>%
+    #                 str_replace(pattern = txt, replacement = "-"))
+    # }
 
     data <- data %>%
         separate(col=sensitivity_ci_95,
@@ -140,6 +141,7 @@ add_pei_criteria <- function(data) {
 load_test_data <- function(file) {
     data <- read.csv(file=file, sep = ';', dec=',',
                      fileEncoding='windows-1252')
+    print(head(data))
     data <- clean_test_data(data = data)
     
     data <- add_pei_criteria(data)

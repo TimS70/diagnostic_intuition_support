@@ -4,7 +4,7 @@ library(ggplot2)
 library(dplyr)
 library(riskyr)
 
-source(file= 'utils/load_test_data.R')
+source(file='utils/load_test_data.R')
 source(file='utils/estimate_prevalence.R')
 source(file='txt_content/about.R')
 source(file='txt_content/ppv_npv.R')

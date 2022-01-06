@@ -11,8 +11,8 @@ library(shinyjs)
 
 source(file.path('utils', 'load_test_data.R'))
 source(file.path('utils', 'incidence.R'))
-source(file='txt_content/intro.R')
-source(file='utils/estimate_prevalence.R')
+source(file.path('txt_content/intro.R'))
+source(file.path('utils/estimate_prevalence.R'))
 
 data <- load_test_data(file= file.path('data', 'antigentests.csv'))
 
